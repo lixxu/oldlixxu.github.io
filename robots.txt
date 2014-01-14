@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://blog.lixxu.me/sitemap.xml 
+Sitemap: http://lixxu.me/sitemap.xml 
