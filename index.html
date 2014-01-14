@@ -9,8 +9,9 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="在上一篇中大概介绍了初始环境的搭建, 不过发现在Windows下部署时出了点问题,
+问了下狗, 找到解决方法了, 暂时记下来. 注: 我用的是 SmartGitHg 带的git程序. 1. 生成ssh key文件 键入文件名, 如 id_rsa.github 1
+ssh-keygen -C &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,7 +73,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/01/14/windows-git-ssh/">Windows_git_ssh</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/01/14/windows-git-ssh/">Windows下使用ssh连接github</a></h1>
     
     
       <p class="meta">
@@ -95,7 +96,38 @@
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>在<a href="/blog/2014/01/14/first-post/">上一篇</a>中大概介绍了初始环境的搭建, 不过发现在Windows下部署时出了点问题,
+问了下狗, 找到解决方法了, 暂时记下来.</p>
+
+<p><strong>注:</strong> 我用的是 <a href="http://www.syntevo.com/smartgithg/">SmartGitHg</a> 带的git程序.</p>
+
+<h4>1. 生成ssh key文件</h4>
+
+<p>键入文件名, 如 <code>id_rsa.github</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -C your_email_address@email.com -t rsa</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2. 添加到github</h4>
+
+<p>到<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>添加刚刚创建的key, 标题随便写, 把 <code>id_rsa.github.pub</code> 公钥里的内容复制粘贴到 <code>Key</code> 里面</p>
+
+<h4>3. 复制密钥文件</h4>
+
+<p>复制 <code>id_rsa.github</code> 和 <code>id_rsa.github.pub</code> 到<code>[SmartGitHg folder]\git\.ssh</code>文件夹下</p>
+
+<h4>4. 测试</h4>
+
+<p>运行<code>[SmartGitHg folder]\git\git-bash.bat</code> 或 <code>git-cmd.bat</code>进行测试</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -T git@github.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果出现<code>Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.</code>就说明成功了. 以后就可以直接提交了</p>
+
+<p><font color="red"><strong>注</strong>: 不能直接使用 <strong>cmd.exe</strong> 进行测试和提交</font></p>
 </div>
   
   
@@ -190,7 +222,7 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;4. 修改配置
 修改配置文件_config.yml, 修改url、title、subtitle、author等等, 可以把评论disqus加上, google+等等, 择需加上.</p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;5. 创建github仓库 (如果你想要这样的网址 <strong>username.github.io</strong>, 仓库名得写成这样的: <strong>username.github.io</strong>)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;5. 创建github仓库 (如果你想要这样的网址 <strong>username.github.io</strong>, 仓库名得写成这样的: <strong>username.github.io</strong>, 好像 <strong>username.github.com</strong> 的不行了, github pages都转到github.io了)</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;6. 本地配置github分支</p>
 
@@ -247,7 +279,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/01/14/windows-git-ssh/">Windows_git_ssh</a>
+        <a href="/blog/2014/01/14/windows-git-ssh/">Windows下使用ssh连接github</a>
       </li>
     
       <li class="post">
