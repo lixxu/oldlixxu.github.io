@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>杂七杂八记一下</title>
+  <title>添加分类列表到边栏 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.me">
+  <link rel="canonical" href="http://lixxu.me/blog/2014/01/14/add-categories-sidebar">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a></h1>
+      <h1 class="entry-title">添加分类列表到边栏</h1>
     
     
       <p class="meta">
@@ -89,15 +86,15 @@
 
 <time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">2014-01-14 23:09:10 +0800</time>
         
-           | <a href="/blog/2014/01/14/add-categories-sidebar/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/14/add-categories-sidebar/">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>来源: <a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/</a></p>
+<div class="entry-content"><p>来源: <a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/</a></p>
 
 <p>简单记下过程</p>
 
@@ -188,92 +185,16 @@
 
 <p>另外, 如果想在分类里使用空格, 直接按 html 语法写 <code>CAT1&amp;nbsp;CAT11</code></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/14/windows-git-ssh/">Windows下使用ssh连接github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
 
-<time datetime="2014-01-14T18:56:34+08:00" pubdate data-updated="true">2014-01-14 18:56:34 +0800</time>
-        
-           | <a href="/blog/2014/01/14/windows-git-ssh/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/14/windows-git-ssh/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在<a href="/blog/2014/01/14/first-post/">上一篇</a>中大概介绍了初始环境的搭建, 不过发现在Windows下部署时出了点问题,
-问了下狗, 找到解决方法了, 暂时记下来.</p>
-
-<p><strong>注:</strong> 我用的是 <a href="http://www.syntevo.com/smartgithg/">SmartGitHg</a> 带的git程序.</p>
-
-<h4>1. 生成ssh key文件</h4>
-
-<p>键入文件名, 如 <code>id_rsa.github</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -C your_email_address@email.com -t rsa</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2. 添加到github</h4>
-
-<p>到<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>添加刚刚创建的key, 标题随便写, 把 <code>id_rsa.github.pub</code> 公钥里的内容复制粘贴到 <code>Key</code> 里面</p>
-
-<h4>3. 复制密钥文件</h4>
-
-<p>复制 <code>id_rsa.github</code> 和 <code>id_rsa.github.pub</code> 到<code>[SmartGitHg folder]\git\.ssh</code>文件夹下</p>
-
-<h4>4. 测试</h4>
-
-<p>运行<code>[SmartGitHg folder]\git\git-bash.bat</code> 或 <code>git-cmd.bat</code>进行测试</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -T git@github.com</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果出现<code>Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.</code>就说明成功了. 以后就可以直接提交了</p>
-
-<p><font color="red"><strong>注</strong>: 不能直接使用 <strong>cmd.exe</strong> 进行测试和提交</font></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/14/first-post/">开篇</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -285,135 +206,42 @@
   
 
 
-<time datetime="2014-01-14T13:21:29+08:00" pubdate data-updated="true">2014-01-14 13:21:29 +0800</time>
-        
-           | <a href="/blog/2014/01/14/first-post/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/14/first-post/">Comments</a>
-        
-      </p>
+<time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">2014-01-14 23:09:10 +0800</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/category-side/'>Category&nbsp;Side</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>很久以前就想写写博客, 随便记点什么. 又想自己写个博客程序练练手, 不过由于种种原因都放弃了. 虽然一直在用为知笔记, 也确实不错, 不过现在是一个装的时代, 不搞个博客出去都不好意思打招呼.</p>
-
-<p>于是想起了日渐流行的把博客放到良心的 <a href="https://github.com">github</a> 上的做法, 到网上查查教程, 鼓捣鼓捣就能放上去. 于是就有了这第一篇, 简单写下设置过程.</p>
-
-<h3>[附] Windows下安装方法</h3>
-
-<h4>1. 安装ruby</h4>
-
-<p>到 <a href="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a> 下载ruby, 如果你不方便安装, 可以下载7zip格式的(我就是用的这种, 办公电脑不方便安装).</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. 解压到某文件夹, 如 <strong>D:\ruby</strong><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;2. 添加到环境变量, 如 <strong>D:\ruby\bin</strong></p>
-
-<h4>2. 安装devkit</h4>
-
-<p>下载devkit, 右键解压到一个文件夹(如d:\devkit)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ruby dk.rb init
-</span><span class='line'>ruby dk.rb install</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>注意:</strong><br/>
-运行install前得编辑config.yml, 在最后面添加 <strong><code>- d:/ruby</code></strong> 一行, 注意最前面的 <strong><code>-</code></strong> 一定得加上.</p>
-
-<h4>3. 添加环境变量, 方便使用中文</h4>
-
-<p>LANG=zh_CN.UTF-8 和 LC_ALL=zh_CN.UTF-8</p>
-
-<h4>4. 安装Octopress</h4>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. 安装Octopress</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/imathis/octopress.git myblog
-</span><span class='line'>cd myblog    //这边会有提示信息, yes就行
-</span><span class='line'>ruby --version  //Ruby的版本需要在1.9.3+版本</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. 更换 gem 源(国内环境, 你懂的)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem sources -r http://rubygems.org/
-</span><span class='line'>gem sources -a http://ruby.taobao.org/
-</span><span class='line'>gem sources -l</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. 安装插件</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bundler
-</span><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. 安装Octopress 主题</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;5. 修改配置
-修改配置文件_config.yml, 修改url、title、subtitle、author等等, 可以把评论disqus加上, google+等等, 择需加上.</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;6. 创建github仓库 (如果你想要这样的网址 <strong>username.github.io</strong>, 仓库名得写成这样的: <strong>username.github.io</strong>, 好像 <strong>username.github.com</strong> 的不行了, github pages都转到github.io了)</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;7. 本地配置github分支</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
-
-
-<p>当命令提示你输入github URL时, 输入刚才建立的git地址</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;8. 好了, 写文章吧</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post["my first blog"] </span></code></pre></td></tr></table></div></figure>
-
-
-<p>在 &ldquo;myblog/source/_post&rdquo; 下生成一个**.makedown文件, 编辑文章即可.</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;9. 生成, 预览</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在浏览器中打开 <a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a> 就可在本地调试页面</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;10. git提交</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;11. 打完收工.</p>
-
-<h5>参考文章 <a href="http://www.xiaoche.me/blog/2012/01/18/install-octopress/">http://www.xiaoche.me/blog/2012/01/18/install-octopress/</a></h5>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/14/windows-git-ssh/" title="Previous Post: Windows下使用ssh连接github">&laquo; Windows下使用ssh连接github</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -456,6 +284,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -470,7 +299,10 @@
       var disqus_shortname = 'lixxu';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/01/14/add-categories-sidebar/';
+        var disqus_url = 'http://lixxu.me/blog/2014/01/14/add-categories-sidebar/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
