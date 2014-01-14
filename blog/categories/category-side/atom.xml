@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Category&nbsp;Side | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/category-side/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-14T23:39:33+08:00</updated>
+  <updated>2014-01-15T00:14:23+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -47,22 +47,26 @@ end</p>
 ```</p>
 
 <p>&nbsp;&nbsp;2. 在 <code>source/_includes/asides</code> 下新建一个 html 文件, 如 <code>category_list.html</code>
-```html category_list.html
-<section>
-  <h1>Categories</h1>
-  <ul id="categories"></p>
-
-<pre><code><li class='category'><a href='/blog/categories/category-nbsp-side/'>Category&nbsp;Side (1)</a></li>
-<li class='category'><a href='/blog/categories/github-nbsp-blog/'>GitHub&nbsp;Blog (1)</a></li>
-<li class='category'><a href='/blog/categories/github-nbsp-ssh/'>GitHub&nbsp;ssh (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>Octopress (1)</a></li>
-<li class='category'><a href='/blog/categories/windows-nbsp-ssh/'>Windows&nbsp;ssh (1)</a></li>
-
-</code></pre>
-
-<p>  </ul>
-</section>
-```</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>category_list.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>{% category_list %}
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>我还顺手添了一个外部链接列表的边栏 <code>asides/other_links.html</code>, 先添一个, 后续再加
 ```html asides/other_links.html
