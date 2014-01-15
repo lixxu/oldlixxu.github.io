@@ -9,7 +9,11 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="来源: http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/ 简单记下过程 &nbsp;&nbsp;1. 在 plugins 目录下新建一个 ruby 代码文件, 如 category_list_tag &hellip;">
+  <meta name="description" content="最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是感觉 win32api 好一点. 先看下例子 (超过 15 好像就是背景色了): 具体用法(Python 2.7.6下): color_terminal_test.py1
+2
+3
+4
+5 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +69,109 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/15/windows-color-terminal/">Windows下彩色化终端文字</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-15T08:48:35+08:00" pubdate data-updated="true">2014-01-15 08:48:35 +0800</time>
+        
+           | <a href="/blog/2014/01/15/windows-color-terminal/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/01/15/windows-color-terminal/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是感觉 <code>win32api</code> 好一点.</p>
+
+<p>先看下例子 (超过 15 好像就是背景色了):
+<img src="/images/color_terminal.png"></p>
+
+<p>具体用法(Python 2.7.6下):</p>
+
+<figure class='code'><figcaption><span>color_terminal_test.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">print_function</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">windll</span><span class="p">,</span> <span class="n">c_ulong</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">HANDLER</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">Kernel32</span><span class="o">.</span><span class="n">GetStdHandle</span><span class="p">(</span><span class="n">c_ulong</span><span class="p">(</span><span class="mh">0xfffffff5</span><span class="p">))</span>
+</span><span class='line'><span class="n">COLOR_MAPS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">black</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dark_blue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dark_green</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">dark_navy</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dark_red</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dark_purple</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">dark_yellow</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">dark_white</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">gray</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">blue</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">green</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">navy</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">red</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">purple</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">yellow</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">white</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">set_color</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;default&#39;</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">windll</span><span class="o">.</span><span class="n">Kernel32</span><span class="o">.</span><span class="n">SetConsoleTextAttribute</span><span class="p">(</span><span class="n">HANDLER</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">COLOR_MAPS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">show_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;default&#39;</span><span class="p">,</span> <span class="n">new_line</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;{}{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="k">if</span> <span class="n">new_line</span> <span class="k">else</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">set_color</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">show_text</span><span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;yellow&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>COLOR_MAPS</code> 里多了一个 <code>default</code>, 这个就是默认终端下的文字颜色.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -417,6 +524,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/15/windows-color-terminal/">Windows下彩色化终端文字</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a>
       </li>
     
@@ -434,10 +545,13 @@
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/category-nbsp-side/'>Category&nbsp;Side (1)</a></li>
+<li class='category'><a href='/blog/categories/colored-nbsp-terminal/'>Colored&nbsp;terminal (1)</a></li>
 <li class='category'><a href='/blog/categories/github-nbsp-blog/'>GitHub&nbsp;Blog (1)</a></li>
 <li class='category'><a href='/blog/categories/github-nbsp-ssh/'>GitHub&nbsp;ssh (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (1)</a></li>
+<li class='category'><a href='/blog/categories/python/'>Python (1)</a></li>
 <li class='category'><a href='/blog/categories/windows-nbsp-ssh/'>Windows&nbsp;ssh (1)</a></li>
+<li class='category'><a href='/blog/categories/windows-nbsp-terminal/'>Windows&nbsp;terminal (1)</a></li>
 
   </ul>
 </section><section>
