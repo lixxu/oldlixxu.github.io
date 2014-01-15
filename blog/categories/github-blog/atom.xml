@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GitHub&nbsp;Blog | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/github-blog/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-15T09:27:34+08:00</updated>
+  <updated>2014-01-15T10:28:45+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -86,7 +86,7 @@ rake setup_github_pages
 <code>
 rake new_post["my first blog"]
 </code>
-在 &ldquo;myblog/source/_post&rdquo; 下生成一个**.makedown文件, 编辑文章即可.</p>
+在 <code>myblog/source/_post</code> 下生成一个 <code>**.makedown</code> 的文件, 编辑文章即可.</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;9. 生成, 预览
 <code>
