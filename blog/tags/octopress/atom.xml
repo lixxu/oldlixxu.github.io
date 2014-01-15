@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Octopress | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/tags/octopress/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-15T15:26:12+08:00</updated>
+  <updated>2014-01-15T17:01:57+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -25,6 +25,63 @@
 <p>不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法. 有知道的达人麻烦告知一下.</p>
 
 <p>暂时不想再弄了, 以后再说吧.</p>
+
+<p><strong>更新</strong>: 已经搞定了, 需要添加 <code>data-thread-key</code> 属性</p>
+
+<ul>
+<li>在 <code>source\_includes\post\duoshuo.html</code> 中使用 <code>page</code></li>
+<li>在 <code>source\_includes\article.html</code> 中如果是首页使用 <code>post</code>, 否则使用 <code>post</code></li>
+</ul>
+
+
+<p>我把加载 js 的部分放到 <code>source\_layouts\default.html</code> 里了, 加在 <code>&lt;/body&gt;</code> 前即可.</p>
+
+<!--more-->
+
+
+<p>```html source_layouts\default.html
+{% if site.duoshuo_short_name and site.duoshuo_comments == true %}
+  <!-- 多说js加载开始，一个页面只需要加载一次 -->
+  <script type="text/javascript"></p>
+
+<pre><code>var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</code></pre>
+
+<p>  </script>
+  <!-- 多说js加载结束，一个页面只需要加载一次 -->
+{% endif %}
+```</p>
+
+<p>```html source_includes\post\duoshuo.html</p>
+
+<!-- Duoshuo Comment BEGIN -->
+
+
+<div class="ds-thread" data-thread-key="{{ page.url }}" data-title="{{ page.title }}" data-url="{{ page.url }}"></div>
+
+
+<!-- Duoshuo Comment END -->
+
+
+<p><code>
+</code>html source_includes\article.html
+{% if site.duoshuo_short_name and page.comments != false and post.comments != false and site.duoshuo_comments == true %}</p>
+
+<pre><code>| &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments"&gt;&lt;span class="ds-thread-count" data-thread-key="{% if index %}{{ post.url }}{% else %}{{ page.url }}{% endif %}" data-count-type="comments"&gt;暂无评论&lt;/span&gt;&lt;/a&gt;
+</code></pre>
+
+<p>{% endif %}
+```</p>
+
+<!--more-->
+
 ]]></content>
   </entry>
   

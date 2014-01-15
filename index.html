@@ -91,10 +91,9 @@
 <time datetime="2014-01-15T14:13:56+08:00" pubdate data-updated="true">2014-01-15 14:13:56 +0800</time>
         
         
+          | <a href="/blog/2014/01/15/other-stuff/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/other-stuff/" data-count-type="comments">暂无评论</span></a>
         
-          | <a href="/blog/2014/01/15/other-stuff/#comments" id="uyan_count_unit" du="" su="">0 条评论</a>
-          <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
-         
+        
       </p>
     
   </header>
@@ -107,8 +106,23 @@
 <p>不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法. 有知道的达人麻烦告知一下.</p>
 
 <p>暂时不想再弄了, 以后再说吧.</p>
+
+<p><strong>更新</strong>: 已经搞定了, 需要添加 <code>data-thread-key</code> 属性</p>
+
+<ul>
+<li>在 <code>source\_includes\post\duoshuo.html</code> 中使用 <code>page</code></li>
+<li>在 <code>source\_includes\article.html</code> 中如果是首页使用 <code>post</code>, 否则使用 <code>post</code></li>
+</ul>
+
+
+<p>我把加载 js 的部分放到 <code>source\_layouts\default.html</code> 里了, 加在 <code>&lt;/body&gt;</code> 前即可.</p>
+
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/15/other-stuff/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -138,10 +152,9 @@
 <time datetime="2014-01-15T09:44:48+08:00" pubdate data-updated="true">2014-01-15 09:44:48 +0800</time>
         
         
+          | <a href="/blog/2014/01/15/use-duoshuo/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/use-duoshuo/" data-count-type="comments">暂无评论</span></a>
         
-          | <a href="/blog/2014/01/15/use-duoshuo/#comments" id="uyan_count_unit" du="" su="">0 条评论</a>
-          <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
-         
+        
       </p>
     
   </header>
@@ -192,10 +205,9 @@
 <time datetime="2014-01-15T08:48:35+08:00" pubdate data-updated="true">2014-01-15 08:48:35 +0800</time>
         
         
+          | <a href="/blog/2014/01/15/windows-color-terminal/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/windows-color-terminal/" data-count-type="comments">暂无评论</span></a>
         
-          | <a href="/blog/2014/01/15/windows-color-terminal/#comments" id="uyan_count_unit" du="" su="">0 条评论</a>
-          <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
-         
+        
       </p>
     
   </header>
@@ -241,10 +253,9 @@
 <time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">2014-01-14 23:09:10 +0800</time>
         
         
+          | <a href="/blog/2014/01/14/add-categories-sidebar/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/add-categories-sidebar/" data-count-type="comments">暂无评论</span></a>
         
-          | <a href="/blog/2014/01/14/add-categories-sidebar/#comments" id="uyan_count_unit" du="" su="">0 条评论</a>
-          <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
-         
+        
       </p>
     
   </header>
@@ -289,10 +300,9 @@
 <time datetime="2014-01-14T18:56:34+08:00" pubdate data-updated="true">2014-01-14 18:56:34 +0800</time>
         
         
+          | <a href="/blog/2014/01/14/windows-git-ssh/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/windows-git-ssh/" data-count-type="comments">暂无评论</span></a>
         
-          | <a href="/blog/2014/01/14/windows-git-ssh/#comments" id="uyan_count_unit" du="" su="">0 条评论</a>
-          <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
-         
+        
       </p>
     
   </header>
@@ -338,10 +348,9 @@
 <time datetime="2014-01-14T13:21:29+08:00" pubdate data-updated="true">2014-01-14 13:21:29 +0800</time>
         
         
+          | <a href="/blog/2014/01/14/first-post/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/first-post/" data-count-type="comments">暂无评论</span></a>
         
-          | <a href="/blog/2014/01/14/first-post/#comments" id="uyan_count_unit" du="" su="">0 条评论</a>
-          <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
-         
+        
       </p>
     
   </header>
@@ -412,13 +421,12 @@
   <ul id="links">
     <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
   </ul>
-</section><section>
-<h1>最新评论</h1>
-<div id="uyan_newcmt_unit"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1887981"></script>
 </section>
 
-
+<section>
+<h1>Recent Comments</h1>
+<ul class="ds-recent-comments" data-num-items="7" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="18"></ul>
+</section>
   
 </aside>
 
@@ -442,5 +450,19 @@
 
 
 
+  
+  <!-- 多说js加载开始，一个页面只需要加载一次 -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lixxu"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说js加载结束，一个页面只需要加载一次 -->
+  
 </body>
 </html>
