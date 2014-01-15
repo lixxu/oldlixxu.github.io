@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Duoshuo | 杂七杂八记一下]]></title>
-  <link href="http://lixxu.me/blog/categories/duoshuo/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: duoshuo | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/duoshuo/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-15T10:28:45+08:00</updated>
+  <updated>2014-01-15T14:23:25+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Octopress使用多说]]></title>
+    <title type="html"><![CDATA[Octopress使用多说评论系统]]></title>
     <link href="http://lixxu.me/blog/2014/01/15/use-duoshuo/"/>
     <updated>2014-01-15T09:44:48+08:00</updated>
     <id>http://lixxu.me/blog/2014/01/15/use-duoshuo</id>
@@ -27,6 +27,9 @@
 
 
 <p>照着文章来就行了, 没啥好说的, 这里记一下备忘, 把 <code>yourname</code> 替换成你自己的名字.</p>
+
+<!--more-->
+
 
 <p>&nbsp;1. 注册多说, 不必多说, 复制生成的代码到 <code>source\_includes\post</code> 下新建 <code>duoshuo.html</code>
 ```html</p>
@@ -76,6 +79,9 @@ duoshuo_short_name: yourname
 <p>  </section>
 {% endif %}
 ```</p>
+
+<!--more-->
+
 ]]></content>
   </entry>
   

@@ -9,8 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="参考来源: http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/
-http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
+  <meta name="description" content="放了半天狗, 添加许多小东西到 Octopress, 如 tags, 相关文章, 添加多说评论到边栏 等等. 参考文章: http://blog.csdn.net/lcliliil/article/details/13725895 不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -44,8 +43,10 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 </hgroup>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="xuzenglin@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
   
 </ul>
   
@@ -59,6 +60,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
 </ul>
 
 </nav>
@@ -72,7 +74,52 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-15T14:13:56+08:00" pubdate data-updated="true">2014-01-15 14:13:56 +0800</time>
+        
+        
+          | <a href="/blog/2014/01/15/other-stuff/#comments">评论</a>
+         
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>放了半天狗, 添加许多小东西到 Octopress, 如 <code>tags</code>, <code>相关文章</code>, <code>添加多说评论到边栏</code> 等等.</p>
+
+<p>参考文章: <a href="http://blog.csdn.net/lcliliil/article/details/13725895">http://blog.csdn.net/lcliliil/article/details/13725895</a></p>
+
+<p>不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法. 有知道的达人麻烦告知一下.</p>
+
+<p>暂时不想再弄了, 以后再说吧.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a></h1>
     
     
       <p class="meta">
@@ -91,7 +138,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <time datetime="2014-01-15T09:44:48+08:00" pubdate data-updated="true">2014-01-15 09:44:48 +0800</time>
         
         
-          | <a href="/blog/2014/01/15/use-duoshuo/#comments">Comments</a>
+          | <a href="/blog/2014/01/15/use-duoshuo/#comments">评论</a>
          
       </p>
     
@@ -108,68 +155,12 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
 <p>照着文章来就行了, 没啥好说的, 这里记一下备忘, 把 <code>yourname</code> 替换成你自己的名字.</p>
 
-<p>&nbsp;1. 注册多说, 不必多说, 复制生成的代码到 <code>source\_includes\post</code> 下新建 <code>duoshuo.html</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Duoshuo Comment BEGIN --&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;ds-thread&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;yourname&quot;</span><span class="p">};</span>
-</span><span class='line'>    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>        <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">})();</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- Duoshuo Comment END --&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;2. 编辑 <code>_config.yml</code>, 添加下面两行:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># duoshuo comments</span>
-</span><span class='line'><span class="l-Scalar-Plain">duoshuo_comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">duoshuo_short_name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yourname</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;3. 在 <code>source\_layouts\post.html</code> disqus设置下面添加:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}
-</span><span class='line'>  <span class="nt">&lt;section&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;h1&gt;</span>Comments<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;comments&quot;</span> <span class="na">aria-live=</span><span class="s">&quot;polite&quot;</span><span class="nt">&gt;</span>{% include post/duoshuo.html %}<span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/section&gt;</span>
-</span><span class='line'>{% endif %}
-</span></code></pre></td></tr></table></div></figure>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/15/use-duoshuo/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -199,80 +190,24 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <time datetime="2014-01-15T08:48:35+08:00" pubdate data-updated="true">2014-01-15 08:48:35 +0800</time>
         
         
-          | <a href="/blog/2014/01/15/windows-color-terminal/#comments">Comments</a>
+          | <a href="/blog/2014/01/15/windows-color-terminal/#comments">评论</a>
          
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是感觉 <code>win32api</code> 好一点.</p>
+  <div class="entry-content"><p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
 
 <p>先看下例子 (超过 15 好像就是背景色了):
 <img src="/images/color_terminal.png"></p>
 
-<p>具体用法(Python 2.7.6下):</p>
-
-<figure class='code'><figcaption><span>color_terminal_test.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">print_function</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">windll</span><span class="p">,</span> <span class="n">c_ulong</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">HANDLER</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">Kernel32</span><span class="o">.</span><span class="n">GetStdHandle</span><span class="p">(</span><span class="n">c_ulong</span><span class="p">(</span><span class="mh">0xfffffff5</span><span class="p">))</span>
-</span><span class='line'><span class="n">COLOR_MAPS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">black</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dark_blue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dark_green</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-</span><span class='line'>    <span class="n">dark_navy</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dark_red</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dark_purple</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-</span><span class='line'>    <span class="n">dark_yellow</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">dark_white</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">gray</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-</span><span class='line'>    <span class="n">blue</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">green</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">navy</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-</span><span class='line'>    <span class="n">red</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">purple</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">yellow</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
-</span><span class='line'>    <span class="n">white</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-</span><span class='line'>    <span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">set_color</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;default&#39;</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">windll</span><span class="o">.</span><span class="n">Kernel32</span><span class="o">.</span><span class="n">SetConsoleTextAttribute</span><span class="p">(</span><span class="n">HANDLER</span><span class="p">,</span>
-</span><span class='line'>        <span class="n">COLOR_MAPS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">show_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;default&#39;</span><span class="p">,</span> <span class="n">new_line</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;{}{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="k">if</span> <span class="n">new_line</span> <span class="k">else</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">set_color</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">show_text</span><span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;yellow&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>COLOR_MAPS</code> 里多了一个 <code>default</code>, 这个就是默认终端下的文字颜色.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/15/windows-color-terminal/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -302,7 +237,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">2014-01-14 23:09:10 +0800</time>
         
         
-          | <a href="/blog/2014/01/14/add-categories-sidebar/#comments">Comments</a>
+          | <a href="/blog/2014/01/14/add-categories-sidebar/#comments">评论</a>
          
       </p>
     
@@ -313,90 +248,12 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
 <p>简单记下过程</p>
 
-<p>&nbsp;&nbsp;1. 在 <code>plugins</code> 目录下新建一个 ruby 代码文件, 如 <code>category_list_tag.rb</code></p>
-
-<figure class='code'><figcaption><span>category_list_tag.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
-</span><span class='line'>  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
-</span><span class='line'>      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
-</span><span class='line'>        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
-</span><span class='line'>        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
-</span><span class='line'>        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>      <span class="n">html</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;2. 在 <code>source/_includes/asides</code> 下新建一个 html 文件, 如 <code>category_list.html</code></p>
-
-<figure class='code'><figcaption><span>category_list.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    {% category_list %}
-</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我还顺手添了一个外部链接列表的边栏 <code>asides/other_links.html</code>, 先添一个, 后续再加</p>
-
-<figure class='code'><figcaption><span>asides/other_links.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Links<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;links&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/lixxu/&quot;</span><span class="nt">&gt;</span>GitHub projects<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;3. 修改 <code>_config.yml</code>, 添加分类和外部链接</p>
-
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/category_list.html</span><span class="p-Indicator">,</span> <span class="nv">asides/other_links.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/delicious.html</span><span class="p-Indicator">,</span> <span class="nv">asides/pinboard.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>另外, 如果想在分类里使用空格, 直接按 html 语法写 <code>CAT1&amp;nbsp;CAT11</code></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/14/add-categories-sidebar/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -426,7 +283,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <time datetime="2014-01-14T18:56:34+08:00" pubdate data-updated="true">2014-01-14 18:56:34 +0800</time>
         
         
-          | <a href="/blog/2014/01/14/windows-git-ssh/#comments">Comments</a>
+          | <a href="/blog/2014/01/14/windows-git-ssh/#comments">评论</a>
          
       </p>
     
@@ -438,35 +295,12 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
 <p><strong>注:</strong> 我用的是 <a href="http://www.syntevo.com/smartgithg/">SmartGitHg</a> 带的git程序.</p>
 
-<h4>1. 生成ssh key文件</h4>
-
-<p>键入文件名, 如 <code>id_rsa.github</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -C your_email_address@email.com -t rsa</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2. 添加到github</h4>
-
-<p>到<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>添加刚刚创建的key, 标题随便写, 把 <code>id_rsa.github.pub</code> 公钥里的内容复制粘贴到 <code>Key</code> 里面</p>
-
-<h4>3. 复制密钥文件</h4>
-
-<p>复制 <code>id_rsa.github</code> 和 <code>id_rsa.github.pub</code> 到<code>[SmartGitHg folder]\git\.ssh</code>文件夹下</p>
-
-<h4>4. 测试</h4>
-
-<p>运行<code>[SmartGitHg folder]\git\git-bash.bat</code> 或 <code>git-cmd.bat</code>进行测试</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -T git@github.com</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果出现<code>Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.</code>就说明成功了. 以后就可以直接提交了</p>
-
-<p><font color="red"><strong>注</strong>: 不能直接使用 <strong>cmd.exe</strong> 进行测试和提交</font></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/14/windows-git-ssh/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -496,7 +330,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <time datetime="2014-01-14T13:21:29+08:00" pubdate data-updated="true">2014-01-14 13:21:29 +0800</time>
         
         
-          | <a href="/blog/2014/01/14/first-post/#comments">Comments</a>
+          | <a href="/blog/2014/01/14/first-post/#comments">评论</a>
          
       </p>
     
@@ -505,112 +339,14 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
   <div class="entry-content"><p>很久以前就想写写博客, 随便记点什么. 又想自己写个博客程序练练手, 不过由于种种原因都放弃了. 虽然一直在用为知笔记, 也确实不错, 不过现在是一个装的时代, 不搞个博客出去都不好意思打招呼.</p>
 
-<p>于是想起了日渐流行的把博客放到良心的 <a href="https://github.com">github</a> 上的做法, 到网上查查教程, 鼓捣鼓捣就能放上去. 于是就有了这第一篇, 简单写下设置过程.</p>
+<p>于是想起了日渐流行的把博客放到良心的 <a href="https://github.com">github</a> 上的做法, 放放狗查查教程, 简单写下设置过程.</p>
 
-<h3>[附] Windows下安装方法</h3>
-
-<h4>1. 安装ruby</h4>
-
-<p>到 <a href="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a> 下载ruby, 如果你不方便安装, 可以下载7zip格式的(我就是用的这种, 办公电脑不方便安装).</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. 解压到某文件夹, 如 <strong>D:\ruby</strong><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;2. 添加到环境变量, 如 <strong>D:\ruby\bin</strong></p>
-
-<h4>2. 安装devkit</h4>
-
-<p>下载devkit, 右键解压到一个文件夹(如d:\devkit)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ruby dk.rb init
-</span><span class='line'>ruby dk.rb install</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>注意:</strong><br/>
-运行install前得编辑config.yml, 在最后面添加 <strong><code>- d:/ruby</code></strong> 一行, 注意最前面的 <strong><code>-</code></strong> 一定得加上.</p>
-
-<h4>3. 添加环境变量, 方便使用中文</h4>
-
-<p>LANG=zh_CN.UTF-8 和 LC_ALL=zh_CN.UTF-8</p>
-
-<h4>4. 安装Octopress</h4>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. 安装Octopress</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/imathis/octopress.git myblog
-</span><span class='line'>cd myblog    //这边会有提示信息, yes就行
-</span><span class='line'>ruby --version  //Ruby的版本需要在1.9.3+版本</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. 更换 gem 源(国内环境, 你懂的)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem sources -r http://rubygems.org/
-</span><span class='line'>gem sources -a http://ruby.taobao.org/
-</span><span class='line'>gem sources -l</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. 安装插件</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bundler
-</span><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. 安装Octopress 主题</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;5. 修改配置
-修改配置文件_config.yml, 修改url、title、subtitle、author等等, 可以把评论disqus加上, google+等等, 择需加上.</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;6. 创建github仓库 (如果你想要这样的网址 <strong>username.github.io</strong>, 仓库名得写成这样的: <strong>username.github.io</strong>, 好像 <strong>username.github.com</strong> 的不行了, github pages都转到github.io了)</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;7. 本地配置github分支</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
-
-
-<p>当命令提示你输入github URL时, 输入刚才建立的git地址</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;8. 好了, 写文章吧</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post["my first blog"] </span></code></pre></td></tr></table></div></figure>
-
-
-<p>在 <code>myblog/source/_post</code> 下生成一个 <code>**.makedown</code> 的文件, 编辑文章即可.</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;9. 生成, 预览</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在浏览器中打开 <a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a> 就可在本地调试页面</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;10. git提交</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;11. 打完收工.</p>
-
-<h5>参考文章 <a href="http://www.xiaoche.me/blog/2012/01/18/install-octopress/">http://www.xiaoche.me/blog/2012/01/18/install-octopress/</a></h5>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/14/first-post/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -625,11 +361,18 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <aside class="sidebar">
   
     <section>
+  <h1>Lix Xu</h1>
+  <p>神仙? 妖怪? 谢谢.</p>
+</section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说</a>
+        <a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a>
       </li>
     
       <li class="post">
@@ -644,24 +387,14 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
         <a href="/blog/2014/01/14/windows-git-ssh/">Windows下使用ssh连接github</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/01/14/first-post/">开篇</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/category-nbsp-side/'>Category&nbsp;Side (1)</a></li>
-<li class='category'><a href='/blog/categories/colored-nbsp-terminal/'>Colored&nbsp;terminal (1)</a></li>
-<li class='category'><a href='/blog/categories/duoshuo/'>Duoshuo (1)</a></li>
-<li class='category'><a href='/blog/categories/github-nbsp-blog/'>GitHub&nbsp;Blog (1)</a></li>
-<li class='category'><a href='/blog/categories/github-nbsp-ssh/'>GitHub&nbsp;ssh (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>Octopress (1)</a></li>
+    <li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
 <li class='category'><a href='/blog/categories/python/'>Python (1)</a></li>
-<li class='category'><a href='/blog/categories/windows-nbsp-ssh/'>Windows&nbsp;ssh (1)</a></li>
-<li class='category'><a href='/blog/categories/windows-nbsp-terminal/'>Windows&nbsp;terminal (1)</a></li>
 
   </ul>
 </section><section>

@@ -2,31 +2,43 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://lixxu.me/blog/2014/01/14/first-post/</loc>
-        <lastmod>2014-01-15T09:42:03+08:00</lastmod>
+        <lastmod>2014-01-15T14:20:13+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/blog/2014/01/14/windows-git-ssh/</loc>
-        <lastmod>2014-01-15T09:42:03+08:00</lastmod>
+        <lastmod>2014-01-15T14:02:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/blog/2014/01/14/add-categories-sidebar/</loc>
-        <lastmod>2014-01-15T09:42:03+08:00</lastmod>
+        <lastmod>2014-01-15T14:03:58+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/blog/2014/01/15/windows-color-terminal/</loc>
-        <lastmod>2014-01-15T09:42:03+08:00</lastmod>
+        <lastmod>2014-01-15T14:03:05+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/blog/2014/01/15/use-duoshuo/</loc>
-        <lastmod>2014-01-15T10:28:31+08:00</lastmod>
+        <lastmod>2014-01-15T14:09:34+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lixxu.me/blog/2014/01/15/other-stuff/</loc>
+        <lastmod>2014-01-15T14:23:16+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lixxu.me/404.html</loc>
+        <lastmod>2014-01-15T13:23:11+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lixxu.me/about/</loc>
+        <lastmod>2014-01-15T14:13:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/blog/archives/</loc>
-        <lastmod>2014-01-15T10:28:31+08:00</lastmod>
+        <lastmod>2014-01-15T14:23:16+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/</loc>
-        <lastmod>2014-01-15T10:28:31+08:00</lastmod>
+        <lastmod>2014-01-15T14:23:16+08:00</lastmod>
     </url>
     <url>
         <loc>http://lixxu.me/robots.txt</loc>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Octopress使用多说 - 杂七杂八记一下</title>
+  <title>Octopress使用多说评论系统 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
@@ -44,8 +44,10 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 </hgroup>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="xuzenglin@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
   
 </ul>
   
@@ -59,6 +61,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
 </ul>
 
 </nav>
@@ -69,7 +72,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Octopress使用多说</h1>
+      <h1 class="entry-title">Octopress使用多说评论系统</h1>
     
     
       <p class="meta">
@@ -88,7 +91,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <time datetime="2014-01-15T09:44:48+08:00" pubdate data-updated="true">2014-01-15 09:44:48 +0800</time>
         
         
-          | <a href="#comments">Comments</a>
+          | <a href="#comments">评论</a>
          
       </p>
     
@@ -104,6 +107,9 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
 
 <p>照着文章来就行了, 没啥好说的, 这里记一下备忘, 把 <code>yourname</code> 替换成你自己的名字.</p>
+
+<!--more-->
+
 
 <p>&nbsp;1. 注册多说, 不必多说, 复制生成的代码到 <code>source\_includes\post</code> 下新建 <code>duoshuo.html</code></p>
 
@@ -165,6 +171,9 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 </span><span class='line'>{% endif %}
 </span></code></pre></td></tr></table></div></figure>
 
+
+<!--more-->
+
 </div>
 
 
@@ -192,10 +201,18 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/duoshuo/'>Duoshuo</a>
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
   
 </span>
 
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/octopress/'>Octopress</a>, <a class='tag' href='/blog/tags/duoshuo/'>duoshuo</a>
+  
+</span>
 
     </p>
     
@@ -211,15 +228,35 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
         <a class="basic-alignment left" href="/blog/2014/01/15/windows-color-terminal/" title="Previous Post: Windows下彩色化终端文字">&laquo; Windows下彩色化终端文字</a>
       
       
+        <a class="basic-alignment right" href="/blog/2014/01/15/other-stuff/" title="Next Post: Octopress的其他杂项">Octopress的其他杂项 &raquo;</a>
+      
     </p>
   </footer>
 </article>
+<section>
+  <h2>Related articles：</h2>
+  <ul class="posts">
+     
+      <li class="related">
+        <a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a>
+      </li>
+    
+      <li class="related">
+        <a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a>
+      </li>
+    
+      <li class="related">
+        <a href="/blog/2014/01/14/first-post/">开篇</a>
+      </li>
+    
+  </ul>
+ </section>
 
 
   <section>
     <h1>Comments</h1>
     <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread"></div>
+<div class="ds-thread" data-title=""></div>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"lixxu"};
   (function() {
@@ -239,11 +276,18 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <aside class="sidebar">
   
     <section>
+  <h1>Lix Xu</h1>
+  <p>神仙? 妖怪? 谢谢.</p>
+</section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说</a>
+        <a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a>
       </li>
     
       <li class="post">
@@ -258,24 +302,14 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
         <a href="/blog/2014/01/14/windows-git-ssh/">Windows下使用ssh连接github</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/01/14/first-post/">开篇</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/category-nbsp-side/'>Category&nbsp;Side (1)</a></li>
-<li class='category'><a href='/blog/categories/colored-nbsp-terminal/'>Colored&nbsp;terminal (1)</a></li>
-<li class='category'><a href='/blog/categories/duoshuo/'>Duoshuo (1)</a></li>
-<li class='category'><a href='/blog/categories/github-nbsp-blog/'>GitHub&nbsp;Blog (1)</a></li>
-<li class='category'><a href='/blog/categories/github-nbsp-ssh/'>GitHub&nbsp;ssh (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>Octopress (1)</a></li>
+    <li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
 <li class='category'><a href='/blog/categories/python/'>Python (1)</a></li>
-<li class='category'><a href='/blog/categories/windows-nbsp-ssh/'>Windows&nbsp;ssh (1)</a></li>
-<li class='category'><a href='/blog/categories/windows-nbsp-terminal/'>Windows&nbsp;terminal (1)</a></li>
 
   </ul>
 </section><section>

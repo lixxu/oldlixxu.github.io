@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Windows&nbsp;terminal | 杂七杂八记一下]]></title>
-  <link href="http://lixxu.me/blog/categories/windows-terminal/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: ctypes | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/ctypes/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-15T10:28:45+08:00</updated>
+  <updated>2014-01-15T14:23:25+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -18,10 +18,13 @@
     <link href="http://lixxu.me/blog/2014/01/15/windows-color-terminal/"/>
     <updated>2014-01-15T08:48:35+08:00</updated>
     <id>http://lixxu.me/blog/2014/01/15/windows-color-terminal</id>
-    <content type="html"><![CDATA[<p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是感觉 <code>win32api</code> 好一点.</p>
+    <content type="html"><![CDATA[<p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
 
 <p>先看下例子 (超过 15 好像就是背景色了):
 <img src="/images/color_terminal.png"></p>
+
+<!--more-->
+
 
 <p>具体用法(Python 2.7.6下):
 ```python color_terminal_test.py</p>
@@ -61,6 +64,9 @@ set_color()
 ```</p>
 
 <p><code>COLOR_MAPS</code> 里多了一个 <code>default</code>, 这个就是默认终端下的文字颜色.</p>
+
+<!--more-->
+
 ]]></content>
   </entry>
   

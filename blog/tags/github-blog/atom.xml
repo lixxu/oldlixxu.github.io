@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: GitHub&nbsp;Blog | 杂七杂八记一下]]></title>
-  <link href="http://lixxu.me/blog/categories/github-blog/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: Github&nbsp;Blog | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/github-blog/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-15T10:28:45+08:00</updated>
+  <updated>2014-01-15T14:23:25+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -20,7 +20,10 @@
     <id>http://lixxu.me/blog/2014/01/14/first-post</id>
     <content type="html"><![CDATA[<p>很久以前就想写写博客, 随便记点什么. 又想自己写个博客程序练练手, 不过由于种种原因都放弃了. 虽然一直在用为知笔记, 也确实不错, 不过现在是一个装的时代, 不搞个博客出去都不好意思打招呼.</p>
 
-<p>于是想起了日渐流行的把博客放到良心的 <a href="https://github.com">github</a> 上的做法, 到网上查查教程, 鼓捣鼓捣就能放上去. 于是就有了这第一篇, 简单写下设置过程.</p>
+<p>于是想起了日渐流行的把博客放到良心的 <a href="https://github.com">github</a> 上的做法, 放放狗查查教程, 简单写下设置过程.</p>
+
+<!--more-->
+
 
 <h3>[附] Windows下安装方法</h3>
 
@@ -103,6 +106,9 @@ rake deploy
 <p>&nbsp;&nbsp;&nbsp;&nbsp;11. 打完收工.</p>
 
 <h5>参考文章 <a href="http://www.xiaoche.me/blog/2012/01/18/install-octopress/">http://www.xiaoche.me/blog/2012/01/18/install-octopress/</a></h5>
+
+<!--more-->
+
 ]]></content>
   </entry>
   

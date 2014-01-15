@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | 杂七杂八记一下]]></title>
-  <link href="http://lixxu.me/blog/categories/octopress/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: Octopress | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/octopress/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
   <updated>2014-01-15T14:23:25+08:00</updated>
   <id>http://lixxu.me/</id>

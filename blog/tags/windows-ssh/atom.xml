@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: GitHub&nbsp;ssh | 杂七杂八记一下]]></title>
-  <link href="http://lixxu.me/blog/categories/github-ssh/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: Windows&nbsp;ssh | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/windows-ssh/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-15T10:28:45+08:00</updated>
+  <updated>2014-01-15T14:23:25+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -22,6 +22,9 @@
 问了下狗, 找到解决方法了, 暂时记下来.</p>
 
 <p><strong>注:</strong> 我用的是 <a href="http://www.syntevo.com/smartgithg/">SmartGitHg</a> 带的git程序.</p>
+
+<!--more-->
+
 
 <h4>1. 生成ssh key文件</h4>
 
@@ -47,6 +50,9 @@ ssh -T git@github.com
 如果出现<code>Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.</code>就说明成功了. 以后就可以直接提交了</p>
 
 <p><font color="red"><strong>注</strong>: 不能直接使用 <strong>cmd.exe</strong> 进行测试和提交</font></p>
+
+<!--more-->
+
 ]]></content>
   </entry>
   
