@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>杂七杂八记一下</title>
+  <title>使用 Thin 作为 Octopress 预览服务器 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.me">
+  <link rel="canonical" href="http://lixxu.me/blog/2014/01/16/use-thin-as-preview-server">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -65,15 +65,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/01/16/use-thin-as-preview-server/">使用 Thin 作为 Octopress 预览服务器</a></h1>
+      <h1 class="entry-title">使用 Thin 作为 Octopress 预览服务器</h1>
     
     
       <p class="meta">
@@ -92,7 +89,7 @@
 <time datetime="2014-01-16T10:06:15+08:00" pubdate data-updated="true">2014-01-16 10:06:15 +0800</time>
         
         
-          | <a href="/blog/2014/01/16/use-thin-as-preview-server/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/16/use-thin-as-preview-server/" data-count-type="comments">暂无评论</span></a>
+          | <a href="#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/16/use-thin-as-preview-server/" data-count-type="comments">暂无评论</span></a>
         
         
       </p>
@@ -100,7 +97,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Windows 平台下 Octopress 自带的 <code>WEBrick</code> 有点慢, 于是就想使用 <code>Thin</code> 代替.
+<div class="entry-content"><p>Windows 平台下 Octopress 自带的 <code>WEBrick</code> 有点慢, 于是就想使用 <code>Thin</code> 代替.
 放狗一搜, 这里有答案了:</p>
 
 <ul>
@@ -174,82 +171,16 @@
 </ol>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
 
-<time datetime="2014-01-15T14:13:56+08:00" pubdate data-updated="true">2014-01-15 14:13:56 +0800</time>
-        
-        
-          | <a href="/blog/2014/01/15/other-stuff/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/other-stuff/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>放了半天狗, 添加许多小东西到 Octopress, 如 <code>tags</code>, <code>相关文章</code>, <code>添加多说评论到边栏</code> 等等.</p>
-
-<p>参考文章: <a href="http://blog.csdn.net/lcliliil/article/details/13725895">http://blog.csdn.net/lcliliil/article/details/13725895</a></p>
-
-<p><del>不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法. 有知道的达人麻烦告知一下.</del>
-<strong>更新</strong>: 已经搞定了, 需要添加 <code>data-thread-key</code> 属性</p>
-
-<p>暂时不想再弄了, 以后再说吧.</p>
-
-<ul>
-<li>在 <code>source\_includes\post\duoshuo.html</code> 中使用 <code>page</code></li>
-<li>在 <code>source\_includes\article.html</code> 中如果是首页使用 <code>post</code>, 否则使用 <code>post</code></li>
-</ul>
-
-
-<p>我把加载 js 的部分放到 <code>source\_layouts\default.html</code> 里了, 加在 <code>&lt;/body&gt;</code> 前即可.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/15/other-stuff/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -261,234 +192,66 @@
   
 
 
-<time datetime="2014-01-15T09:44:48+08:00" pubdate data-updated="true">2014-01-15 09:44:48 +0800</time>
-        
-        
-          | <a href="/blog/2014/01/15/use-duoshuo/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/use-duoshuo/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>参考来源:</p>
-
-<ul>
-<li><a href="http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/">http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/</a></li>
-<li><a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html</a></li>
-</ul>
-
-
-<p>照着文章来就行了, 没啥好说的, 这里记一下备忘, 把 <code>yourname</code> 替换成你自己的名字.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/15/use-duoshuo/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2014-01-16T10:06:15+08:00" pubdate data-updated="true">2014-01-16 10:06:15 +0800</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/15/windows-color-terminal/">Windows下彩色化终端文字</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="tags">
   
+    <a class='tag' href='/blog/tags/octopress/'>Octopress</a>, <a class='tag' href='/blog/tags/thin/'>Thin</a>
+  
+</span>
 
-
-<time datetime="2014-01-15T08:48:35+08:00" pubdate data-updated="true">2014-01-15 08:48:35 +0800</time>
-        
-        
-          | <a href="/blog/2014/01/15/windows-color-terminal/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/windows-color-terminal/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
-
-<p>先看下例子 (超过 15 好像就是背景色了):
-<img src="/images/color_terminal.png"></p>
-
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/15/windows-color-terminal/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">2014-01-14 23:09:10 +0800</time>
-        
-        
-          | <a href="/blog/2014/01/14/add-categories-sidebar/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/add-categories-sidebar/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>来源: <a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/</a></p>
-
-<p>简单记下过程</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/14/add-categories-sidebar/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2014/01/15/other-stuff/" title="Previous Post: Octopress的其他杂项">&laquo; Octopress的其他杂项</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/14/windows-git-ssh/">Windows下使用ssh连接github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-14T18:56:34+08:00" pubdate data-updated="true">2014-01-14 18:56:34 +0800</time>
-        
-        
-          | <a href="/blog/2014/01/14/windows-git-ssh/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/windows-git-ssh/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在<a href="/blog/2014/01/14/first-post/">上一篇</a>中大概介绍了初始环境的搭建, 不过发现在Windows下部署时出了点问题,
-问了下狗, 找到解决方法了, 暂时记下来.</p>
-
-<p><strong>注:</strong> 我用的是 <a href="http://www.syntevo.com/smartgithg/">SmartGitHg</a> 带的git程序.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/14/windows-git-ssh/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
+    </p>
+  </footer>
+</article>
+<section>
+  <h2>Related articles：</h2>
+  <ul class="posts">
+     
+      <li class="related">
+        <a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a>
+      </li>
     
-      <h1 class="entry-title"><a href="/blog/2014/01/14/first-post/">开篇</a></h1>
+      <li class="related">
+        <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a>
+      </li>
     
+      <li class="related">
+        <a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a>
+      </li>
     
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-14T13:21:29+08:00" pubdate data-updated="true">2014-01-14 13:21:29 +0800</time>
-        
-        
-          | <a href="/blog/2014/01/14/first-post/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/first-post/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
+      <li class="related">
+        <a href="/blog/2014/01/14/first-post/">开篇</a>
+      </li>
     
-  </header>
+  </ul>
+ </section>
 
 
-  <div class="entry-content"><p>很久以前就想写写博客, 随便记点什么. 又想自己写个博客程序练练手, 不过由于种种原因都放弃了. 虽然一直在用为知笔记, 也确实不错, 不过现在是一个装的时代, 不搞个博客出去都不好意思打招呼.</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/blog/2014/01/16/use-thin-as-preview-server/" data-title="使用 Thin 作为 Octopress 预览服务器" data-url="/blog/2014/01/16/use-thin-as-preview-server/"></div>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
-<p>于是想起了日渐流行的把博客放到良心的 <a href="https://github.com">github</a> 上的做法, 放放狗查查教程, 简单写下设置过程.</p>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/14/first-post/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -541,6 +304,7 @@
 </section>
   
 </aside>
+
 
     </div>
   </div>

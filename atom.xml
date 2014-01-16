@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-16T09:45:44+08:00</updated>
+  <updated>2014-01-16T10:44:52+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,87 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Thin 作为 Octopress 预览服务器]]></title>
+    <link href="http://lixxu.me/blog/2014/01/16/use-thin-as-preview-server/"/>
+    <updated>2014-01-16T10:06:15+08:00</updated>
+    <id>http://lixxu.me/blog/2014/01/16/use-thin-as-preview-server</id>
+    <content type="html"><![CDATA[<p>Windows 平台下 Octopress 自带的 <code>WEBrick</code> 有点慢, 于是就想使用 <code>Thin</code> 代替.
+放狗一搜, 这里有答案了:</p>
+
+<ul>
+<li><a href="http://blog.geoffpetrie.com/blog/2012/10/14/octopress-change-the-default-preview-server/">http://blog.geoffpetrie.com/blog/2012/10/14/octopress-change-the-default-preview-server/</a></li>
+</ul>
+
+
+<h4>操作步骤:</h4>
+
+<ol>
+<li>安装 Thin</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install thin</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>更改 <code>Gemfile</code>, 在 <code>development</code> 里面最后添加一行</li>
+</ol>
+
+
+<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s2">&quot;http://ruby.taobao.org&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rake&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.9&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;jekyll&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.12&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rdiscount&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 2.0.7&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;pygments.rb&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.3.4&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;RedCloth&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.2.9&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;haml&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.1.7&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;compass&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.12.2&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sass&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sass-globbing&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.0.0&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rubypants&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.2.0&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rb-fsevent&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 0.9&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;stringex&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.4.0&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 2.3.0&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;directory_watcher&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.1&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.4.2&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>重新运行 <code>rake preview</code> 就会使用 <code>Thin</code> 了</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress的其他杂项]]></title>
