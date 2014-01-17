@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-01-16T20:29:58+08:00</updated>
+  <updated>2014-01-17T08:42:50+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -31,16 +31,14 @@
 <!--more-->
 
 
-<ol>
-<li><p>安装 Thin
+<p>&nbsp;1. 安装 Thin
 <code>
 gem install thin
-</code></p></li>
-<li><p>更改 <code>Gemfile</code>, 在 <code>development</code> 里面最后添加一行
-``` ruby Gemfile
-source &ldquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rdquo;</p></li>
-</ol>
+</code></p>
 
+<p>&nbsp;2. 更改 <code>Gemfile</code>, 在 <code>development</code> 里面最后添加一行
+``` ruby Gemfile
+source &ldquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rdquo;</p>
 
 <p>group :development do
   gem &lsquo;rake&rsquo;, &lsquo;~> 0.9&rsquo;
@@ -63,10 +61,7 @@ end</p>
 <p>gem &lsquo;sinatra&rsquo;, &lsquo;~> 1.4.2&rsquo;
 ```</p>
 
-<ol>
-<li>重新运行 <code>rake preview</code> 就会使用 <code>Thin</code> 了</li>
-</ol>
-
+<p>&nbsp;3. 重新运行 <code>rake preview</code> 就会使用 <code>Thin</code> 了</p>
 
 <!--more-->
 
