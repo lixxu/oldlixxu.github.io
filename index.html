@@ -9,8 +9,9 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="今天是新年节后的第一天上班, 下着雨, 人不多, 多数没回. 记一下今年打算做的事情: 使用 PySide 作为图形开发平台, 过去的一年还没做过任何图形工具, 今年要学习一下. 以前用的 wxPython 不打算再用了, 虽然很强大
-使用 PySide 做一个全厂通用的 log 文件传送工具, &hellip;">
+  <meta name="description" content="越来越感觉 Windows 下 flask 自带的 debug server慢了, 于是就开始寻找替换工具,
+先是看了 gunicorn, 但是在 Windows 下有问题. 再接着是了 gevent, 可以跑起来,
+但是有个问题, 丰富的 debug 信息看不到了, 只提示 internal &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/24/reload-flask-with-gevent/">Reload Flask With Gevent</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-24T13:06:22+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
+        
+        
+          | <a href="/blog/2014/02/24/reload-flask-with-gevent/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/02/24/reload-flask-with-gevent/" data-count-type="comments">暂无评论</span></a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>越来越感觉 Windows 下 <code>flask</code> 自带的 debug server慢了, 于是就开始寻找替换工具,
+先是看了 <code>gunicorn</code>, 但是在 Windows 下有问题. 再接着是了 <code>gevent</code>, 可以跑起来,
+但是有个问题, 丰富的 debug 信息看不到了, 只提示 <code>internal server error</code>.
+这显然不行, 放狗一搜, 下面就是结果:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">werkzeug.serving</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">werkzeug.debug</span> <span class="kn">import</span> <span class="n">DebuggedApplication</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">gevent.wsgi</span> <span class="kn">import</span> <span class="n">WSGIServer</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">app</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@werkzeug.serving.run_with_reloader</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>    <span class="n">app</span> <span class="o">=</span> <span class="n">DebuggedApplication</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">evalex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">ws</span> <span class="o">=</span> <span class="n">WSGIServer</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="n">app</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">ws</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">run</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -505,6 +588,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/24/reload-flask-with-gevent/">Reload Flask With Gevent</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/06/new-year-holiday-back/">新年展望</a>
       </li>
     
@@ -520,10 +607,6 @@
         <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/01/15/windows-color-terminal/">Windows下彩色化终端文字</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -531,7 +614,7 @@
   <ul id="categories">
     <li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
-<li class='category'><a href='/blog/categories/python/'>Python (1)</a></li>
+<li class='category'><a href='/blog/categories/python/'>Python (2)</a></li>
 
   </ul>
 </section><section>
@@ -544,7 +627,9 @@
 <a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/ctypes/">ctypes</a> &mdash; 
-<a style="font-size: 80%" href="/blog/tags/duoshuo/">duoshuo</a>
+<a style="font-size: 80%" href="/blog/tags/duoshuo/">duoshuo</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/flask/">flask</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/gevent/">gevent</a>
 
   </ul>
 </section><section>
