@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-02-24T13:17:41+08:00</updated>
+  <updated>2014-02-24T13:22:24+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -18,8 +18,8 @@
     <link href="http://lixxu.me/blog/2014/02/24/reload-flask-with-gevent/"/>
     <updated>2014-02-24T13:06:22+08:00</updated>
     <id>http://lixxu.me/blog/2014/02/24/reload-flask-with-gevent</id>
-    <content type="html"><![CDATA[<p>越来越感觉 Windows 下 <code>flask</code> 自带的 debug server慢了, 于是就开始寻找替换工具,
-先是看了 <code>gunicorn</code>, 但是在 Windows 下有问题. 再接着是了 <code>gevent</code>, 可以跑起来,
+    <content type="html"><![CDATA[<p>越来越感觉 Windows 下 <code>flask</code> 自带的 debug server 慢了, 于是就开始寻找替换工具,
+先是看了 <code>gunicorn</code>, 但是在 Windows 下有问题. 再接着试了 <code>gevent</code>, 可以跑起来,
 但是有个问题, 丰富的 debug 信息看不到了, 只提示 <code>internal server error</code>.
 这显然不行, 放狗一搜, 下面就是结果:</p>
 
