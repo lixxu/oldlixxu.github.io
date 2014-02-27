@@ -5,29 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About Me - 杂七杂八记一下</title>
+  <title>MongoDB是否适合在传统公司使用 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="About Me about_me.py1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-#!/usr/bin/env python
-#-*- coding: utf-8 -*- from __future__ import unicode_literals, &hellip;">
+  <meta name="description" content="注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务. 从几年前知道 MongoDB 开始, 我也在公司内部的许多 web 项目上用上了它. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.me/about">
+  <link rel="canonical" href="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -95,60 +79,155 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">About Me</h1>
+    
+      <h1 class="entry-title">MongoDB是否适合在传统公司使用</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:52:35+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
+        
+        
+          | <a href="#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/02/27/mongodb-is-ready-for-enterprise/" data-count-type="comments">暂无评论</span></a>
+        
+        
+      </p>
     
   </header>
-  
-  <p><img src="http://www.gravatar.com/avatar/20d98692a314c016ab84b6304e78467c?s=200"></p>
 
-<figure class='code'><figcaption><span>about_me.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<div class="entry-content"><p>注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务.</p>
+
+<p>从几年前知道 <code>MongoDB</code> 开始, 我也在公司内部的许多 web 项目上用上了它.
+下面以我当前的情况简单说明一下:</p>
+
+<p>需求: <code>保存设备的测试数据, 维修数据以提供统计分析</code></p>
+
+<p>工厂里数据逻辑不是太复杂, 但是单数据有时候不小, 总量也大.
+比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
+
+<p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
+<img src="/images/data_size.png"></p>
+
+<!--more-->
+
+
+<p>可以看到, 此服务器的内存为 <code>4G</code>, 数据为 <code>1.23G</code>, 索引为 <code>1.56G</code>, 可用的内存还有 <code>1.55G</code>.
+这个项目从去年3月底开始试运行, 到现在差不多有一年的数据量 (430W).<br />
+可以预见的是在接下来差不多一年左右, 服务器的内存就要被吃光了, 而且这个吃光是实实在在的吃光, 因为 <code>MongoDB</code> 会把 <code>索引</code> 全部放进内存中, 如果内存容不下 <code>索引 + 工作集 (working set)</code>, 会导致性能急剧下降, 甚至达到不可用的程度.</p>
+
+<p>解决方法无非有这几个:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">print_function</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">about_me</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Hey there!&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;I&#39;m Lix Xu, and I&#39;m working for Jabil Shanghai TE now.&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;You can call me Lix and contact me via xuzenglin@gmail.com&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;I have some toys on Github (https://github.com/lixxu).&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;I usually use these tools for work: &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;[Python, Flask, MongoDB, PostgreSQL, redis, PySide, wxPython, ...]&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;I love Web/GUI development.&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">about_me</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 做 Shard, 把数据分到多台服务器上
+</span><span class='line'>2. 增加内存
+</span><span class='line'>3. 优化索引, 只保留确实需要的
+</span><span class='line'>4. 用 SSD 代替 HDD</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而对我所在工厂有效的只有2 和 3, 可是我在用一台PC作服务器, 我会说吗?
+有时候工厂就是这种情况, 由于不是IT部门, 所以基本上没有正规的服务器使用, 大多时候都是使用普通PC作为服务器.
+就是可以加内存, 也不能无限地加, 随着时间的推移, 数据会越来越多, 迟早有吃尽内存的那天.</p>
+
+<p>在设计数据库的结构时, 有几点没有考虑到:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 没有预见到数据有这么大
+</span><span class='line'>2. 数据量大的 collection 的字段没有使用尽量短的命名</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然对数据量不大的项目来说, <code>MongoDB</code> 还是一个不错的选择:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 无需定义表结构, 随时增加/删除字段, 这也是我在开始选择它的原因. 没有在工厂里需求三天一变的体验过的人是不知道这个是多么重要的, 个人猜测互联网公司选择 `MongoDB` 也是看中它的快速开发
+</span><span class='line'>2. 速度够快, 可以支持列表, 字典等复杂数据类型, 可以让逻辑更简单</span></code></pre></td></tr></table></div></figure>
+
+
+<p>乱七八糟地说了这么多, 我的结论是:</p>
+
+<h3>我会在接下来的时间把数据库换成  <code>PostgreSQL</code>.</h3>
+
+<p>以后的关注点也将集中在: <code>SQLAlchemy</code>, <code>PostgreSQL</code>.
+对了, 我的工作环境基于: <code>Python</code>, <code>flask</code></p>
+
+<p><!--more></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
 
 
   
-    <footer>
+
+
+<time datetime="2014-02-27T10:52:35+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
       
-      
-    </footer>
+
+    </p>
+    
+      <div class="sharing">
   
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/24/reload-flask-with-gevent/" title="Previous Post: reload flask with gevent">&laquo; reload flask with gevent</a>
+      
+      
+    </p>
+  </footer>
 </article>
+<section>
+  <h2>Related articles：</h2>
+  <ul class="posts">
+     
+  </ul>
+ </section>
 
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/blog/2014/02/27/mongodb-is-ready-for-enterprise/" data-title="MongoDB是否适合在传统公司使用"></div>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
 
 </div>
