@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-02-27T12:05:14+08:00</updated>
+  <updated>2014-02-27T13:40:11+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -64,9 +64,11 @@
 2. 速度够快, 可以支持列表, 字典等复杂数据类型, 可以让逻辑更简单
 </code></p>
 
-<p>乱七八糟地说了这么多, 我的结论是:</p>
-
-<h3>我会在接下来的时间把数据库换成  <code>PostgreSQL</code>.</h3>
+<p>乱七八糟地说了这么多, 我的结论是:
+<code>
+如果你没有可以自由使用的服务器的话, 并且数据量较大, 那就不要使用它了, 老老实实地使用关系数据库吧.
+我也会在接下来的时间把数据库换成 PostgreSQL.
+</code></p>
 
 <p>以后的关注点也将集中在: <code>SQLAlchemy</code>, <code>PostgreSQL</code>.
 对了, 我的工作环境基于: <code>Python</code>, <code>flask</code></p>
