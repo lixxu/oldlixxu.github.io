@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-04-16T18:08:55+08:00</updated>
+  <updated>2014-04-16T18:13:40+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pyconus2014 的视频]]></title>
+    <link href="http://lixxu.me/blog/2014/04/16/pyconus2014-videos/"/>
+    <updated>2014-04-16T16:16:05+08:00</updated>
+    <id>http://lixxu.me/blog/2014/04/16/pyconus2014-videos</id>
+    <content type="html"><![CDATA[<p>好久没发帖了, 放上pycon2014的视频, 给不方便穿墙的同学访问.</p>
+
+<p>后续的还在下载中.</p>
+
+<p><a href="http://pan.baidu.com/s/1pJJg4kj">http://pan.baidu.com/s/1pJJg4kj</a></p>
+
+<p>或者</p>
+
+<!--more-->
+
+
+<p><a href="http://yunpan.cn/QNFwAjKWvsniL">http://yunpan.cn/QNFwAjKWvsniL</a>
+访问密码 <code>22e8</code></p>
+
+<!--more-->
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reload Flask With Gevent]]></title>
