@@ -9,8 +9,8 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="好久没发帖了, 放上pycon2014的视频, 给不方便穿墙的同学访问. 不知道是公司还是360的问题, 上传到后来就没有速度了, 一开始还有几M的速度的. 好吧, 某度的共享违规了, 违规你 妈 啊, 用360的吧: http://yunpan.cn/QNFwAjKWvsniL
-访问密码 &hellip;">
+  <meta name="description" content="在Windows下由于pip是个exe的可执行文件, 如果使用pip install -U pip的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
+python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/07/update-pip/">Windows下升级pip</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-07T09:08:11+08:00" pubdate data-updated="true">May 7<span>th</span>, 2014</time>
+        
+        
+          | <a href="/blog/2014/05/07/update-pip/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/05/07/update-pip/" data-count-type="comments">暂无评论</span></a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Windows下由于pip是个exe的可执行文件, 如果使用<code>pip install -U pip</code>的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
+<code>python -m pip install -U pip</code></p>
+
+<p>记录下备忘.</p>
+
+<p>Linux下是没有这个问题的, 暂时没研究是什么原理.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -591,53 +636,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
-        
-        
-          | <a href="/blog/2014/01/14/add-categories-sidebar/#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/14/add-categories-sidebar/" data-count-type="comments">暂无评论</span></a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>来源: <a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/</a></p>
-
-<p>简单记下过程</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/14/add-categories-sidebar/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -656,6 +654,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/07/update-pip/">Windows下升级pip</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/04/16/pyconus2014-videos/">Pyconus2014 的视频</a>
       </li>
     
@@ -671,10 +673,6 @@
         <a href="/blog/2014/02/24/reload-flask-with-gevent/">Reload Flask With Gevent</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/02/06/new-year-holiday-back/">新年展望</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -684,7 +682,7 @@
 <li class='category'><a href='/blog/categories/language/'>Language (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
-<li class='category'><a href='/blog/categories/python/'>Python (3)</a></li>
+<li class='category'><a href='/blog/categories/python/'>Python (4)</a></li>
 
   </ul>
 </section><section>
@@ -700,7 +698,9 @@
 <a style="font-size: 80%" href="/blog/tags/duoshuo/">duoshuo</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/flask/">flask</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/gevent/">gevent</a> &mdash; 
-<a style="font-size: 80%" href="/blog/tags/pycon2014/">pycon2014</a>
+<a style="font-size: 80%" href="/blog/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/pycon2014/">pycon2014</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/python/">python</a>
 
   </ul>
 </section><section>
