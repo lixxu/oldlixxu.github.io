@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sublime | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/categories/sublime/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-05-08T13:15:02+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime text安装Package Control]]></title>
+    <link href="http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/"/>
+    <updated>2014-05-08T11:46:45+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text</id>
+    <content type="html"><![CDATA[<p><code>Ctrl+`</code> 或菜单里 <code>View</code> &ndash;> <code>Show Console</code>, 在文本框中输入:</p>
+
+<h1>Sublime3:</h1>
+
+<p><code>
+import urllib.request,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by = urllib.request.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h)) if dh != h else open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by)
+</code></p>
+
+<h1>Sublime2:</h1>
+
+<p><code>
+import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); by = urllib2.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by) if dh == h else None; print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h) if dh != h else &lsquo;Please restart Sublime Text to finish installation&rsquo;)
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
