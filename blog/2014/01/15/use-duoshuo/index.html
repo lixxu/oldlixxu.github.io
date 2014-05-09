@@ -100,8 +100,9 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 
 <time datetime="2014-01-15T09:44:48+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2014</time>
         
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
         
-          | <a href="#comments"><span class="ds-thread-count" data-thread-key="/blog/2014/01/15/use-duoshuo/" data-count-type="comments">暂无评论</span></a>
         
         
       </p>
@@ -258,13 +259,12 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   </ul>
  </section>
 
-
   <section>
     <h1>Comments</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread" data-thread-key="/blog/2014/01/15/use-duoshuo/" data-title="Octopress使用多说评论系统"></div>
-<!-- Duoshuo Comment END --></div>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
   </section>
+
 
 
 </div>
@@ -277,6 +277,10 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/09/sublime-user-profile-backup/">Sublime3 用户设置备份</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/05/08/install-package-control-for-sublime-text/">Sublime text安装Package Control</a>
@@ -294,10 +298,6 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
         <a href="/blog/2014/03/20/human-program-language/">编程语言拟人化</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/">MongoDB是否适合在传统公司使用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -308,7 +308,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
 <li class='category'><a href='/blog/categories/python/'>Python (4)</a></li>
-<li class='category'><a href='/blog/categories/sublime/'>Sublime (1)</a></li>
+<li class='category'><a href='/blog/categories/sublime/'>Sublime (2)</a></li>
 
   </ul>
 </section><section>
@@ -318,7 +318,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <a style="font-size: 80%" href="/blog/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
 <a style="font-size: 180%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/python/">Python</a> &mdash; 
-<a style="font-size: 80%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 123%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/ctypes/">ctypes</a> &mdash; 
@@ -338,9 +338,10 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 </section>
 
 <section>
-<h1>Recent Comments</h1>
-<ul class="ds-recent-comments" data-num-items="7" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="18"></ul>
+  <h1>Recent Comments</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
 </section>
+
   
 </aside>
 
@@ -355,6 +356,22 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'lixxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/01/15/use-duoshuo/';
+        var disqus_url = 'http://lixxu.me/blog/2014/01/15/use-duoshuo/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
 
 
 
@@ -368,17 +385,6 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   
   <script type="text/javascript">
   
-  
-  <!-- 多说js加载开始，一个页面只需要加载一次 -->
-    var duoshuoQuery = {short_name:"lixxu"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = 'http://static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  <!-- 多说js加载结束，一个页面只需要加载一次 -->
   
   
   </script>

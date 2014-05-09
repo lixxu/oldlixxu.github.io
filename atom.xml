@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-05-08T13:15:02+08:00</updated>
+  <updated>2014-05-09T10:24:46+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,142 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime3 用户设置备份]]></title>
+    <link href="http://lixxu.me/blog/2014/05/09/sublime-user-profile-backup/"/>
+    <updated>2014-05-09T08:54:27+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/09/sublime-user-profile-backup</id>
+    <content type="html"><![CDATA[<p>安装的插件:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. Alignment
+</span><span class='line'>2. Autoprefixer
+</span><span class='line'>3. PySide
+</span><span class='line'>4. PyV8
+</span><span class='line'>5. SublimeLinter
+</span><span class='line'>6. SublimeTmpl
+</span><span class='line'>7. Terminal
+</span><span class='line'>8. Markdown Preview
+</span><span class='line'>9. Markdown Editing
+</span><span class='line'>10. SmartMarkdown
+</span><span class='line'>11. Pretty YAML
+</span><span class='line'>12. Python Flake8 Lint
+</span><span class='line'>13. SideBarEnhancements
+</span><span class='line'>14. SublimeCodeIntel
+</span><span class='line'>15. Git Config
+</span><span class='line'>16. GitStatus
+</span><span class='line'>17. Gitignore
+</span><span class='line'>18. Go to definition
+</span><span class='line'>19. GoToLastEdit
+</span><span class='line'>20. SublimeGit</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sublime3062 Windows 用户设置备忘:</p>
+
+<!--more-->
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;auto_complete_triggers&quot;</span><span class="p">:</span>
+</span><span class='line'>    <span class="p">[</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;characters&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;text.html&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;color_scheme&quot;</span><span class="p">:</span> <span class="s2">&quot;Packages/User/Solarized (Light) (SL).tmTheme&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;default_line_ending&quot;</span><span class="p">:</span> <span class="s2">&quot;unix&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;font_face&quot;</span><span class="p">:</span> <span class="s2">&quot;Source Code Pro&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;font_size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;highlight_line&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;highlight_modified_tabs&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;ignored_packages&quot;</span><span class="p">:</span>
+</span><span class='line'>    <span class="p">[</span>
+</span><span class='line'>        <span class="s2">&quot;Theme - Nil&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;RestructuredText&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;GoSublime&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;BracketHighlighter&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;Vintage&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;Markdown&quot;</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;soda_classic_tabs&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;soda_folder_icons&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;fade_fold_buttons&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;tab_size&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;translate_tabs_to_spaces&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;trim_trailing_white_space_on_save&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;update_check&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;word_wrap&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;show_encoding&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;show_line_endings&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;ensure_newline_at_eof_on_save&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;draw_white_space&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;always_show_minimap_viewport&quot;</span><span class="p">:</span> <span class="kc">true</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime text安装Package Control]]></title>
