@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-05-12T09:51:34+08:00</updated>
+  <updated>2014-05-12T14:03:54+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -14,131 +14,30 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Windows下升级pip]]></title>
-    <link href="http://lixxu.me/blog/2014/05/07/update-pip/"/>
-    <updated>2014-05-07T09:08:11+08:00</updated>
-    <id>http://lixxu.me/blog/2014/05/07/update-pip</id>
-    <content type="html"><![CDATA[<p>在Windows下由于pip是个exe的可执行文件, 如果使用<code>pip install -U pip</code>的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
-<code>python -m pip install -U pip</code></p>
+    <title type="html"><![CDATA[Pyodbc In的使用]]></title>
+    <link href="http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc/"/>
+    <updated>2014-05-12T11:37:58+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc</id>
+    <content type="html"><![CDATA[<p>参考链接, 看 <code>geographika</code> 的答案即可:</p>
 
-<p>记录下备忘.</p>
+<p><a href="http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server">http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server</a></p>
 
-<p>Linux下是没有这个问题的, 暂时没研究是什么原理.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pyconus2014 的视频]]></title>
-    <link href="http://lixxu.me/blog/2014/04/16/pyconus2014-videos/"/>
-    <updated>2014-04-16T16:16:05+08:00</updated>
-    <id>http://lixxu.me/blog/2014/04/16/pyconus2014-videos</id>
-    <content type="html"><![CDATA[<p>好久没发帖了, 放上pycon2014的视频, 给不方便穿墙的同学访问.</p>
-
-<p>不知道是公司还是360的问题, 上传到后来就没有速度了, 一开始还有几M的速度的.
-<img src="/images/360upload.png"></p>
-
-<p>好吧, 某度的共享违规了, 违规你 妈 啊, 用360的吧:</p>
-
-<p><a href="http://yunpan.cn/QNFwAjKWvsniL">http://yunpan.cn/QNFwAjKWvsniL</a>
-访问密码 <code>22e8</code></p>
-
-<p><img src="/images/udiab_kcuf.png"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reload Flask With Gevent]]></title>
-    <link href="http://lixxu.me/blog/2014/02/24/reload-flask-with-gevent/"/>
-    <updated>2014-02-24T13:06:22+08:00</updated>
-    <id>http://lixxu.me/blog/2014/02/24/reload-flask-with-gevent</id>
-    <content type="html"><![CDATA[<p>越来越感觉 Windows 下 <code>flask</code> 自带的 debug server 慢了, 于是就开始寻找替换工具,
-先是看了 <code>gunicorn</code>, 但是在 Windows 下有问题. 再接着试了 <code>gevent</code>, 可以跑起来,
-但是有个问题, 丰富的 debug 信息看不到了, 只提示 <code>internal server error</code>.
-这显然不行, 放狗一搜, 下面就是结果:</p>
+<p>记录一下如何在 <code>pyodbc</code> 中使用 <code>in</code> 查询:</p>
 
 <p>```python</p>
 
 <h1>!/usr/bin/env python</h1>
 
-<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
+<p>import pyodbc</p>
 
-<p>import werkzeug.serving
-from werkzeug.debug import DebuggedApplication
-from gevent.wsgi import WSGIServer
-from myapp import app</p>
-
-<p>@werkzeug.serving.run_with_reloader
-def run():</p>
-
-<pre><code>app.debug = True
-app = DebuggedApplication(app, evalex=True)
-ws = WSGIServer(('', 5000), app)
-ws.serve_forever()
-</code></pre>
-
-<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:</p>
-
-<pre><code>run()
-</code></pre>
-
-<p>```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Windows下彩色化终端文字]]></title>
-    <link href="http://lixxu.me/blog/2014/01/15/windows-color-terminal/"/>
-    <updated>2014-01-15T08:48:35+08:00</updated>
-    <id>http://lixxu.me/blog/2014/01/15/windows-color-terminal</id>
-    <content type="html"><![CDATA[<p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
-
-<p>先看下例子 (超过 15 好像就是背景色了):
-<img src="/images/color_terminal.png"></p>
-
-<!--more-->
-
-
-<p>具体用法(Python 2.7.6下):
-```python color_terminal_test.py</p>
-
-<h1>!/usr/bin/env python</h1>
-
-<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
-
-<p>from <strong>future</strong> import unicode_literals, print_function
-from ctypes import windll, c_ulong</p>
-
-<p>HANDLER = windll.Kernel32.GetStdHandle(c_ulong(0xfffffff5))
-COLOR_MAPS = dict(black=0, dark_blue=1, dark_green=2,</p>
-
-<pre><code>dark_navy=3, dark_red=4, dark_purple=5,
-dark_yellow=6, dark_white=7, gray=8,
-blue=9, green=10, navy=11,
-red=12, purple=13, yellow=14,
-white=15, default=7,
-)
-</code></pre>
-
-<p>def set_color(color=&lsquo;default&rsquo;):</p>
-
-<pre><code>windll.Kernel32.SetConsoleTextAttribute(HANDLER,
-    COLOR_MAPS.get(color, 7))
-</code></pre>
-
-<p>def show_text(text, color=&lsquo;default&rsquo;, new_line=True):</p>
-
-<pre><code>set_color(color)
-print('{}{}'.format(text, '\n' if new_line else ''), end='')
-set_color()
-</code></pre>
-
-<p>show_text(&lsquo;yellow&rsquo;, color=&lsquo;yellow&rsquo;)
+<p>alist = [1, 2, 3]
+sql = &lsquo;select * from table where field1 in (%s)&rsquo;
+conn = pyodbc.connect(&hellip;)
+cur = conn.cursor()
+cur.execute(sql % (&lsquo;,&rsquo;.join(&lsquo;?&rsquo; * len(alist))), alist)
+cur.fetchall()
+conn.close()
 ```</p>
-
-<p><code>COLOR_MAPS</code> 里多了一个 <code>default</code>, 这个就是默认终端下的文字颜色.</p>
-
-<!--more-->
-
 ]]></content>
   </entry>
   

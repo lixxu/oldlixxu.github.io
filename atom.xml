@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-05-12T09:51:34+08:00</updated>
+  <updated>2014-05-12T14:03:54+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pyodbc In的使用]]></title>
+    <link href="http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc/"/>
+    <updated>2014-05-12T11:37:58+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc</id>
+    <content type="html"><![CDATA[<p>参考链接, 看 <code>geographika</code> 的答案即可:</p>
+
+<p><a href="http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server">http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server</a></p>
+
+<p>记录一下如何在 <code>pyodbc</code> 中使用 <code>in</code> 查询:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pyodbc</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span class='line'><span class="n">sql</span> <span class="o">=</span> <span class="s">&#39;select * from table where field1 in (</span><span class="si">%s</span><span class="s">)&#39;</span>
+</span><span class='line'><span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span><span class='line'><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;?&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">))),</span> <span class="n">alist</span><span class="p">)</span>
+</span><span class='line'><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HHKB PRO2]]></title>
