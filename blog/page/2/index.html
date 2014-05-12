@@ -9,8 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="参考来源: http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/
-http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
+  <meta name="description" content="放了半天狗, 添加许多小东西到 Octopress, 如 tags, 相关文章, 添加多说评论到边栏 等等. 参考文章: http://blog.csdn.net/lcliliil/article/details/13725895 不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,67 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-15T14:13:56+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/01/15/other-stuff/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/01/15/other-stuff/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>放了半天狗, 添加许多小东西到 Octopress, 如 <code>tags</code>, <code>相关文章</code>, <code>添加多说评论到边栏</code> 等等.</p>
+
+<p>参考文章: <a href="http://blog.csdn.net/lcliliil/article/details/13725895">http://blog.csdn.net/lcliliil/article/details/13725895</a></p>
+
+<p><del>不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法. 有知道的达人麻烦告知一下.</del>
+<strong>更新</strong>: 已经搞定了, 需要添加 <code>data-thread-key</code> 属性</p>
+
+<p>暂时不想再弄了, 以后再说吧.</p>
+
+<ul>
+<li>在 <code>source\_includes\post\duoshuo.html</code> 中使用 <code>page</code></li>
+<li>在 <code>source\_includes\article.html</code> 中如果是首页使用 <code>post</code>, 否则使用 <code>post</code></li>
+</ul>
+
+
+<p>我把加载 js 的部分放到 <code>source\_layouts\default.html</code> 里了, 加在 <code>&lt;/body&gt;</code> 前即可.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/15/other-stuff/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -346,6 +406,10 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/12/hhkb-pro2/">HHKB PRO2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/09/sublime-user-profile-backup/">Sublime3 用户设置备份</a>
       </li>
     
@@ -361,16 +425,13 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
         <a href="/blog/2014/04/16/pyconus2014-videos/">Pyconus2014 的视频</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/03/20/human-program-language/">编程语言拟人化</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
+<li class='category'><a href='/blog/categories/hhkb/'>HHKB (1)</a></li>
 <li class='category'><a href='/blog/categories/language/'>Language (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
@@ -383,6 +444,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   <ul class="tag-cloud">
     <a style="font-size: 80%" href="/blog/tags/github/">Github</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/hhkb/">HHKB</a> &mdash; 
 <a style="font-size: 180%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/python/">Python</a> &mdash; 
 <a style="font-size: 123%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
