@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-05-12T15:15:10+08:00</updated>
+  <updated>2014-05-19T13:59:11+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[程序员版<<泡沫>>]]></title>
+    <link href="http://lixxu.me/blog/2014/05/19/coder-bubbles/"/>
+    <updated>2014-05-19T13:25:19+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/19/coder-bubbles</id>
+    <content type="html"><![CDATA[<p>程序员版&lt;&lt;泡沫>> <a href="http://www.v2ex.com/t/113021#reply17">http://www.v2ex.com/t/113021#reply17</a></p>
+
+<p><code>派森大法</code>, <code>烫烫烫烫烫烫烫烫烫烫烫烫烫烫</code>, &hellip;</p>
+
+<p>视频在此, 加上弹幕才欢乐:</p>
+
+<p><a href="http://www.acfun.com/v/ac1171084">http://www.acfun.com/v/ac1171084</a></p>
+
+<object type="application/x-shockwave-flash" data="http://static.acfun.com/player/ACFlashPlayer.out.swf" width="550" height="348"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="always"><param name="seamlesstabbing" value="true"><param name="wmode" value="direct"><param name="allowFullscreenInteractive" value="true"><param name="flashvars" value="type=page&url=http://www.acfun.com/v/ac1171084"></object>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pyodbc in 查询]]></title>
