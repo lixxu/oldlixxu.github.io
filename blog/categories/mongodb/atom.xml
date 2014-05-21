@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-05-19T16:34:21+08:00</updated>
+  <updated>2014-05-21T14:42:29+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -73,7 +73,8 @@
 <p>以后的关注点也将集中在: <code>SQLAlchemy</code>, <code>PostgreSQL</code>.
 对了, 我的工作环境基于: <code>Python</code>, <code>flask</code></p>
 
-<p><!--more></p>
+<!--more-->
+
 ]]></content>
   </entry>
   
