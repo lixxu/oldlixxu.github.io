@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: 面试 | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/mian-shi/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-05-26T16:33:25+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[从输入 URL 到页面加载完成的过程中都发生了什么事情?]]></title>
+    <link href="http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url/"/>
+    <updated>2014-05-26T16:25:28+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url</id>
+    <content type="html"><![CDATA[<p><img src="/images/nwind-weibo.png"></p>
+
+<p>原文很长, 没看完我就觉得什么也不懂了, 囧.</p>
+
+<p><a href="http://fex.baidu.com/blog/2014/05/what-happen/">http://fex.baidu.com/blog/2014/05/what-happen/</a></p>
+]]></content>
+  </entry>
+  
+</feed>

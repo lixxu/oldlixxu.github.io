@@ -9,7 +9,8 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="程序员版&lt;&lt;泡沫>> http://www.v2ex.com/t/113021#reply17 派森大法, 烫烫烫烫烫烫烫烫烫烫烫烫烫烫, &hellip; 视频在此, 加上弹幕才欢乐: http://www.acfun.com/v/ac1171084 ">
+  <meta name="description" content=" 原文很长, 没看完我就觉得什么也不懂了, 囧. http://fex.baidu.com/blog/2014/05/what-happen/
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/26/what-happened-after-enter-url/">从输入 URL 到页面加载完成的过程中都发生了什么事情?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-26T16:25:28+08:00" pubdate data-updated="true">May 26<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/05/26/what-happened-after-enter-url/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/nwind-weibo.png"></p>
+
+<p>原文很长, 没看完我就觉得什么也不懂了, 囧.</p>
+
+<p><a href="http://fex.baidu.com/blog/2014/05/what-happen/">http://fex.baidu.com/blog/2014/05/what-happen/</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -604,89 +650,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/24/reload-flask-with-gevent/">Reload Flask With Gevent</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-24T13:06:22+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/02/24/reload-flask-with-gevent/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/02/24/reload-flask-with-gevent/">Comments</a>
-        
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>越来越感觉 Windows 下 <code>flask</code> 自带的 debug server 慢了, 于是就开始寻找替换工具,
-先是看了 <code>gunicorn</code>, 但是在 Windows 下有问题. 再接着试了 <code>gevent</code>, 可以跑起来,
-但是有个问题, 丰富的 debug 信息看不到了, 只提示 <code>internal server error</code>.
-这显然不行, 放狗一搜, 下面就是结果:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">werkzeug.serving</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">werkzeug.debug</span> <span class="kn">import</span> <span class="n">DebuggedApplication</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">gevent.wsgi</span> <span class="kn">import</span> <span class="n">WSGIServer</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">app</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@werkzeug.serving.run_with_reloader</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>    <span class="n">app</span> <span class="o">=</span> <span class="n">DebuggedApplication</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">evalex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">ws</span> <span class="o">=</span> <span class="n">WSGIServer</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="n">app</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">ws</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">run</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -705,6 +668,10 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/26/what-happened-after-enter-url/">从输入 URL 到页面加载完成的过程中都发生了什么事情?</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/19/coder-bubbles/">程序员版<<泡沫>></a>
       </li>
     
@@ -720,10 +687,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
         <a href="/blog/2014/05/09/sublime-user-profile-backup/">Sublime3 用户设置备份</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/05/08/install-package-control-for-sublime-text/">Sublime text安装Package Control</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -736,6 +699,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
 <li class='category'><a href='/blog/categories/python/'>Python (5)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>Sublime (2)</a></li>
+<li class='category'><a href='/blog/categories/web/'>Web (1)</a></li>
 <li class='category'><a href='/blog/categories/pyodbc/'>pyodbc (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (1)</a></li>
 
@@ -751,6 +715,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 123%" href="/blog/tags/python/">Python</a> &mdash; 
 <a style="font-size: 123%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/web/">Web</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/ctypes/">ctypes</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/duoshuo/">duoshuo</a> &mdash; 
@@ -759,7 +724,8 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/blog/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pyodbc/">pyodbc</a> &mdash; 
-<a style="font-size: 123%" href="/blog/tags/python/">python</a>
+<a style="font-size: 123%" href="/blog/tags/python/">python</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/mian-shi/">面试</a>
 
   </ul>
 </section><section>
