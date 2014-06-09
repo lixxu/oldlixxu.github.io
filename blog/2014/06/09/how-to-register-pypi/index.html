@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Pyodbc - 杂七杂八记一下</title>
+  <title>在 PyPi 上发布软件包 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="Category: pyodbc">
+  <meta name="description" content="距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘: 来源: http://peterdowns.com/posts/first-time-with-pypi.html 基本操作: 1. 准备好 setup.py, 最好提供一下 setup.cfg &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.meblog/categories/pyodbc">
+  <link rel="canonical" href="http://lixxu.me/blog/2014/06/09/how-to-register-pypi">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -77,40 +77,138 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Pyodbc</h1>
+    
+      <h1 class="entry-title">在 PyPi 上发布软件包</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-09T14:33:10+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘:</p>
 
-  
-  <h2>2014</h2>
+<p>来源: <a href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
 
-<article>
-  
+<p>基本操作:</p>
 
-<h1><a href="/blog/2014/05/12/sql-in-operator-in-pyodbc/">Pyodbc in 查询</a></h1>
-<time datetime="2014-05-12T11:37:58+08:00" pubdate><span class='month'>May</span> <span class='day'>12</span> <span class='year'>2014</span></time>
+<p>1. 准备好 <code>setup.py</code>, 最好提供一下 <code>setup.cfg</code></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/pyodbc/'>pyodbc</a>, <a class='category' href='/blog/categories/python/'>python</a></span>
-
-  <span class="tags">tagged with <a class='tag' href='/blog/tags/pyodbc/'>pyodbc</a>, <a class='tag' href='/blog/tags/python/'>python</a></span>
-
-</footer>
+<figure class='code'><figcaption><span>setup.cfg </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[metadata]</span>
+</span><span class='line'><span class="na">description-file</span> <span class="o">=</span> <span class="s">README.md</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>2. 注册:</p>
 
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按提示做选择就可以了:
+<img src="/images/pypi.png"></p>
+
+<p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="/images/pypi_upload.png"></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-09T14:33:10+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time>
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/pypi/'>PyPi</a>, <a class='tag' href='/blog/tags/python/'>Python</a>
+  
+</span>
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/05/26/what-happened-after-enter-url/" title="Previous Post: 从输入 URL 到页面加载完成的过程中都发生了什么事情?">&laquo; 从输入 URL 到页面加载完成的过程中都发生了什么事情?</a>
+      
+      
+    </p>
+  </footer>
 </article>
+<section>
+  <h2>Related articles：</h2>
+  <ul class="posts">
+     
+      <li class="related">
+        <a href="/blog/2014/05/19/coder-bubbles/">程序员版<<泡沫>></a>
+      </li>
+    
+      <li class="related">
+        <a href="/blog/2014/01/15/windows-color-terminal/">Windows下彩色化终端文字</a>
+      </li>
+    
+  </ul>
+ </section>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 
 
@@ -217,7 +315,10 @@
       var disqus_shortname = 'lixxu';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/06/09/how-to-register-pypi/';
+        var disqus_url = 'http://lixxu.me/blog/2014/06/09/how-to-register-pypi/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

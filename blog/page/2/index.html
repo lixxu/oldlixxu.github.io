@@ -9,9 +9,9 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="越来越感觉 Windows 下 flask 自带的 debug server 慢了, 于是就开始寻找替换工具,
-先是看了 gunicorn, 但是在 Windows 下有问题. 再接着试了 gevent, 可以跑起来,
-但是有个问题, 丰富的 debug 信息看不到了, 只提示 internal &hellip;">
+  <meta name="description" content="注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务. 从几年前知道 MongoDB 开始, 我也在公司内部的许多 web 项目上用上了它. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/">MongoDB是否适合在传统公司使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:52:35+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务.</p>
+
+<p>从几年前知道 <code>MongoDB</code> 开始, 我也在公司内部的许多 web 项目上用上了它.
+下面以我当前的情况简单说明一下:</p>
+
+<p>需求: <code>保存设备的测试数据, 维修数据以提供统计分析</code></p>
+
+<p>工厂里数据逻辑不是太复杂, 但是单数据有时候不小, 总量也大.
+比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
+
+<p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
+<img src="/images/data_size.png"></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -599,6 +658,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/06/09/how-to-register-pypi/">在 PyPi 上发布软件包</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/26/what-happened-after-enter-url/">从输入 URL 到页面加载完成的过程中都发生了什么事情?</a>
       </li>
     
@@ -614,10 +677,6 @@
         <a href="/blog/2014/05/12/hhkb-pro2/">HHKB PRO2</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/05/09/sublime-user-profile-backup/">Sublime3 用户设置备份</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -628,7 +687,7 @@
 <li class='category'><a href='/blog/categories/language/'>Language (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
-<li class='category'><a href='/blog/categories/python/'>Python (5)</a></li>
+<li class='category'><a href='/blog/categories/python/'>Python (6)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>Sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>Web (1)</a></li>
 <li class='category'><a href='/blog/categories/pyodbc/'>pyodbc (1)</a></li>
@@ -643,7 +702,8 @@
 <a style="font-size: 80%" href="/blog/tags/hhkb/">HHKB</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/mongodb/">MongoDB</a> &mdash; 
 <a style="font-size: 180%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
-<a style="font-size: 123%" href="/blog/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/pypi/">PyPi</a> &mdash; 
+<a style="font-size: 148%" href="/blog/tags/python/">Python</a> &mdash; 
 <a style="font-size: 123%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/web/">Web</a> &mdash; 
