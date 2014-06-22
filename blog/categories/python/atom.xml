@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-06-10T16:32:46+08:00</updated>
+  <updated>2014-06-22T18:13:41+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,224 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Python 设置系统时间]]></title>
+    <link href="http://lixxu.me/blog/2014/06/22/use-python-set-system-time/"/>
+    <updated>2014-06-22T16:53:43+08:00</updated>
+    <id>http://lixxu.me/blog/2014/06/22/use-python-set-system-time</id>
+    <content type="html"><![CDATA[<p>接上文: <a href="/blog/2014/06/22/nssm-install-windows-service">使用 NSSM 安装 Windows 系统服务</a></p>
+
+<p>上一篇介绍使用了 <code>net time</code> 来同步系统时间, 后来突然想到如果没有服务器可供同步时间或电脑无法直接连接到服务器怎么办?</p>
+
+<p>就去找了下使用 <code>Python</code> 设置时间的例子, 还真有: <a href="http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time">http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time</a></p>
+
+<p>直接贴在这里:
+```python set_time.py
+import sys
+import datetime</p>
+
+<p>time_tuple = (2012, # Year</p>
+
+<pre><code>             9, # Month
+             6, # Day
+             0, # Hour
+            38, # Minute
+             0, # Second
+             0, # Millisecond
+          )
+</code></pre>
+
+<p>def _win_set_time(time_tuple):</p>
+
+<pre><code>import pywin32
+# http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html
+# pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)
+dayOfWeek = datetime.datetime(time_tuple).isocalendar()[2]
+pywin32.SetSystemTime(time_tuple[:2] + (dayOfWeek,) + time_tuple[2:])
+</code></pre>
+
+<p>def _linux_set_time(time_tuple):</p>
+
+<pre><code>import ctypes
+import ctypes.util
+import time
+
+# /usr/include/linux/time.h:
+#
+# define CLOCK_REALTIME                     0
+CLOCK_REALTIME = 0
+
+# /usr/include/time.h
+#
+# struct timespec
+#  {
+#    __time_t tv_sec;            /* Seconds.  */
+#    long int tv_nsec;           /* Nanoseconds.  */
+#  };
+class timespec(ctypes.Structure):
+    _fields_ = [("tv_sec", ctypes.c_long),
+                ("tv_nsec", ctypes.c_long)]
+
+librt = ctypes.CDLL(ctypes.util.find_library("rt"))
+
+ts = timespec()
+ts.tv_sec = int(time.mktime(datetime.datetime(*time_tuple[:6]).timetuple()))
+ts.tv_nsec = time_tuple[6] * 1000000 # Millisecond to nanosecond
+
+# http://linux.die.net/man/3/clock_settime
+librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
+</code></pre>
+
+<p>if sys.platform==&lsquo;linux2&rsquo;:</p>
+
+<pre><code>_linux_set_time(time_tuple)
+</code></pre>
+
+<p>elif  sys.platform==&lsquo;win32&rsquo;:</p>
+
+<pre><code>_win_set_time(time_tuple)
+</code></pre>
+
+<p>```</p>
+
+<p>可是没有可供同步用的服务器, 那时间怎么来呢?</p>
+
+<p>1. 跑一个 web, 可以返回一个 <code>json</code> 的数据, 如:
+```python</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
+
+<p>from <strong>future</strong> import unicode_literals
+from datetime import datetime
+from flask import Flask, jsonify</p>
+
+<p>app = Flask(<strong>name</strong>)</p>
+
+<p>@app.route(&lsquo;/api/get-time/&rsquo;)
+def get_time():</p>
+
+<pre><code>return jsonify(time=tuple(datetime.utcnow().timetuple()))
+</code></pre>
+
+<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:</p>
+
+<pre><code>app.run(debug=True, host='0.0.0.0')
+</code></pre>
+
+<p>```</p>
+
+<p>客户端可以这样来获取和同步时间 (假设是 Windows 平台), 上面的 <code>set_time.py</code> 需要改一下:
+```python set_time2.py
+import sys
+import datetime</p>
+
+<p>def _win_set_time(time_tuple):</p>
+
+<pre><code>'''time_tuple: 
+year, month, day, hour, minute, second, day_of_week, day_of_year, is_dist
+'''
+import pywin32
+# http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html
+# pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)
+tt = list(time_tuple)
+tt.insert(2, tt[6]) # add day_of_week 
+tt.insert(7, 0)  # set miliseconds
+pywin32.SetSystemTime(*tt[:8])
+</code></pre>
+
+<p>def _linux_set_time(time_tuple):</p>
+
+<pre><code>import ctypes
+import ctypes.util
+import time
+
+# /usr/include/linux/time.h:
+#
+# define CLOCK_REALTIME                     0
+CLOCK_REALTIME = 0
+
+# /usr/include/time.h
+#
+# struct timespec
+#  {
+#    __time_t tv_sec;            /* Seconds.  */
+#    long int tv_nsec;           /* Nanoseconds.  */
+#  };
+class timespec(ctypes.Structure):
+    _fields_ = [("tv_sec", ctypes.c_long),
+                ("tv_nsec", ctypes.c_long)]
+
+librt = ctypes.CDLL(ctypes.util.find_library("rt"))
+
+ts = timespec()
+ts.tv_sec = int(time.mktime(datetime.datetime(*time_tuple[:6]).timetuple()))
+ts.tv_nsec = time_tuple[6] * 1000000 # Millisecond to nanosecond
+
+# http://linux.die.net/man/3/clock_settime
+librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
+</code></pre>
+
+<p>def set_time(time_tuple):</p>
+
+<pre><code>if sys.platform=='linux2':
+    _linux_set_time(time_tuple)
+
+elif  sys.platform=='win32':
+    _win_set_time(time_tuple)
+</code></pre>
+
+<p>```</p>
+
+<p>```python sync_time.py</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
+
+<p>from <strong>future</strong> import unicode_literals
+import time
+from datetime import datetime, timedelta
+import requests
+import set_time2</p>
+
+<p>URL = &lsquo;<a href="http://a.b.c.d:5000/api/get-time/">http://a.b.c.d:5000/api/get-time/</a>&rsquo;
+offset = time.timezone if (time.localtime().tm_isdst == 0) else time.altzone
+LOCAL_TZ = offset / 60 / 60 * -1</p>
+
+<p>def get_time():</p>
+
+<pre><code>r = requests.get(URL)
+json = r.json()
+return json['time']
+</code></pre>
+
+<p>def sync_time(tz, ts):</p>
+
+<pre><code>ts = get_time()
+to_time = datetime(*ts[:6]) + timedelta(hours=LOCAL_TZ)
+set_time2.set_time(to_time.timetuple())
+</code></pre>
+
+<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:</p>
+
+<pre><code>sync_time()
+</code></pre>
+
+<p>```</p>
+
+<p>注意以上代码未经测试, 可能有错误.</p>
+
+<p>2. 如果无法直接连接到提供时间的服务器呢?
+比如有两个网络, 一个是测试电脑的内部网, 服务器在测试的通用网络.</p>
+
+<p>可以使用一个可以连通两个网络的电脑上作为交换数据的中间人, 具体的是使用文件交换还是像 <code>socket</code> 之类的网络接口服务交换就随你的喜好了.</p>
+
+<p>拙见.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Flask-script 和 Gevent 结合使用]]></title>
@@ -254,20 +472,6 @@ cur.execute(sql % (&lsquo;,&rsquo;.join(&lsquo;?&rsquo; * len(alist))), alist)
 cur.fetchall()
 conn.close()
 ```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Windows下升级pip]]></title>
-    <link href="http://lixxu.me/blog/2014/05/07/update-pip/"/>
-    <updated>2014-05-07T09:08:11+08:00</updated>
-    <id>http://lixxu.me/blog/2014/05/07/update-pip</id>
-    <content type="html"><![CDATA[<p>在Windows下由于pip是个exe的可执行文件, 如果使用<code>pip install -U pip</code>的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
-<code>python -m pip install -U pip</code></p>
-
-<p>记录下备忘.</p>
-
-<p>Linux下是没有这个问题的, 暂时没研究是什么原理.</p>
 ]]></content>
   </entry>
   

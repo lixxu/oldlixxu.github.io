@@ -9,7 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="之前一直没用过 flask-script, 可是看了很多其他人的例子都在用这么个玩意. 碰巧手上有个现在做的一个应用, 所以打算用一下. 用了之后出现问题了: python manage.py runserver 使用的是默认的 wsgi 服务器, 而我在 windows 下一直使用 gevent &hellip;">
+  <meta name="description" content="接上文: 使用 NSSM 安装 Windows 系统服务 上一篇介绍使用了 net time 来同步系统时间, 后来突然想到如果没有服务器可供同步时间或电脑无法直接连接到服务器怎么办? 就去找了下使用 Python 设置时间的例子, 还真有: http://stackoverflow.com/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,621 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-22T16:53:43+08:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2014</time>
+        
+           | <a href="/blog/2014/06/22/use-python-set-system-time/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/06/22/use-python-set-system-time/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>接上文: <a href="/blog/2014/06/22/nssm-install-windows-service">使用 NSSM 安装 Windows 系统服务</a></p>
+
+<p>上一篇介绍使用了 <code>net time</code> 来同步系统时间, 后来突然想到如果没有服务器可供同步时间或电脑无法直接连接到服务器怎么办?</p>
+
+<p>就去找了下使用 <code>Python</code> 设置时间的例子, 还真有: <a href="http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time">http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time</a></p>
+
+<p>直接贴在这里:</p>
+
+<figure class='code'><figcaption><span>set_time.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">datetime</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">time_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="c"># Year</span>
+</span><span class='line'>                 <span class="mi">9</span><span class="p">,</span> <span class="c"># Month</span>
+</span><span class='line'>                 <span class="mi">6</span><span class="p">,</span> <span class="c"># Day</span>
+</span><span class='line'>                 <span class="mi">0</span><span class="p">,</span> <span class="c"># Hour</span>
+</span><span class='line'>                <span class="mi">38</span><span class="p">,</span> <span class="c"># Minute</span>
+</span><span class='line'>                 <span class="mi">0</span><span class="p">,</span> <span class="c"># Second</span>
+</span><span class='line'>                 <span class="mi">0</span><span class="p">,</span> <span class="c"># Millisecond</span>
+</span><span class='line'>              <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">pywin32</span>
+</span><span class='line'>    <span class="c"># http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html</span>
+</span><span class='line'>    <span class="c"># pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)</span>
+</span><span class='line'>    <span class="n">dayOfWeek</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">pywin32</span><span class="o">.</span><span class="n">SetSystemTime</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dayOfWeek</span><span class="p">,)</span> <span class="o">+</span> <span class="n">time_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes.util</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># /usr/include/linux/time.h:</span>
+</span><span class='line'>    <span class="c">#</span>
+</span><span class='line'>    <span class="c"># define CLOCK_REALTIME                     0</span>
+</span><span class='line'>    <span class="n">CLOCK_REALTIME</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># /usr/include/time.h</span>
+</span><span class='line'>    <span class="c">#</span>
+</span><span class='line'>    <span class="c"># struct timespec</span>
+</span><span class='line'>    <span class="c">#  {</span>
+</span><span class='line'>    <span class="c">#    __time_t tv_sec;            /* Seconds.  */</span>
+</span><span class='line'>    <span class="c">#    long int tv_nsec;           /* Nanoseconds.  */</span>
+</span><span class='line'>    <span class="c">#  };</span>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">timespec</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;tv_sec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
+</span><span class='line'>                    <span class="p">(</span><span class="s">&quot;tv_nsec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">)]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">librt</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s">&quot;rt&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">ts</span> <span class="o">=</span> <span class="n">timespec</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">time_tuple</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">timetuple</span><span class="p">()))</span>
+</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_nsec</span> <span class="o">=</span> <span class="n">time_tuple</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="c"># Millisecond to nanosecond</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># http://linux.die.net/man/3/clock_settime</span>
+</span><span class='line'>    <span class="n">librt</span><span class="o">.</span><span class="n">clock_settime</span><span class="p">(</span><span class="n">CLOCK_REALTIME</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">ts</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;linux2&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">elif</span>  <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;win32&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可是没有可供同步用的服务器, 那时间怎么来呢?</p>
+
+<p>1. 跑一个 web, 可以返回一个 <code>json</code> 的数据, 如:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/api/get-time/&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_time</span><span class="p">():</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">timetuple</span><span class="p">()))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>客户端可以这样来获取和同步时间 (假设是 Windows 平台), 上面的 <code>set_time.py</code> 需要改一下:</p>
+
+<figure class='code'><figcaption><span>set_time2.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">datetime</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&#39;&#39;&#39;time_tuple: </span>
+</span><span class='line'><span class="sd">    year, month, day, hour, minute, second, day_of_week, day_of_year, is_dist</span>
+</span><span class='line'><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">pywin32</span>
+</span><span class='line'>    <span class="c"># http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html</span>
+</span><span class='line'>    <span class="c"># pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)</span>
+</span><span class='line'>    <span class="n">tt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">tt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">tt</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span> <span class="c"># add day_of_week </span>
+</span><span class='line'>    <span class="n">tt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># set miliseconds</span>
+</span><span class='line'>    <span class="n">pywin32</span><span class="o">.</span><span class="n">SetSystemTime</span><span class="p">(</span><span class="o">*</span><span class="n">tt</span><span class="p">[:</span><span class="mi">8</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes.util</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># /usr/include/linux/time.h:</span>
+</span><span class='line'>    <span class="c">#</span>
+</span><span class='line'>    <span class="c"># define CLOCK_REALTIME                     0</span>
+</span><span class='line'>    <span class="n">CLOCK_REALTIME</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># /usr/include/time.h</span>
+</span><span class='line'>    <span class="c">#</span>
+</span><span class='line'>    <span class="c"># struct timespec</span>
+</span><span class='line'>    <span class="c">#  {</span>
+</span><span class='line'>    <span class="c">#    __time_t tv_sec;            /* Seconds.  */</span>
+</span><span class='line'>    <span class="c">#    long int tv_nsec;           /* Nanoseconds.  */</span>
+</span><span class='line'>    <span class="c">#  };</span>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">timespec</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;tv_sec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
+</span><span class='line'>                    <span class="p">(</span><span class="s">&quot;tv_nsec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">)]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">librt</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s">&quot;rt&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">ts</span> <span class="o">=</span> <span class="n">timespec</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">time_tuple</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">timetuple</span><span class="p">()))</span>
+</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_nsec</span> <span class="o">=</span> <span class="n">time_tuple</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="c"># Millisecond to nanosecond</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># http://linux.die.net/man/3/clock_settime</span>
+</span><span class='line'>    <span class="n">librt</span><span class="o">.</span><span class="n">clock_settime</span><span class="p">(</span><span class="n">CLOCK_REALTIME</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">ts</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;linux2&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">elif</span>  <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;win32&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>sync_time.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">requests</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">set_time2</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">URL</span> <span class="o">=</span> <span class="s">&#39;http://a.b.c.d:5000/api/get-time/&#39;</span>
+</span><span class='line'><span class="n">offset</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">timezone</span> <span class="k">if</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span><span class="o">.</span><span class="n">tm_isdst</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">time</span><span class="o">.</span><span class="n">altzone</span>
+</span><span class='line'><span class="n">LOCAL_TZ</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_time</span><span class="p">():</span>
+</span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">json</span><span class="p">[</span><span class="s">&#39;time&#39;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">sync_time</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">ts</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">ts</span> <span class="o">=</span> <span class="n">get_time</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">to_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">LOCAL_TZ</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">set_time2</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="n">to_time</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sync_time</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意以上代码未经测试, 可能有错误.</p>
+
+<p>2. 如果无法直接连接到提供时间的服务器呢?
+比如有两个网络, 一个是测试电脑的内部网, 服务器在测试的通用网络.</p>
+
+<p>可以使用一个可以连通两个网络的电脑上作为交换数据的中间人, 具体的是使用文件交换还是像 <code>socket</code> 之类的网络接口服务交换就随你的喜好了.</p>
+
+<p>拙见.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-22T16:15:55+08:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2014</time>
+        
+           | <a href="/blog/2014/06/22/nssm-install-windows-service/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/06/22/nssm-install-windows-service/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>工厂里的某些测试电脑存在时间不对的问题, 最开始使用简单的批处理加上
+<a href="http://nssm.cc/">nssm</a> 安装成 service 的方式, 比如下面的示例:</p>
+
+<figure class='code'><figcaption><span>sync_time.bat </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>sync_time:
+</span><span class='line'>net time \\a.b.c.d <span class="n">/set</span> <span class="n">/y</span>
+</span><span class='line'>
+</span><span class='line'>sleep <span class="m">3600</span>
+</span><span class='line'><span class="k">goto</span> <span class="nl">sync_time</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但在使用的过程中出现了这个 service 吃掉许多 CPU 的问题.
+按道理说在 sleep 后应该会进入休眠状态, 不应该再占用 CPU.
+不清楚什么原因, 就使用 <code>Python</code> 重写了.</p>
+
+<p>1. 主程序 <code>main.py</code></p>
+
+<figure class='code'><figcaption><span>main.py </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">subprocess</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">click</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">__version__</span> <span class="o">=</span> <span class="s">&#39;0.1&#39;</span>
+</span><span class='line'><span class="n">DEFAULT_SERVERS</span> <span class="o">=</span> <span class="s">&#39;server_a,server_b&#39;</span>
+</span><span class='line'><span class="n">IP_MAPS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">server_a</span><span class="o">=</span><span class="s">&#39;a.b.c.d&#39;</span><span class="p">,</span> <span class="n">server_b</span><span class="o">=</span><span class="s">&#39;a.b.c.e&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">CMD</span> <span class="o">=</span> <span class="s">r&#39;net time </span><span class="se">\\</span><span class="s">{} /set /y&#39;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">run_cmd</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">status</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">CMD</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">server</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">True</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">ip</span> <span class="o">=</span> <span class="n">IP_MAPS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">ip</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">CMD</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">False</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@click.command</span><span class="p">()</span>
+</span><span class='line'><span class="nd">@click.option</span><span class="p">(</span><span class="s">&#39;--servers&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_SERVERS</span><span class="p">,</span>
+</span><span class='line'>              <span class="n">help</span><span class="o">=</span><span class="s">&#39;servers name or IP list, seperated by &quot;,&quot;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="nd">@click.option</span><span class="p">(</span><span class="s">&#39;--sleep&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+</span><span class='line'>              <span class="n">help</span><span class="o">=</span><span class="s">&#39;sleep seconds till next run, default is 600s (10 minutes)&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">sync_time</span><span class="p">(</span><span class="n">servers</span><span class="p">,</span> <span class="n">sleep</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">servers</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">run_cmd</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">strip</span><span class="p">()):</span>
+</span><span class='line'>                <span class="k">break</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sync_time</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2. 使用 <code>py2exe</code> 或其他工具打包 <code>main.py</code> 为可执行文件, 比如 <code>SyncTimer.exe</code></p>
+
+<p>3. 然后是安装/删除 service 的批处理:</p>
+
+<p>3.1 <code>install.bat</code></p>
+
+<figure class='code'><figcaption><span>install.bat </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+</span><span class='line'><span class="k">set</span> <span class="nv">service</span><span class="o">=</span>SyncTimer
+</span><span class='line'><span class="k">echo</span> <span class="nv">%PROCESSOR_ARCHITECTURE%</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/i</span> <span class="s2">&quot;x86&quot;</span> <span class="p">&gt;</span> <span class="n">nul</span>
+</span><span class='line'><span class="k">if</span> <span class="nv">%errorlevel%</span><span class="o">==</span><span class="m">0</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">32</span>.exe
+</span><span class='line'>) <span class="k">else</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">64</span>.exe
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'><span class="nv">%nssm%</span> install <span class="s2">&quot;%service%&quot;</span> <span class="s2">&quot;%~dp0SyncTimer.exe&quot;</span>
+</span><span class='line'>
+</span><span class='line'>net start <span class="nv">%service%</span>
+</span><span class='line'>
+</span><span class='line'>sleep <span class="m">5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.2 <code>remove.bat</code></p>
+
+<figure class='code'><figcaption><span>remove.bat </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+</span><span class='line'><span class="k">set</span> <span class="nv">exename</span><span class="o">=</span>SyncTimer
+</span><span class='line'>net stop <span class="nv">%exename%</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">echo</span> <span class="nv">%PROCESSOR_ARCHITECTURE%</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/i</span> <span class="s2">&quot;x86&quot;</span> <span class="p">&gt;</span> <span class="n">nul</span>
+</span><span class='line'><span class="k">if</span> <span class="nv">%errorlevel%</span><span class="o">==</span><span class="m">0</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">32</span>.exe
+</span><span class='line'>) <span class="k">else</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">64</span>.exe
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'><span class="nv">%nssm%</span> remove <span class="s2">&quot;%exename%&quot;</span> confirm
+</span><span class='line'>sleep <span class="m">5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然了, 你需要到 <a href="http://nssm.cc/download">http://nssm.cc/download</a> 下载 <code>nssm</code> 的执行程序.
+分别把 32 位和 64 位的执行文件和你的 EXE 文件放到一起, 并改名为 <code>nssm32.exe</code> 和 <code>nssm64.exe</code>. 在安装 service 后也不能删除这些文件, 因为 service 关联的程序是 <code>nssm</code>.</p>
+
+<p>这里有个注意的地方:
+<code>nssm</code> 的文档上说使用命令行安装时如果不想弹出确认对话框, 可以写成这样的:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>%nssm% install "%service%" "%~dp0SyncTimer.exe" confirm</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是这样安装的 service 始终处于 <code>paused</code> 状态, 一度让我以为是程序里 <code>sleep</code> 导致的. 但在使用对话框安装时却一点问题都没有.
+后来看了下系统日志, 发现是路径的问题. 后面就使用 exe 的绝对路径并且把后面的 <code>confirm</code> 给去掉了才算正常.</p>
+
+<p>本来打算写如何使用 <code>Python</code> 设置系统时间的怎么变成 <code>nssm</code> 了?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -681,103 +1296,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/07/update-pip/">Windows下升级pip</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-07T09:08:11+08:00" pubdate data-updated="true">May 7<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/05/07/update-pip/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/05/07/update-pip/">Comments</a>
-        
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在Windows下由于pip是个exe的可执行文件, 如果使用<code>pip install -U pip</code>的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
-<code>python -m pip install -U pip</code></p>
-
-<p>记录下备忘.</p>
-
-<p>Linux下是没有这个问题的, 暂时没研究是什么原理.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/16/pyconus2014-videos/">Pyconus2014 的视频</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-16T16:16:05+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/04/16/pyconus2014-videos/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/04/16/pyconus2014-videos/">Comments</a>
-        
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>好久没发帖了, 放上pycon2014的视频, 给不方便穿墙的同学访问.</p>
-
-<p>不知道是公司还是360的问题, 上传到后来就没有速度了, 一开始还有几M的速度的.
-<img src="/images/360upload.png"></p>
-
-<p>好吧, 某度的共享违规了, 违规你 妈 啊, 用360的吧:</p>
-
-<p><a href="http://yunpan.cn/QNFwAjKWvsniL">http://yunpan.cn/QNFwAjKWvsniL</a>
-访问密码 <code>22e8</code></p>
-
-<p><img src="/images/udiab_kcuf.png"></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -796,6 +1314,14 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
       </li>
     
@@ -807,14 +1333,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
         <a href="/blog/2014/05/26/what-happened-after-enter-url/">从输入 URL 到页面加载完成的过程中都发生了什么事情?</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/05/19/coder-bubbles/">程序员版<<泡沫>></a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/12/sql-in-operator-in-pyodbc/">Pyodbc in 查询</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -824,8 +1342,9 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <li class='category'><a href='/blog/categories/hhkb/'>HHKB (1)</a></li>
 <li class='category'><a href='/blog/categories/language/'>Language (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
+<li class='category'><a href='/blog/categories/nssm/'>NSSM (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
-<li class='category'><a href='/blog/categories/python/'>Python (8)</a></li>
+<li class='category'><a href='/blog/categories/python/'>Python (9)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>Sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>Web (1)</a></li>
 
@@ -837,10 +1356,11 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/blog/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/hhkb/">HHKB</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/mongodb/">MongoDB</a> &mdash; 
-<a style="font-size: 157%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/nssm/">NSSM</a> &mdash; 
+<a style="font-size: 153%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pypi/">PyPi</a> &mdash; 
 <a style="font-size: 180%" href="/blog/tags/python/">Python</a> &mdash; 
-<a style="font-size: 113%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 112%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/web/">Web</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
@@ -848,7 +1368,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/blog/tags/duoshuo/">duoshuo</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/flask/">flask</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/flask-script/">flask-script</a> &mdash; 
-<a style="font-size: 113%" href="/blog/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 112%" href="/blog/tags/gevent/">gevent</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pyodbc/">pyodbc</a> &mdash; 
