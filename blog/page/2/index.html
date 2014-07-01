@@ -9,8 +9,33 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="在Windows下由于pip是个exe的可执行文件, 如果使用pip install -U pip的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
-python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, &hellip;">
+  <meta name="description" content="安装的插件: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+1. Alignment
+2. Autoprefixer
+3. PySide
+4. PyV8
+5. SublimeLinter
+6. SublimeTmpl
+7. Terminal &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +104,149 @@ python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/09/sublime-user-profile-backup/">Sublime3 用户设置备份</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-09T08:54:27+08:00" pubdate data-updated="true">May 9<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/05/09/sublime-user-profile-backup/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/05/09/sublime-user-profile-backup/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>安装的插件:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. Alignment
+</span><span class='line'>2. Autoprefixer
+</span><span class='line'>3. PySide
+</span><span class='line'>4. PyV8
+</span><span class='line'>5. SublimeLinter
+</span><span class='line'>6. SublimeTmpl
+</span><span class='line'>7. Terminal
+</span><span class='line'>8. Markdown Preview
+</span><span class='line'>9. Markdown Editing
+</span><span class='line'>10. SmartMarkdown
+</span><span class='line'>11. Pretty YAML
+</span><span class='line'>12. Python Flake8 Lint
+</span><span class='line'>13. SideBarEnhancements
+</span><span class='line'>14. SublimeCodeIntel
+</span><span class='line'>15. Git Config
+</span><span class='line'>16. GitStatus
+</span><span class='line'>17. Gitignore
+</span><span class='line'>18. Go to definition
+</span><span class='line'>19. GoToLastEdit
+</span><span class='line'>20. SublimeGit</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sublime3062 Windows 用户设置备忘:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/05/09/sublime-user-profile-backup/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/08/install-package-control-for-sublime-text/">Sublime text安装Package Control</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-08T11:46:45+08:00" pubdate data-updated="true">May 8<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/05/08/install-package-control-for-sublime-text/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Ctrl+`</code> 或菜单里 <code>View</code> &ndash;> <code>Show Console</code>, 在文本框中输入:</p>
+
+<h1>Sublime3:</h1>
+
+<p><code>
+import urllib.request,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by = urllib.request.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h)) if dh != h else open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by)
+</code></p>
+
+<h1>Sublime2:</h1>
+
+<p><code>
+import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); by = urllib2.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by) if dh == h else None; print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h) if dh != h else &lsquo;Please restart Sublime Text to finish installation&rsquo;)
+</code></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -543,109 +711,6 @@ python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-15T09:44:48+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/01/15/use-duoshuo/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/15/use-duoshuo/">Comments</a>
-        
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>参考来源:</p>
-
-<ul>
-<li><a href="http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/">http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/</a></li>
-<li><a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html</a></li>
-</ul>
-
-
-<p>照着文章来就行了, 没啥好说的, 这里记一下备忘, 把 <code>yourname</code> 替换成你自己的名字.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/15/use-duoshuo/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/15/windows-color-terminal/">Windows下彩色化终端文字</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-15T08:48:35+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/01/15/windows-color-terminal/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/15/windows-color-terminal/">Comments</a>
-        
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
-
-<p>先看下例子 (超过 15 好像就是背景色了):
-<img src="/images/color_terminal.png"></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/15/windows-color-terminal/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -666,6 +731,14 @@ python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/01/android-flash-stuff/">Android Flash Stuff</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a>
       </li>
     
@@ -677,20 +750,13 @@ python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, 
         <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/09/how-to-register-pypi/">在 PyPi 上发布软件包</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/26/what-happened-after-enter-url/">从输入 URL 到页面加载完成的过程中都发生了什么事情?</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
+    <li class='category'><a href='/blog/categories/android/'>Android (1)</a></li>
+<li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
 <li class='category'><a href='/blog/categories/hhkb/'>HHKB (1)</a></li>
 <li class='category'><a href='/blog/categories/language/'>Language (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
@@ -704,14 +770,18 @@ python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, 
 </section><section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-    <a style="font-size: 80%" href="/blog/tags/github/">Github</a> &mdash; 
+    <a style="font-size: 80%" href="/blog/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/fastboot/">Fastboot</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/github/">Github</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/hhkb/">HHKB</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/mokee/">Mokee</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/mongodb/">MongoDB</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/nssm/">NSSM</a> &mdash; 
 <a style="font-size: 153%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/pypi/">PyPi</a> &mdash; 
 <a style="font-size: 180%" href="/blog/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/recovery/">Recovery</a> &mdash; 
 <a style="font-size: 112%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
 <a style="font-size: 80%" href="/blog/tags/web/">Web</a> &mdash; 

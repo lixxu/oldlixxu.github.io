@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/tags/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-06-22T19:51:48+08:00</updated>
+  <updated>2014-07-01T18:52:02+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -220,7 +220,7 @@ set_time2.set_time(to_time.timetuple())
 
 <p>```</p>
 
-<p>注意以上代码未经测试, 可能有错误.</p>
+<p>注意: 以上代码未经测试, 可能有错误.</p>
 
 <p>2. 如果无法直接连接到提供时间的服务器呢?
 比如有两个网络, 一个是测试电脑的内部网, 服务器在测试的通用网络.</p>
