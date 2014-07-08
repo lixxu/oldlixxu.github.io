@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Fastboot | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/tags/fastboot/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-01T18:52:02+08:00</updated>
+  <updated>2014-07-08T09:23:20+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -72,8 +72,9 @@ that you just downloaded.  You will also need adb and fastboot for your computer
 2. fastboot 实际是 fastboot.exe
 ```</p>
 
-<p>补: 如何进 <code>fastboot</code>?
-<code>
+<p>补: 如何进 <code>fastboot</code>?</p>
+
+<p><code>
 1. 关机
 2. 电源 + 音量-, 直到出现菜单
 </code></p>
