@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-08T09:58:16+08:00</updated>
+  <updated>2014-07-11T14:00:06+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -31,7 +31,7 @@
 比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
 
 <p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
-<img src="/images/data_size.png"></p>
+<img class="<a" src="href="http://lixxu.qiniudn.com/data_size.png">http://lixxu.qiniudn.com/data_size.png</a>"></p>
 
 <!--more-->
 

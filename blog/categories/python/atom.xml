@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-08T09:58:16+08:00</updated>
+  <updated>2014-07-11T14:00:06+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -423,7 +423,7 @@ python manage.py rungevent
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><img src="/images/pypi_upload.png"></p>
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi_upload.png">http://lixxu.qiniudn.com/pypi_upload.png</a>"></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: ctypes | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/tags/ctypes/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-08T09:58:16+08:00</updated>
+  <updated>2014-07-11T14:00:06+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
 
 <p>先看下例子 (超过 15 好像就是背景色了):
-<img src="/images/color_terminal.png"></p>
+<img class="<a" src="href="http://lixxu.qiniudn.com/color_terminal.png">http://lixxu.qiniudn.com/color_terminal.png</a>"></p>
 
 <!--more-->
 
