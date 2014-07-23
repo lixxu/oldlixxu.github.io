@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: pyodbc | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/pyodbc/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-07-23T13:54:15+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[pyodbc in 查询]]></title>
+    <link href="http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc/"/>
+    <updated>2014-05-12T11:37:58+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc</id>
+    <content type="html"><![CDATA[<p>参考链接, 看 <code>geographika</code> 的答案即可:</p>
+
+<p><a href="http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server">http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server</a></p>
+
+<p>记录一下如何在 <code>pyodbc</code> 中使用 <code>in</code> 查询:</p>
+
+<p>```python</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<p>import pyodbc</p>
+
+<p>alist = [1, 2, 3]
+sql = &lsquo;select * from table where field1 in (%s)&rsquo;
+conn = pyodbc.connect(&hellip;)
+cur = conn.cursor()
+cur.execute(sql % (&lsquo;,&rsquo;.join(&lsquo;?&rsquo; * len(alist))), alist)
+cur.fetchall()
+conn.close()
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

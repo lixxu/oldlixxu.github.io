@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>MongoDB是否适合在传统公司使用 - 杂七杂八记一下</title>
+  <meta name="author" content="Lix Xu">
+
+  
+  <meta name="description" content="注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务. 从几年前知道 MongoDB 开始, 我也在公司内部的许多 web 项目上用上了它. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">杂七杂八记一下</a></h1>
+  
+    <h2>花落花开花相似, 岁岁年年人不同</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lixxu.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">MongoDB是否适合在传统公司使用</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:52:35+08:00" pubdate data-updated="true">Feb 27<sup>th</sup>, 2014</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务.</p>
+
+<p>从几年前知道 <code>MongoDB</code> 开始, 我也在公司内部的许多 web 项目上用上了它.
+下面以我当前的情况简单说明一下:</p>
+
+<p>需求: <code>保存设备的测试数据, 维修数据以提供统计分析</code></p>
+
+<p>工厂里数据逻辑不是太复杂, 但是单数据有时候不小, 总量也大.
+比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
+
+<p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
+<img src="http://lixxu.qiniudn.com/data_size.png"></p>
+
+<!--more-->
+
+
+<p>可以看到, 此服务器的内存为 <code>4G</code>, 数据为 <code>1.23G</code>, 索引为 <code>1.56G</code>, 可用的内存还有 <code>1.55G</code>.
+这个项目从去年3月底开始试运行, 到现在差不多有一年的数据量 (430W).<br />
+可以预见的是在接下来差不多一年左右, 服务器的内存就要被吃光了, 而且这个吃光是实实在在的吃光, 因为 <code>MongoDB</code> 会把 <code>索引</code> 全部放进内存中, 如果内存容不下 <code>索引 + 工作集 (working set)</code>, 会导致性能急剧下降, 甚至达到不可用的程度.</p>
+
+<p>解决方法无非有这几个:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 做 Shard, 把数据分到多台服务器上
+</span><span class='line'>2. 增加内存
+</span><span class='line'>3. 优化索引, 只保留确实需要的
+</span><span class='line'>4. 用 SSD 代替 HDD</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而对我所在工厂有效的只有2 和 3, 可是我在用一台PC作服务器, 我会说吗?
+有时候工厂就是这种情况, 由于不是IT部门, 所以基本上没有正规的服务器使用, 大多时候都是使用普通PC作为服务器.
+就是可以加内存, 也不能无限地加, 随着时间的推移, 数据会越来越多, 迟早有吃尽内存的那天.</p>
+
+<p>在设计数据库的结构时, 有几点没有考虑到:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 没有预见到数据有这么大
+</span><span class='line'>2. 数据量大的 collection 的字段没有使用尽量短的命名</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然对数据量不大的项目来说, <code>MongoDB</code> 还是一个不错的选择:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 无需定义表结构, 随时增加/删除字段, 这也是我在开始选择它的原因. 没有在工厂里需求三天一变的体验过的人是不知道这个是多么重要的, 个人猜测互联网公司选择 `MongoDB` 也是看中它的快速开发
+</span><span class='line'>2. 速度够快, 可以支持列表, 字典等复杂数据类型, 可以让逻辑更简单</span></code></pre></td></tr></table></div></figure>
+
+
+<p>乱七八糟地说了这么多, 我的结论是:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>如果你没有可以自由使用的服务器的话, 并且数据量较大, 那就不要使用它了, 老老实实地使用关系数据库吧.
+</span><span class='line'>我也会在接下来的时间把数据库换成 PostgreSQL.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以后的关注点也将集中在: <code>SQLAlchemy</code>, <code>PostgreSQL</code>.
+对了, 我的工作环境基于: <code>Python</code>, <code>flask</code></p>
+
+<!--more-->
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:52:35+08:00" pubdate data-updated="true">Feb 27<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mongodb/'>mongodb</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/24/reload-flask-with-gevent/" title="Previous Post: reload flask with gevent">&laquo; reload flask with gevent</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/03/20/human-program-language/" title="Next Post: 编程语言拟人化">编程语言拟人化 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <img src="http://www.gravatar.com/avatar/20d98692a314c016ab84b6304e78467c?s=128" />
+  <p><a href="/about"><strong>Lix Xu</strong></a> - 神仙? 妖怪? 谢谢.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/08/ben-niao-haitao/">笨鸟海淘晒单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (1)</a></li>
+<li class='category'><a href='/blog/categories/haitao/'>haitao (1)</a></li>
+<li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
+<li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
+<li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (5)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (9)</a></li>
+<li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
+<a style="font-size: 80%" href="/tags/g700s/">G700s</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
+<a style="font-size: 80%" href="/tags/hhkb/">HHKB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
+<a style="font-size: 153%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
+<a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
+<a style="font-size: 112%" href="/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 80%" href="/tags/thin/">Thin</a> &mdash; 
+<a style="font-size: 80%" href="/tags/web/">Web</a> &mdash; 
+<a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
+<a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
+<a style="font-size: 112%" href="/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 80%" href="/tags/hai-tao/">海淘</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mian-shi/">面试</a>
+
+  </ul>
+</section><section>
+  <h1>Links</h1>
+  <ul id="links">
+    <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Comments</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Lix Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'lixxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/';
+        var disqus_url = 'http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

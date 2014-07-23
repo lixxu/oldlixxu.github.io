@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: HHKB | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/hhkb/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-07-23T13:54:15+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HHKB PRO2]]></title>
+    <link href="http://lixxu.me/blog/2014/05/12/hhkb-pro2/"/>
+    <updated>2014-05-12T09:19:52+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/12/hhkb-pro2</id>
+    <content type="html"><![CDATA[<p>我中毒了:</p>
+
+<p><a href="http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000">http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000</a>
+<a href="http://ju.outofmemory.cn/entry/28653">http://ju.outofmemory.cn/entry/28653</a></p>
+
+<p>好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
+<img class="<a" src="href="http://lixxu.qiniudn.com/hhkb_pro2_types.png">http://lixxu.qiniudn.com/hhkb_pro2_types.png</a>"></p>
+
+<p>随之配合的是, 以后要多用 Vim 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android刷机相关 - 杂七杂八记一下</title>
+  <meta name="author" content="Lix Xu">
+
+  
+  <meta name="description" content="记录下来备忘: 背景: 1
+2
+3
+4
+5
+1. Nexus 4 2. Mokee 4.4.4 3. TWRP 我保存的基带共享链接: http://pan.baidu.com/s/1gdf4pfd 原帖看这里: http://bbs.mfunz.com/thread-947343-1-1. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lixxu.me/blog/2014/07/01/android-flash-stuff">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">杂七杂八记一下</a></h1>
+  
+    <h2>花落花开花相似, 岁岁年年人不同</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lixxu.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android刷机相关</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-01T18:31:16+08:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>记录下来备忘:</p>
+
+<p>背景:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. Nexus 4
+</span><span class='line'>
+</span><span class='line'>2. Mokee 4.4.4
+</span><span class='line'>
+</span><span class='line'>3. TWRP</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我保存的基带共享链接: <a href="http://pan.baidu.com/s/1gdf4pfd">http://pan.baidu.com/s/1gdf4pfd</a></p>
+
+<p>原帖看这里: <a href="http://bbs.mfunz.com/thread-947343-1-1.html">http://bbs.mfunz.com/thread-947343-1-1.html</a></p>
+
+<p>1. 刷基带, 按照帖子来就可以, 简单就是</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 进入fastboot
+</span><span class='line'>2. flash-all.bat</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2. 更新TWRP <a href="http://teamw.in/project/twrp2/129">http://teamw.in/project/twrp2/129</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Download - Recovery Image Method:
+</span><span class='line'>
+</span><span class='line'>Download the newest .img file here
+</span><span class='line'>
+</span><span class='line'>Download the above file.  Turn off your device. Turn on the device and keep
+</span><span class='line'>holding volume down until a menu shows up. The device will now be in fastboot
+</span><span class='line'>mode. Plug the device into your computer.  If you have the right drivers
+</span><span class='line'>installed, your screen should now say FASTBOOT USB.  Run the following command
+</span><span class='line'>via the command line:
+</span><span class='line'>
+</span><span class='line'>fastboot flash recovery recoveryfilename.img
+</span><span class='line'>
+</span><span class='line'>Note that you will need to change the last part to match the name of the file
+</span><span class='line'>that you just downloaded.  You will also need adb and fastboot for your computer.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>简单讲就是:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 下载.img文件
+</span><span class='line'>2. 进入fastboot
+</span><span class='line'>3. 运行 fastboot flash recovery openrecovery-twrp-2.7.1.0-mako.img
+</span><span class='line'>
+</span><span class='line'>注意:
+</span><span class='line'>1. 这里的 openrecovery-twrp-2.7.1.0-mako.img 要换成你对应的名字
+</span><span class='line'>2. fastboot 实际是 fastboot.exe</span></code></pre></td></tr></table></div></figure>
+
+
+<p>补: 如何进 <code>fastboot</code>?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 关机
+</span><span class='line'>2. 电源 + 音量-, 直到出现菜单</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-01T18:31:16+08:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/22/use-python-set-system-time/" title="Previous Post: 使用 Python 设置系统时间">&laquo; 使用 Python 设置系统时间</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/08/ben-niao-haitao/" title="Next Post: 笨鸟海淘晒单">笨鸟海淘晒单 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <img src="http://www.gravatar.com/avatar/20d98692a314c016ab84b6304e78467c?s=128" />
+  <p><a href="/about"><strong>Lix Xu</strong></a> - 神仙? 妖怪? 谢谢.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/08/ben-niao-haitao/">笨鸟海淘晒单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (1)</a></li>
+<li class='category'><a href='/blog/categories/haitao/'>haitao (1)</a></li>
+<li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
+<li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
+<li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (5)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (9)</a></li>
+<li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
+<a style="font-size: 80%" href="/tags/g700s/">G700s</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
+<a style="font-size: 80%" href="/tags/hhkb/">HHKB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
+<a style="font-size: 153%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
+<a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
+<a style="font-size: 112%" href="/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 80%" href="/tags/thin/">Thin</a> &mdash; 
+<a style="font-size: 80%" href="/tags/web/">Web</a> &mdash; 
+<a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
+<a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
+<a style="font-size: 112%" href="/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 80%" href="/tags/hai-tao/">海淘</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mian-shi/">面试</a>
+
+  </ul>
+</section><section>
+  <h1>Links</h1>
+  <ul id="links">
+    <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Comments</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Lix Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'lixxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/07/01/android-flash-stuff/';
+        var disqus_url = 'http://lixxu.me/blog/2014/07/01/android-flash-stuff/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

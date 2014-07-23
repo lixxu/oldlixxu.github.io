@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/07/08/ben-niao-haitao/</loc>
+    <lastmod>2014-07-08T08:29:54+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/07/01/android-flash-stuff/</loc>
+    <lastmod>2014-07-01T18:31:16+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/06/22/use-python-set-system-time/</loc>
+    <lastmod>2014-06-22T16:53:43+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/06/22/nssm-install-windows-service/</loc>
+    <lastmod>2014-06-22T16:15:55+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/06/10/use-gevent-with-flask-script/</loc>
+    <lastmod>2014-06-10T15:09:51+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/06/09/how-to-register-pypi/</loc>
+    <lastmod>2014-06-09T14:33:10+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url/</loc>
+    <lastmod>2014-05-26T16:25:28+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/19/coder-bubbles/</loc>
+    <lastmod>2014-05-19T13:25:19+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc/</loc>
+    <lastmod>2014-05-12T11:37:58+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/12/hhkb-pro2/</loc>
+    <lastmod>2014-05-12T09:19:52+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/09/sublime-user-profile-backup/</loc>
+    <lastmod>2014-05-09T08:54:27+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/</loc>
+    <lastmod>2014-05-08T11:46:45+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/05/07/update-pip/</loc>
+    <lastmod>2014-05-07T09:08:11+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/04/16/pyconus2014-videos/</loc>
+    <lastmod>2014-04-16T16:16:05+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/03/20/human-program-language/</loc>
+    <lastmod>2014-03-20T09:25:02+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/</loc>
+    <lastmod>2014-02-27T10:52:35+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/02/24/reload-flask-with-gevent/</loc>
+    <lastmod>2014-02-24T13:06:22+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/02/06/new-year-holiday-back/</loc>
+    <lastmod>2014-02-06T09:32:37+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/16/use-thin-as-preview-server/</loc>
+    <lastmod>2014-01-16T10:06:15+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/15/other-stuff/</loc>
+    <lastmod>2014-01-15T14:13:56+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/15/use-duoshuo/</loc>
+    <lastmod>2014-01-15T09:44:48+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/15/windows-color-terminal/</loc>
+    <lastmod>2014-01-15T08:48:35+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/14/add-categories-sidebar/</loc>
+    <lastmod>2014-01-14T23:09:10+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/14/windows-git-ssh/</loc>
+    <lastmod>2014-01-14T18:56:34+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/2014/01/14/first-post/</loc>
+    <lastmod>2014-01-14T13:21:29+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://lixxu.me/404.html</loc>
+    <lastmod>2014-07-23T13:54:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/</loc>
+    <lastmod>2014-07-23T13:54:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/blog/archives/</loc>
+    <lastmod>2014-07-23T13:54:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://lixxu.me/about/</loc>
+    <lastmod>2014-07-23T13:54:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+</urlset>
