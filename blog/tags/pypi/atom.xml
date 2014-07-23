@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: PyPi | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/tags/pypi/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-11T14:00:06+08:00</updated>
+  <updated>2014-07-23T08:58:29+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -24,7 +24,7 @@
 
 <p>基本操作:</p>
 
-<p>1. 准备好 <code>setup.py</code>, 最好提供一下 <code>setup.cfg</code></p>
+<p>1. 准备好 <code>setup.py</code>, 提供一下 <code>setup.cfg</code></p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>setup.cfg </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -38,8 +38,9 @@
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>按提示做选择就可以了:
-<img src="/images/pypi.png"></p>
+<p>按提示做选择就可以了:</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi.png">http://lixxu.qiniudn.com/pypi.png</a>"></p>
 
 <p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
 
