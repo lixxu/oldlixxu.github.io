@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: PyPi | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/pypi/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-07-23T10:31:47+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[在 PyPi 上发布软件包]]></title>
+    <link href="http://lixxu.me/blog/2014/06/09/how-to-register-pypi/"/>
+    <updated>2014-06-09T14:33:10+08:00</updated>
+    <id>http://lixxu.me/blog/2014/06/09/how-to-register-pypi</id>
+    <content type="html"><![CDATA[<p>距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘:</p>
+
+<p>来源: <a href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
+
+<p>基本操作:</p>
+
+<p>1. 准备好 <code>setup.py</code>, 提供一下 <code>setup.cfg</code></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>setup.cfg </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[metadata]</span>
+</span><span class='line'><span class="na">description-file</span> <span class="o">=</span> <span class="s">README.md</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>2. 注册:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>按提示做选择就可以了:</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi.png">http://lixxu.qiniudn.com/pypi.png</a>"></p>
+
+<p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi_upload.png">http://lixxu.qiniudn.com/pypi_upload.png</a>"></p>
+]]></content>
+  </entry>
+  
+</feed>

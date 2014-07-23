@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>添加分类列表到边栏 - 杂七杂八记一下</title>
+  <meta name="author" content="Lix Xu">
+
+  
+  <meta name="description" content="来源: http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/ 简单记下过程 在 plugins 目录下新建一个 ruby 代码文件, 如 category_list_tag.rb &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lixxu.me/blog/2014/01/14/add-categories-sidebar">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47125020-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">杂七杂八记一下</a></h1>
+  
+    <h2>花落花开花相似, 岁岁年年人不同</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lixxu.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">添加分类列表到边栏</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>来源: <a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/</a></p>
+
+<p>简单记下过程</p>
+
+<!--more-->
+
+
+<ol>
+<li>在 <code>plugins</code> 目录下新建一个 ruby 代码文件, 如 <code>category_list_tag.rb</code></li>
+</ol>
+
+
+<figure class='code'><figcaption><span>category_list_tag.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
+</span><span class='line'>      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
+</span><span class='line'>        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">html</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>在 <code>source/_includes/asides</code> 下新建一个 html 文件, 如 <code>category_list.html</code></li>
+</ol>
+
+
+<figure class='code'><figcaption><span>category_list.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    {% category_list %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我还顺手添了一个外部链接列表的边栏 <code>asides/other_links.html</code>, 先添一个, 后续再加</p>
+
+<figure class='code'><figcaption><span>asides/other_links.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Links<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;links&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/lixxu/&quot;</span><span class="nt">&gt;</span>GitHub projects<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>修改 <code>_config.yml</code>, 添加分类和外部链接</li>
+</ol>
+
+
+<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/category_list.html</span><span class="p-Indicator">,</span> <span class="nv">asides/other_links.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/delicious.html</span><span class="p-Indicator">,</span> <span class="nv">asides/pinboard.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>另外, 如果想在分类里使用空格, 直接按 html 语法写 <code>CAT1&amp;nbsp;CAT11</code></p>
+
+<!--more-->
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/octopress/'>Octopress</a>
+  
+</span>
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/14/windows-git-ssh/" title="Previous Post: Windows下使用ssh连接github">&laquo; Windows下使用ssh连接github</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/01/15/windows-color-terminal/" title="Next Post: Windows下彩色化终端文字">Windows下彩色化终端文字 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+<section>
+  <h2>Related articles：</h2>
+  <ul class="posts">
+     
+      <li class="related">
+        <a href="/blog/2014/01/16/use-thin-as-preview-server/">使用 Thin 作为 Octopress 预览服务器</a>
+      </li>
+    
+      <li class="related">
+        <a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a>
+      </li>
+    
+      <li class="related">
+        <a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a>
+      </li>
+    
+      <li class="related">
+        <a href="/blog/2014/01/14/first-post/">开篇</a>
+      </li>
+    
+  </ul>
+ </section>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <img src="http://www.gravatar.com/avatar/20d98692a314c016ab84b6304e78467c?s=128" />
+  <p><a href="/about"><strong>Lix Xu</strong></a> - 神仙? 妖怪? 谢谢.</p>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/08/ben-niao-haitao/">笨鸟海淘晒单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/android/'>Android (1)</a></li>
+<li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
+<li class='category'><a href='/blog/categories/hhkb/'>HHKB (1)</a></li>
+<li class='category'><a href='/blog/categories/language/'>Language (1)</a></li>
+<li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
+<li class='category'><a href='/blog/categories/nssm/'>NSSM (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (5)</a></li>
+<li class='category'><a href='/blog/categories/python/'>Python (9)</a></li>
+<li class='category'><a href='/blog/categories/sublime/'>Sublime (2)</a></li>
+<li class='category'><a href='/blog/categories/web/'>Web (1)</a></li>
+<li class='category'><a href='/blog/categories/haitao/'>haitao (1)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    <a style="font-size: 80%" href="/blog/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/fastboot/">Fastboot</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/g700s/">G700s</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/github/">Github</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/hhkb/">HHKB</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/mokee/">Mokee</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/mongodb/">MongoDB</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/nssm/">NSSM</a> &mdash; 
+<a style="font-size: 153%" href="/blog/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/pypi/">PyPi</a> &mdash; 
+<a style="font-size: 180%" href="/blog/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/recovery/">Recovery</a> &mdash; 
+<a style="font-size: 112%" href="/blog/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/thin/">Thin</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/web/">Web</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/duoshuo/">duoshuo</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/flask/">flask</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/flask-script/">flask-script</a> &mdash; 
+<a style="font-size: 112%" href="/blog/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/pycon2014/">pycon2014</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/hai-tao/">海淘</a> &mdash; 
+<a style="font-size: 80%" href="/blog/tags/mian-shi/">面试</a>
+
+  </ul>
+</section><section>
+  <h1>Links</h1>
+  <ul id="links">
+    <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Comments</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Lix Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'lixxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/01/14/add-categories-sidebar/';
+        var disqus_url = 'http://lixxu.me/blog/2014/01/14/add-categories-sidebar/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript">
+  
+  
+  
+  </script>
+  
+</body>
+</html>

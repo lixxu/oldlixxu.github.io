@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: MongoDB | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/mongodb/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-07-23T10:31:47+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB是否适合在传统公司使用]]></title>
+    <link href="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/"/>
+    <updated>2014-02-27T10:52:35+08:00</updated>
+    <id>http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise</id>
+    <content type="html"><![CDATA[<p>注: 这里的传统公司指的是程序, 系统等只是在内部使用,
+没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
+工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务.</p>
+
+<p>从几年前知道 <code>MongoDB</code> 开始, 我也在公司内部的许多 web 项目上用上了它.
+下面以我当前的情况简单说明一下:</p>
+
+<p>需求: <code>保存设备的测试数据, 维修数据以提供统计分析</code></p>
+
+<p>工厂里数据逻辑不是太复杂, 但是单数据有时候不小, 总量也大.
+比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
+
+<p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
+<img class="<a" src="href="http://lixxu.qiniudn.com/data_size.png">http://lixxu.qiniudn.com/data_size.png</a>"></p>
+
+<!--more-->
+
+
+<p>可以看到, 此服务器的内存为 <code>4G</code>, 数据为 <code>1.23G</code>, 索引为 <code>1.56G</code>, 可用的内存还有 <code>1.55G</code>.
+这个项目从去年3月底开始试运行, 到现在差不多有一年的数据量 (430W).<br />
+可以预见的是在接下来差不多一年左右, 服务器的内存就要被吃光了, 而且这个吃光是实实在在的吃光, 因为 <code>MongoDB</code> 会把 <code>索引</code> 全部放进内存中, 如果内存容不下 <code>索引 + 工作集 (working set)</code>, 会导致性能急剧下降, 甚至达到不可用的程度.</p>
+
+<p>解决方法无非有这几个:
+<code>
+1. 做 Shard, 把数据分到多台服务器上
+2. 增加内存
+3. 优化索引, 只保留确实需要的
+4. 用 SSD 代替 HDD
+</code></p>
+
+<p>而对我所在工厂有效的只有2 和 3, 可是我在用一台PC作服务器, 我会说吗?
+有时候工厂就是这种情况, 由于不是IT部门, 所以基本上没有正规的服务器使用, 大多时候都是使用普通PC作为服务器.
+就是可以加内存, 也不能无限地加, 随着时间的推移, 数据会越来越多, 迟早有吃尽内存的那天.</p>
+
+<p>在设计数据库的结构时, 有几点没有考虑到:
+<code>
+1. 没有预见到数据有这么大
+2. 数据量大的 collection 的字段没有使用尽量短的命名
+</code></p>
+
+<p>当然对数据量不大的项目来说, <code>MongoDB</code> 还是一个不错的选择:
+<code>
+1. 无需定义表结构, 随时增加/删除字段, 这也是我在开始选择它的原因. 没有在工厂里需求三天一变的体验过的人是不知道这个是多么重要的, 个人猜测互联网公司选择 `MongoDB` 也是看中它的快速开发
+2. 速度够快, 可以支持列表, 字典等复杂数据类型, 可以让逻辑更简单
+</code></p>
+
+<p>乱七八糟地说了这么多, 我的结论是:
+<code>
+如果你没有可以自由使用的服务器的话, 并且数据量较大, 那就不要使用它了, 老老实实地使用关系数据库吧.
+我也会在接下来的时间把数据库换成 PostgreSQL.
+</code></p>
+
+<p>以后的关注点也将集中在: <code>SQLAlchemy</code>, <code>PostgreSQL</code>.
+对了, 我的工作环境基于: <code>Python</code>, <code>flask</code></p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+</feed>

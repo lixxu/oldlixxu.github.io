@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: ctypes | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/tags/ctypes/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-07-23T10:31:47+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下彩色化终端文字]]></title>
+    <link href="http://lixxu.me/blog/2014/01/15/windows-color-terminal/"/>
+    <updated>2014-01-15T08:48:35+08:00</updated>
+    <id>http://lixxu.me/blog/2014/01/15/windows-color-terminal</id>
+    <content type="html"><![CDATA[<p>最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 <code>ctypes</code>.</p>
+
+<p>先看下例子 (超过 15 好像就是背景色了):
+<img class="<a" src="href="http://lixxu.qiniudn.com/color_terminal.png">http://lixxu.qiniudn.com/color_terminal.png</a>"></p>
+
+<!--more-->
+
+
+<p>具体用法(Python 2.7.6下):
+```python color_terminal_test.py</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
+
+<p>from <strong>future</strong> import unicode_literals, print_function
+from ctypes import windll, c_ulong</p>
+
+<p>HANDLER = windll.Kernel32.GetStdHandle(c_ulong(0xfffffff5))
+COLOR_MAPS = dict(black=0, dark_blue=1, dark_green=2,</p>
+
+<pre><code>dark_navy=3, dark_red=4, dark_purple=5,
+dark_yellow=6, dark_white=7, gray=8,
+blue=9, green=10, navy=11,
+red=12, purple=13, yellow=14,
+white=15, default=7,
+)
+</code></pre>
+
+<p>def set_color(color=&lsquo;default&rsquo;):</p>
+
+<pre><code>windll.Kernel32.SetConsoleTextAttribute(HANDLER,
+    COLOR_MAPS.get(color, 7))
+</code></pre>
+
+<p>def show_text(text, color=&lsquo;default&rsquo;, new_line=True):</p>
+
+<pre><code>set_color(color)
+print('{}{}'.format(text, '\n' if new_line else ''), end='')
+set_color()
+</code></pre>
+
+<p>show_text(&lsquo;yellow&rsquo;, color=&lsquo;yellow&rsquo;)
+```</p>
+
+<p><code>COLOR_MAPS</code> 里多了一个 <code>default</code>, 这个就是默认终端下的文字颜色.</p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+</feed>
