@@ -1,0 +1,17 @@
+---
+layout: post
+title: "HHKB PRO2"
+date: 2014-05-12 09:19:52 +0800
+comments: true
+categories: HHKB
+tags: HHKB
+---
+我中毒了:
+
+<http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000>
+<http://ju.outofmemory.cn/entry/28653>
+
+好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
+{% img http://lixxu.qiniudn.com/hhkb_pro2_types.png %}
+
+随之配合的是, 以后要多用 Vim 了, 或许再学习下 `神的编辑器: EMACS`?
