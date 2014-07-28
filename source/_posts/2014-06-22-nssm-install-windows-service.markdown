@@ -21,7 +21,7 @@ goto sync_time
 但在使用的过程中出现了这个 service 吃掉许多 CPU 的问题. 
 按道理说在 sleep 后应该会进入休眠状态, 不应该再占用 CPU.
 不清楚什么原因, 就使用 `Python` 重写了.
-
+<!--more-->
 1\. 主程序 `main.py`
 
 {% codeblock main.py lang:python %}
@@ -120,3 +120,4 @@ sleep 5
 后来看了下系统日志, 发现是路径的问题. 后面就使用 exe 的绝对路径并且把后面的 `confirm` 给去掉了才算正常.
 
 本来打算写如何使用 `Python` 设置系统时间的怎么变成 `nssm` 了? 
+<!--more-->
