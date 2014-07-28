@@ -49,6 +49,7 @@ if not os.path.exists('coder_story'):
 os.chdir('coder_story')
 for page in (1, 2, 3):
     r = requests.get(url.format(page))
+    # soup = BeautifulSoup(r.content)  # lxml未安装时用这行
     soup = BeautifulSoup(r.content, 'lxml')
     for meta_title in soup.find_all('a', class_='meta-title'):
         # 我们要的都必须有title
@@ -73,6 +74,7 @@ for page in (1, 2, 3):
 
         # 获取文章的内容
         r2 = requests.get(href)
+        # s2 = BeautifulSoup(r2.content)  # lxml未安装时用这行
         s2 = BeautifulSoup(r2.content, 'lxml')
         entry = s2.find('div', class_='entry')
         with open('{}.txt'.format(page_no), 'w') as f:
