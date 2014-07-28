@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: bs4 | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/bs4/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-28T14:59:08+08:00</updated>
+  <updated>2014-07-28T15:44:40+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -18,12 +18,12 @@
     <link href="http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web/"/>
     <updated>2014-07-25T08:46:39+08:00</updated>
     <id>http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web</id>
-    <content type="html"><![CDATA[<p>昨天偶然看到这样一篇码农的小说, 感觉还可以, 就想收集下来慢慢看.
+    <content type="html"><![CDATA[<p>偶然看到这样一篇关于码农的小说, 感觉还可以, 就想收集下来慢慢看.
 但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到.</p>
 
 <p>接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 <code>requests</code> 和 <code>BeautifulSoup</code> 来提取文本.</p>
 
-<p>看了一下 <code>BeautifulSoup</code> 的文档, 开始走起.</p>
+<p>很少使用 <code>BeautifulSoup</code>, 所以临时去看了一下文档, 开始走起.</p>
 
 <p>1. 先用浏览器的 <code>审查元素</code> 获取分页的页面结构, 这里我们只需要 <code>标题</code> 和 <code>链接地址</code> 即可</p>
 
@@ -115,9 +115,11 @@ copy *.txt 码农故事.txt
 
 <p>后记:</p>
 
-<p>就在合并时, 看到最后的一句话, 马上晕倒:</p>
+<p>就在合并时, 看到最后的一句话, 马上吐出一升老血:</p>
 
 <p><img class="<a" src="href="http://lixxu.qiniudn.com/coder_end.png">http://lixxu.qiniudn.com/coder_end.png</a>&#8221;></p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/tuxie.gif">http://lixxu.qiniudn.com/tuxie.gif</a>&#8221;></p>
 
 <p>不过, 在 <code>kindle</code> 上还是 txt 的效果好一些, pdf 转换的有些乱码, 不完美.</p>
 
