@@ -4,8 +4,12 @@ title: "Octopress使用多说评论系统"
 date: 2014-01-15 09:44:48 +0800
 comments: true
 categories: Octopress
-tags: Octopress duoshuo
+tags: Octopress duoshuo disqus
 ---
+更新: 
+
+我又用回 `disqus` 了, 为什么? 讨厌那个经常弹出来授权过期重新授权的东西, 烦不烦啊?
+
 参考来源:
 
  - <http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/>

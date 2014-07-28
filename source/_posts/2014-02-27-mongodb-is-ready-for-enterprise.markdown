@@ -3,7 +3,7 @@ layout: post
 title: "MongoDB是否适合在传统公司使用"
 date: 2014-02-27 10:52:35 +0800
 comments: true
-categories: MongoDB
+categories: Database
 tags: MongoDB
 ---
 注: 这里的传统公司指的是程序, 系统等只是在内部使用,

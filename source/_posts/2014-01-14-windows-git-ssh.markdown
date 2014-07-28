@@ -3,7 +3,7 @@ layout: post
 title: "Windows下使用ssh连接github"
 date: 2014-01-14 18:56:34 +0800
 comments: true
-categories: Github
+categories: Git
 tags: Windows&nbsp;ssh Github
 ---
 在[上一篇](/blog/2014/01/14/first-post/)中大概介绍了初始环境的搭建, 不过发现在Windows下部署时出了点问题,

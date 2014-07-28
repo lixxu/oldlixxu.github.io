@@ -4,7 +4,7 @@ title: "pyodbc in 查询"
 date: 2014-05-12 11:37:58 +0800
 comments: true
 categories: Python
-tags: pyodbc Python
+tags: pyodbc Python Database
 ---
 
 参考链接, 看 `geographika` 的答案即可:
