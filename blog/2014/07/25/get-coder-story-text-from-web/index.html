@@ -195,6 +195,8 @@
 <span class='line-number'>59</span>
 <span class='line-number'>60</span>
 <span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
 </span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
 </span><span class='line'>
@@ -212,6 +214,7 @@
 </span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">&#39;coder_story&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
 </span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+</span><span class='line'>    <span class="c"># soup = BeautifulSoup(r.content)  # lxml未安装时用这行</span>
 </span><span class='line'>    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s">&#39;lxml&#39;</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">meta_title</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">&#39;meta-title&#39;</span><span class="p">):</span>
 </span><span class='line'>        <span class="c"># 我们要的都必须有title</span>
@@ -236,6 +239,7 @@
 </span><span class='line'>
 </span><span class='line'>        <span class="c"># 获取文章的内容</span>
 </span><span class='line'>        <span class="n">r2</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+</span><span class='line'>        <span class="c"># s2 = BeautifulSoup(r2.content)  # lxml未安装时用这行</span>
 </span><span class='line'>        <span class="n">s2</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s">&#39;lxml&#39;</span><span class="p">)</span>
 </span><span class='line'>        <span class="n">entry</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">&#39;entry&#39;</span><span class="p">)</span>
 </span><span class='line'>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;{}.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_no</span><span class="p">),</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
