@@ -6,12 +6,12 @@ comments: true
 categories: Python
 tags: Python requests bs4 BeautifulSoup
 ---
-昨天偶然看到这样一篇码农的小说, 感觉还可以, 就想收集下来慢慢看.
+偶然看到这样一篇关于码农的小说, 感觉还可以, 就想收集下来慢慢看.
 但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到.
 
 接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 `requests` 和 `BeautifulSoup` 来提取文本.
 
-看了一下 `BeautifulSoup` 的文档, 开始走起.
+很少使用 `BeautifulSoup`, 所以临时去看了一下文档, 开始走起.
 
 1\. 先用浏览器的 `审查元素` 获取分页的页面结构, 这里我们只需要 `标题` 和 `链接地址` 即可
 
@@ -104,9 +104,11 @@ copy *.txt 码农故事.txt
 
 后记:
 
-就在合并时, 看到最后的一句话, 马上晕倒:
+就在合并时, 看到最后的一句话, 马上吐出一升老血:
 
 {% img http://lixxu.qiniudn.com/coder_end.png %}
+
+{% img http://lixxu.qiniudn.com/tuxie.gif %}
 
 不过, 在 `kindle` 上还是 txt 的效果好一些, pdf 转换的有些乱码, 不完美.
 
