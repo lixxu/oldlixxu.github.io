@@ -9,12 +9,8 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="记录下来备忘: 背景: 1
-2
-3
-4
-5
-1. Nexus 4 2. Mokee 4.4.4 3. TWRP 我保存的基带共享链接: http://pan.baidu.com/s/1gdf4pfd 原帖看这里: http://bbs.mfunz.com/thread-947343-1-1. &hellip;">
+  <meta name="description" content="昨天偶然看到这样一篇码农的小说, 感觉还可以, 就想收集下来慢慢看.
+但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到. 接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 requests 和 BeautifulSoup 来提取文本. 看了一下 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,6 +32,18 @@
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47125020-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -71,6 +79,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/25/get-coder-story-text-from-web/">抓取 <<码农故事>> 文本</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-25T08:46:39+08:00" pubdate data-updated="true">Jul 25<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/07/25/get-coder-story-text-from-web/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天偶然看到这样一篇码农的小说, 感觉还可以, 就想收集下来慢慢看.
+但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到.</p>
+
+<p>接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 <code>requests</code> 和 <code>BeautifulSoup</code> 来提取文本.</p>
+
+<p>看了一下 <code>BeautifulSoup</code> 的文档, 开始走起.</p>
+
+<p>1. 先用浏览器的 <code>审查元素</code> 获取分页的页面结构, 这里我们只需要 <code>标题</code> 和 <code>链接地址</code> 即可</p>
+
+<p><img src="http://lixxu.qiniudn.com/coder_page.png"></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/07/25/get-coder-story-text-from-web/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -351,227 +412,12 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>可是没有可供同步用的服务器, 那时间怎么来呢?</p>
-
-<p>1. 跑一个 web, 可以返回一个 <code>json</code> 的数据, 如:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/api/get-time/&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">get_time</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">timetuple</span><span class="p">()))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>客户端可以这样来获取和同步时间 (假设是 Windows 平台), 上面的 <code>set_time.py</code> 需要改一下:</p>
-
-<figure class='code'><figcaption><span>set_time2.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">datetime</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&#39;&#39;&#39;time_tuple: </span>
-</span><span class='line'><span class="sd">    year, month, day, hour, minute, second, day_of_week, day_of_year, is_dist</span>
-</span><span class='line'><span class="sd">    &#39;&#39;&#39;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">pywin32</span>
-</span><span class='line'>    <span class="c"># http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html</span>
-</span><span class='line'>    <span class="c"># pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)</span>
-</span><span class='line'>    <span class="n">tt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">tt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">tt</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span> <span class="c"># add day_of_week </span>
-</span><span class='line'>    <span class="n">tt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># set miliseconds</span>
-</span><span class='line'>    <span class="n">pywin32</span><span class="o">.</span><span class="n">SetSystemTime</span><span class="p">(</span><span class="o">*</span><span class="n">tt</span><span class="p">[:</span><span class="mi">8</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes.util</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># /usr/include/linux/time.h:</span>
-</span><span class='line'>    <span class="c">#</span>
-</span><span class='line'>    <span class="c"># define CLOCK_REALTIME                     0</span>
-</span><span class='line'>    <span class="n">CLOCK_REALTIME</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># /usr/include/time.h</span>
-</span><span class='line'>    <span class="c">#</span>
-</span><span class='line'>    <span class="c"># struct timespec</span>
-</span><span class='line'>    <span class="c">#  {</span>
-</span><span class='line'>    <span class="c">#    __time_t tv_sec;            /* Seconds.  */</span>
-</span><span class='line'>    <span class="c">#    long int tv_nsec;           /* Nanoseconds.  */</span>
-</span><span class='line'>    <span class="c">#  };</span>
-</span><span class='line'>    <span class="k">class</span> <span class="nc">timespec</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;tv_sec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
-</span><span class='line'>                    <span class="p">(</span><span class="s">&quot;tv_nsec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">)]</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">librt</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s">&quot;rt&quot;</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">ts</span> <span class="o">=</span> <span class="n">timespec</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">time_tuple</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">timetuple</span><span class="p">()))</span>
-</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_nsec</span> <span class="o">=</span> <span class="n">time_tuple</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="c"># Millisecond to nanosecond</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># http://linux.die.net/man/3/clock_settime</span>
-</span><span class='line'>    <span class="n">librt</span><span class="o">.</span><span class="n">clock_settime</span><span class="p">(</span><span class="n">CLOCK_REALTIME</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">ts</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;linux2&#39;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">elif</span>  <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;win32&#39;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>sync_time.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">requests</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">set_time2</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">URL</span> <span class="o">=</span> <span class="s">&#39;http://a.b.c.d:5000/api/get-time/&#39;</span>
-</span><span class='line'><span class="n">offset</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">timezone</span> <span class="k">if</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span><span class="o">.</span><span class="n">tm_isdst</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">time</span><span class="o">.</span><span class="n">altzone</span>
-</span><span class='line'><span class="n">LOCAL_TZ</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">get_time</span><span class="p">():</span>
-</span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">json</span><span class="p">[</span><span class="s">&#39;time&#39;</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">sync_time</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">ts</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">ts</span> <span class="o">=</span> <span class="n">get_time</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">to_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">LOCAL_TZ</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">set_time2</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="n">to_time</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sync_time</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>注意: 以上代码未经测试, 可能有错误.</p>
-
-<p>2. 如果无法直接连接到提供时间的服务器呢?
-比如有两个网络, 一个是测试电脑的内部网, 服务器在测试的通用网络.</p>
-
-<p>可以使用一个可以连通两个网络的电脑上作为交换数据的中间人, 具体的是使用文件交换还是像 <code>socket</code> 之类的网络接口服务交换就随你的喜好了.</p>
-
-<p>拙见.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/06/22/use-python-set-system-time/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -1256,94 +1102,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/09/sublime-user-profile-backup/">Sublime3 用户设置备份</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-09T08:54:27+08:00" pubdate data-updated="true">May 9<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/05/09/sublime-user-profile-backup/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/05/09/sublime-user-profile-backup/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>安装的插件:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1. Alignment
-</span><span class='line'>2. Autoprefixer
-</span><span class='line'>3. PySide
-</span><span class='line'>4. PyV8
-</span><span class='line'>5. SublimeLinter
-</span><span class='line'>6. SublimeTmpl
-</span><span class='line'>7. Terminal
-</span><span class='line'>8. Markdown Preview
-</span><span class='line'>9. Markdown Editing
-</span><span class='line'>10. SmartMarkdown
-</span><span class='line'>11. Pretty YAML
-</span><span class='line'>12. Python Flake8 Lint
-</span><span class='line'>13. SideBarEnhancements
-</span><span class='line'>14. SublimeCodeIntel
-</span><span class='line'>15. Git Config
-</span><span class='line'>16. GitStatus
-</span><span class='line'>17. Gitignore
-</span><span class='line'>18. Go to definition
-</span><span class='line'>19. GoToLastEdit
-</span><span class='line'>20. SublimeGit</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Sublime3062 Windows 用户设置备忘:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/05/09/sublime-user-profile-backup/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1363,6 +1121,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/25/get-coder-story-text-from-web/">抓取 <<码农故事>> 文本</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a>
       </li>
     
@@ -1378,10 +1140,6 @@
         <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/09/how-to-register-pypi/">在 PyPi 上发布软件包</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -1394,7 +1152,7 @@
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (5)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
-<li class='category'><a href='/blog/categories/python/'>python (9)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (10)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
 
@@ -1403,6 +1161,7 @@
   <h1>Tags</h1>
   <ul class="tag-cloud">
     <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/tags/beautifulsoup/">BeautifulSoup</a> &mdash; 
 <a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
 <a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
 <a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
@@ -1410,23 +1169,24 @@
 <a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
 <a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
 <a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
-<a style="font-size: 153%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 150%" href="/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
 <a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
-<a style="font-size: 112%" href="/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 110%" href="/tags/sublime/">Sublime</a> &mdash; 
 <a style="font-size: 80%" href="/tags/thin/">Thin</a> &mdash; 
 <a style="font-size: 80%" href="/tags/web/">Web</a> &mdash; 
 <a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
+<a style="font-size: 80%" href="/tags/bs4/">bs4</a> &mdash; 
 <a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
 <a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
-<a style="font-size: 112%" href="/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 110%" href="/tags/gevent/">gevent</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
-<a style="font-size: 80%" href="/tags/mian-shi/">面试</a>
+<a style="font-size: 80%" href="/tags/requests/">requests</a>
 
   </ul>
 </section><section>
@@ -1434,9 +1194,7 @@
   <ul id="links">
     <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
   </ul>
-</section>
-
-<section>
+</section><section>
   <h1>Recent Comments</h1>
   <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
 </section>

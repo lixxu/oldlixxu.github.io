@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Sublime | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/sublime/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-24T09:27:40+08:00</updated>
+  <updated>2014-07-28T14:54:28+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -47,48 +47,44 @@
 <!--more-->
 
 
-<p>```json
-{</p>
-
-<pre><code>"auto_complete_triggers":
-[
-    {
-        "characters": " ",
-        "selector": "text.html"
-    }
-],
-"color_scheme": "Packages/User/Solarized (Light) (SL).tmTheme",
-"default_line_ending": "unix",
-"font_face": "Source Code Pro",
-"font_size": 16,
-"highlight_line": true,
-"highlight_modified_tabs": true,
-"ignored_packages":
-[
-    "Theme - Nil",
-    "RestructuredText",
-    "GoSublime",
-    "BracketHighlighter",
-    "Vintage",
-    "Markdown"
-],
-"soda_classic_tabs": true,
-"soda_folder_icons": true,
-"fade_fold_buttons": false,
-"tab_size": 4,
-"translate_tabs_to_spaces": true,
-"trim_trailing_white_space_on_save": true,
-"update_check": false,
-"word_wrap": true,
-"show_encoding": true,
-"show_line_endings": true,
-"ensure_newline_at_eof_on_save": true,
-"draw_white_space": "all",
-"always_show_minimap_viewport": true
+<pre><code class="json">{
+    "auto_complete_triggers":
+    [
+        {
+            "characters": " ",
+            "selector": "text.html"
+        }
+    ],
+    "color_scheme": "Packages/User/Solarized (Light) (SL).tmTheme",
+    "default_line_ending": "unix",
+    "font_face": "Source Code Pro",
+    "font_size": 16,
+    "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "ignored_packages":
+    [
+        "Theme - Nil",
+        "RestructuredText",
+        "GoSublime",
+        "BracketHighlighter",
+        "Vintage",
+        "Markdown"
+    ],
+    "soda_classic_tabs": true,
+    "soda_folder_icons": true,
+    "fade_fold_buttons": false,
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true,
+    "update_check": false,
+    "word_wrap": true,
+    "show_encoding": true,
+    "show_line_endings": true,
+    "ensure_newline_at_eof_on_save": true,
+    "draw_white_space": "all",
+    "always_show_minimap_viewport": true
+}
 </code></pre>
-
-<p>}
-```</p>
 
 <!--more-->
 
@@ -100,7 +96,7 @@
     <link href="http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/"/>
     <updated>2014-05-08T11:46:45+08:00</updated>
     <id>http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text</id>
-    <content type="html"><![CDATA[<p><code>Ctrl+`</code> 或菜单里 <code>View</code> &ndash;> <code>Show Console</code>, 在文本框中输入:</p>
+    <content type="html"><![CDATA[<p><code>Ctrl+`</code> 或菜单里 <code>View</code> -> <code>Show Console</code>, 在文本框中输入:</p>
 
 <h1>Sublime3:</h1>
 

@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web/</loc>
+    <lastmod>2014-07-25T08:46:39+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://lixxu.me/blog/2014/07/01/android-flash-stuff/</loc>
     <lastmod>2014-07-01T18:31:16+08:00</lastmod>
     <priority>0.8</priority>
@@ -149,28 +155,28 @@
   
   <url>
     <loc>http://lixxu.me/404.html</loc>
-    <lastmod>2014-07-24T09:27:40+08:00</lastmod>
+    <lastmod>2014-07-28T14:54:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://lixxu.me/</loc>
-    <lastmod>2014-07-24T09:27:40+08:00</lastmod>
+    <lastmod>2014-07-28T14:54:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://lixxu.me/blog/archives/</loc>
-    <lastmod>2014-07-24T09:27:40+08:00</lastmod>
+    <lastmod>2014-07-28T14:54:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://lixxu.me/about/</loc>
-    <lastmod>2014-07-24T09:27:40+08:00</lastmod>
+    <lastmod>2014-07-28T14:54:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

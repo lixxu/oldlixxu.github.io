@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-24T09:27:40+08:00</updated>
+  <updated>2014-07-28T14:54:28+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -37,7 +37,7 @@ gem install thin
 </code></p>
 
 <p>&nbsp;2. 更改 <code>Gemfile</code>, 在 <code>development</code> 里面最后添加一行
-``` ruby Gemfile
+&#8220;` ruby Gemfile
 source &ldquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rdquo;</p>
 
 <p>group :development do
@@ -59,7 +59,7 @@ source &ldquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rdquo;
 end</p>
 
 <p>gem &lsquo;sinatra&rsquo;, &lsquo;~> 1.4.2&rsquo;
-```</p>
+&#8220;`</p>
 
 <p>&nbsp;3. 重新运行 <code>rake preview</code> 就会使用 <code>Thin</code> 了</p>
 
@@ -93,27 +93,23 @@ end</p>
 <!--more-->
 
 
-<p>```html source_layouts\default.html
-{% if site.duoshuo_short_name and site.duoshuo_comments == true %}
-  <!-- 多说js加载开始，一个页面只需要加载一次 -->
-  <script type="text/javascript"></p>
-
-<pre><code>var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
+<pre><code class="html source\_layouts\default.html">{% if site.duoshuo_short_name and site.duoshuo_comments == true %}
+  &lt;!-- 多说js加载开始，一个页面只需要加载一次 --&gt;
+  &lt;script type="text/javascript"&gt;
+    var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  &lt;/script&gt;
+  &lt;!-- 多说js加载结束，一个页面只需要加载一次 --&gt;
+{% endif %}
 </code></pre>
 
-<p>  </script>
-  <!-- 多说js加载结束，一个页面只需要加载一次 -->
-{% endif %}
-```</p>
-
-<p>```html source_includes\post\duoshuo.html</p>
+<p>&#8220;`html source_includes\post\duoshuo.html</p>
 
 <!-- Duoshuo Comment BEGIN -->
 
@@ -126,13 +122,10 @@ end</p>
 
 <p><code>
 </code>html source_includes\article.html
-{% if site.duoshuo_short_name and page.comments != false and post.comments != false and site.duoshuo_comments == true %}</p>
-
-<pre><code>| &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments"&gt;&lt;span class="ds-thread-count" data-thread-key="{% if index %}{{ post.url }}{% else %}{{ page.url }}{% endif %}" data-count-type="comments"&gt;暂无评论&lt;/span&gt;&lt;/a&gt;
-</code></pre>
-
-<p>{% endif %}
-```</p>
+{% if site.duoshuo_short_name and page.comments != false and post.comments != false and site.duoshuo_comments == true %}
+    | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments"><span class="ds-thread-count" data-thread-key="{% if index %}{{ post.url }}{% else %}{{ page.url }}{% endif %}" data-count-type="comments">暂无评论</span></a>
+{% endif %}
+&#8220;`</p>
 
 <!--more-->
 
@@ -158,7 +151,7 @@ end</p>
 
 
 <p>&nbsp;1. 注册多说, 不必多说, 复制生成的代码到 <code>source\_includes\post</code> 下新建 <code>duoshuo.html</code>
-```html</p>
+&#8220;`html</p>
 
 <!-- Duoshuo Comment BEGIN -->
 
@@ -182,29 +175,25 @@ end</p>
 <!-- Duoshuo Comment END -->
 
 
-<p>```</p>
-
-<p>&nbsp;2. 编辑 <code>_config.yml</code>, 添加下面两行:
-```yaml</p>
+<pre><code>
+&amp;nbsp;2. 编辑 `_config.yml`, 添加下面两行:
+</code></pre>
 
 <h1>duoshuo comments</h1>
 
 <p>duoshuo_comments: true
 duoshuo_short_name: yourname
-```</p>
+&#8220;`</p>
 
 <p>&nbsp;3. 在 <code>source\_layouts\post.html</code> disqus设置下面添加:
-```html
+<code>html
 {% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}
-  <section></p>
-
-<pre><code>&lt;h1&gt;Comments&lt;/h1&gt;
-&lt;div id="comments" aria-live="polite"&gt;{% include post/duoshuo.html %}&lt;/div&gt;
-</code></pre>
-
-<p>  </section>
+  &lt;section&gt;
+    &lt;h1&gt;Comments&lt;/h1&gt;
+    &lt;div id="comments" aria-live="polite"&gt;{% include post/duoshuo.html %}&lt;/div&gt;
+  &lt;/section&gt;
 {% endif %}
-```</p>
+</code></p>
 
 <!--more-->
 
@@ -225,7 +214,7 @@ duoshuo_short_name: yourname
 
 <ol>
 <li>在 <code>plugins</code> 目录下新建一个 ruby 代码文件, 如 <code>category_list_tag.rb</code>
-```ruby category_list_tag.rb
+&#8220;`ruby category_list_tag.rb
 module Jekyll
 class CategoryListTag &lt; Liquid::Tag
  def render(context)
@@ -234,7 +223,7 @@ class CategoryListTag &lt; Liquid::Tag
    categories.sort.each do |category|
      posts_in_category = context.registers[:site].categories[category].size
      category_dir = context.registers[:site].config[&lsquo;category_dir&rsquo;]
-     category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &lsquo;&ndash;&rsquo;).gsub(/&ndash;{2,}/, &lsquo;&ndash;&rsquo;).downcase)
+     category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &lsquo;-&rsquo;).gsub(/-{2,}/, &lsquo;-&rsquo;).downcase)
      html &lt;&lt; &ldquo;<li class='category'><a href='http://lixxu.me/#{category_url}/'>#{category} (#{posts_in_category})</a></li>\n&rdquo;
    end
    html
@@ -247,43 +236,34 @@ end</li>
 <p>Liquid::Template.register_tag(&lsquo;category_list&rsquo;, Jekyll::CategoryListTag)
 <code>``
 2. 在</code>source/_includes/asides<code>下新建一个 html 文件, 如</code>category_list.html`
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>category_list.html </span></figcaption>
+<figure class='code'><figcaption><span>category_list.html </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>{% category_list %}
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    {% category_list %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
 </span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>我还顺手添了一个外部链接列表的边栏 <code>asides/other_links.html</code>, 先添一个, 后续再加
-```html asides/other_links.html
-<section>
-  <h1>Links</h1>
-  <ul id="links"></p>
-
-<pre><code>&lt;li&gt;&lt;a href="https://github.com/lixxu/"&gt;GitHub projects&lt;/a&gt;&lt;/li&gt;
-</code></pre>
-
-<p>  </ul>
-</section>
-<code>
-3. 修改 `_config.yml`, 添加分类和外部链接
-</code>yaml _config.yml
+<code>html asides/other_links.html
+&lt;section&gt;
+  &lt;h1&gt;Links&lt;/h1&gt;
+  &lt;ul id="links"&gt;
+    &lt;li&gt;&lt;a href="https://github.com/lixxu/"&gt;GitHub projects&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+</code>
+3. 修改 <code>_config.yml</code>, 添加分类和外部链接
+<code>yaml _config.yml
 default_asides: [asides/recent_posts.html, asides/category_list.html, asides/other_links.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
-```</p>
+</code></p>
 
 <p>另外, 如果想在分类里使用空格, 直接按 html 语法写 <code>CAT1&amp;nbsp;CAT11</code></p>
 
