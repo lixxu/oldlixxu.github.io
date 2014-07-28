@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Web | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/web/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-28T22:27:59+08:00</updated>
+  <updated>2014-07-28T23:49:47+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -18,7 +18,7 @@
     <link href="http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url/"/>
     <updated>2014-05-26T16:25:28+08:00</updated>
     <id>http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url</id>
-    <content type="html"><![CDATA[<p><img class="<a" src="href="http://lixxu.qiniudn.com/nwind-weibo.png">http://lixxu.qiniudn.com/nwind-weibo.png</a>&#8221;></p>
+    <content type="html"><![CDATA[<p>{% img <a href="http://lixxu.qiniudn.com/nwind-weibo.png">http://lixxu.qiniudn.com/nwind-weibo.png</a> %}</p>
 
 <p>原文很长, 没看完我就觉得什么也不懂了, 囧.</p>
 

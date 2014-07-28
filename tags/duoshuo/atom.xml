@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: duoshuo | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/duoshuo/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-28T22:27:59+08:00</updated>
+  <updated>2014-07-28T23:49:47+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -18,7 +18,11 @@
     <link href="http://lixxu.me/blog/2014/01/15/use-duoshuo/"/>
     <updated>2014-01-15T09:44:48+08:00</updated>
     <id>http://lixxu.me/blog/2014/01/15/use-duoshuo</id>
-    <content type="html"><![CDATA[<p>参考来源:</p>
+    <content type="html"><![CDATA[<p>更新:</p>
+
+<p>我又用回 <code>disqus</code> 了, 为什么? 讨厌那个经常弹出来授权过期重新授权的东西, 烦不烦啊?</p>
+
+<p>参考来源:</p>
 
 <ul>
 <li><a href="http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/">http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/</a></li>
@@ -68,12 +72,12 @@ duoshuo_short_name: yourname
 
 <p>&nbsp;3. 在 <code>source\_layouts\post.html</code> disqus设置下面添加:
 <code>html
-{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}
+{% raw %}{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}{% endraw %}
   &lt;section&gt;
     &lt;h1&gt;Comments&lt;/h1&gt;
-    &lt;div id="comments" aria-live="polite"&gt;{% include post/duoshuo.html %}&lt;/div&gt;
+    &lt;div id="comments" aria-live="polite"&gt;{% raw %}{% include post/duoshuo.html %}{% endraw %}&lt;/div&gt;
   &lt;/section&gt;
-{% endif %}
+{% raw %}{% endif %}{% endraw %}
 </code></p>
 
 <!--more-->

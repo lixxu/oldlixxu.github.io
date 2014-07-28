@@ -9,8 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="偶然看到这样一篇关于码农的小说, 感觉还可以, 就想收集下来慢慢看.
-但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到. 接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 requests 和 BeautifulSoup 来提取文本. 很少使用 &hellip;">
+  <meta name="description" content="之前的图片放在 images 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的. 碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 七牛, 而我对七牛算是有点了解, 知道这是一家使用 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-28T22:53:29+08:00" pubdate data-updated="true">Jul 28<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/07/28/use-qiniu-as-static-server/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前的图片放在 <code>images</code> 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的.</p>
+
+<p>碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 <code>七牛</code>, 而我对七牛算是有点了解, 知道这是一家使用 <code>go</code> 语言作为后台的云存储公司. 又在上海GDG组织的一次活动上听过创始人许式伟的演讲, 所以对七牛比较熟悉, 并且每月有10G的免费流量可以用, 个人用的话应该足够了, 就决定使用七牛放放静态文件.</p>
+
+<p>好了, 不废话了.</p>
+
+<p>1. 首先到官网注册账号 (推荐绑定手机号, 可以有更多的免费资源可用): <a href="https://portal.qiniu.com/signup">https://portal.qiniu.com/signup</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/07/28/use-qiniu-as-static-server/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -887,53 +936,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/12/hhkb-pro2/">HHKB PRO2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-12T09:19:52+08:00" pubdate data-updated="true">May 12<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/05/12/hhkb-pro2/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/05/12/hhkb-pro2/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我中毒了:</p>
-
-<p><a href="http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000">http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000</a>
-<a href="http://ju.outofmemory.cn/entry/28653">http://ju.outofmemory.cn/entry/28653</a></p>
-
-<p>好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
-<img src="http://lixxu.qiniudn.com/hhkb_pro2_types.png"></p>
-
-<p>随之配合的是, 以后要多用 Vim 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -953,6 +955,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/25/get-coder-story-text-from-web/">抓取 <<码农故事>> 文本</a>
       </li>
     
@@ -968,21 +974,17 @@
         <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
-<li class='category'><a href='/blog/categories/github/'>github (1)</a></li>
+<li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
-<li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (5)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (10)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
@@ -995,6 +997,7 @@
   <ul class="tag-cloud">
     <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
 <a style="font-size: 80%" href="/tags/beautifulsoup/">BeautifulSoup</a> &mdash; 
+<a style="font-size: 80%" href="/tags/database/">Database</a> &mdash; 
 <a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
 <a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
 <a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
@@ -1002,7 +1005,7 @@
 <a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
 <a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
 <a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
-<a style="font-size: 150%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 158%" href="/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
 <a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
@@ -1012,6 +1015,7 @@
 <a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
 <a style="font-size: 80%" href="/tags/bs4/">bs4</a> &mdash; 
 <a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/disqus/">disqus</a> &mdash; 
 <a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
@@ -1019,6 +1023,7 @@
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
 <a style="font-size: 80%" href="/tags/requests/">requests</a>
 
   </ul>

@@ -9,8 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="参考来源: http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/
-http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
+  <meta name="description" content="放了半天狗, 添加许多小东西到 Octopress, 如 tags, 相关文章, 添加多说评论到边栏 等等. 参考文章: http://blog.csdn.net/lcliliil/article/details/13725895 不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +84,65 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/01/15/other-stuff/">Octopress的其他杂项</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-15T14:13:56+08:00" pubdate data-updated="true">Jan 15<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/01/15/other-stuff/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/01/15/other-stuff/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>放了半天狗, 添加许多小东西到 Octopress, 如 <code>tags</code>, <code>相关文章</code>, <code>添加多说评论到边栏</code> 等等.</p>
+
+<p>参考文章: <a href="http://blog.csdn.net/lcliliil/article/details/13725895">http://blog.csdn.net/lcliliil/article/details/13725895</a></p>
+
+<p><del>不过, 多说的侧边栏评论一直不显示标题, 找了半天也没找到解决方法. 有知道的达人麻烦告知一下.</del>
+<strong>更新</strong>: 已经搞定了, 需要添加 <code>data-thread-key</code> 属性</p>
+
+<p>暂时不想再弄了, 以后再说吧.</p>
+
+<ul>
+<li>在 <code>source\_includes\post\duoshuo.html</code> 中使用 <code>page</code></li>
+<li>在 <code>source\_includes\article.html</code> 中如果是首页使用 <code>post</code>, 否则使用 <code>post</code></li>
+</ul>
+
+
+<p>我把加载 js 的部分放到 <code>source\_layouts\default.html</code> 里了, 加在 <code>&lt;/body&gt;</code> 前即可.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/15/other-stuff/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a></h1>
     
     
@@ -111,7 +169,11 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>参考来源:</p>
+  <div class="entry-content"><p>更新:</p>
+
+<p>我又用回 <code>disqus</code> 了, 为什么? 讨厌那个经常弹出来授权过期重新授权的东西, 烦不烦啊?</p>
+
+<p>参考来源:</p>
 
 <ul>
 <li><a href="http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/">http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/</a></li>
@@ -337,6 +399,10 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/25/get-coder-story-text-from-web/">抓取 <<码农故事>> 文本</a>
       </li>
     
@@ -352,21 +418,17 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
         <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
-<li class='category'><a href='/blog/categories/github/'>github (1)</a></li>
+<li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
-<li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (5)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (10)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
@@ -379,6 +441,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
   <ul class="tag-cloud">
     <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
 <a style="font-size: 80%" href="/tags/beautifulsoup/">BeautifulSoup</a> &mdash; 
+<a style="font-size: 80%" href="/tags/database/">Database</a> &mdash; 
 <a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
 <a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
 <a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
@@ -386,7 +449,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
 <a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
 <a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
-<a style="font-size: 150%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 158%" href="/tags/octopress/">Octopress</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
 <a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
@@ -396,6 +459,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
 <a style="font-size: 80%" href="/tags/bs4/">bs4</a> &mdash; 
 <a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/disqus/">disqus</a> &mdash; 
 <a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
@@ -403,6 +467,7 @@ http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into- &hellip;">
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
 <a style="font-size: 80%" href="/tags/requests/">requests</a>
 
   </ul>
