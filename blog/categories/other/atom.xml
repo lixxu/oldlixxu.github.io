@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Other | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/other/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-29T21:21:09+08:00</updated>
+  <updated>2014-07-29T21:27:42+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -46,14 +46,25 @@
 <p><img class="<a" src="href="http://lixxu.qiniudn.com/windows_git_save_password.png">http://lixxu.qiniudn.com/windows_git_save_password.png</a>&#8221;></p>
 
 <p>顺便换上了 <code>度娘</code> 的CDN, 还用上了雅黑字体:
-<code><script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script></code></p>
+<code></p>
 
-<p>还有 <code>渣浪</code> 和 <code>小斗士</code> 的:</p>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
-<p><code><script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script></code></p>
 
-<p><code><script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>
-</code></p>
+<p></code></p>
+
+<p>还有 <code>渣浪</code> 和 <code>小斗士</code> 的:
+&#8220;`</p>
+
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+
+
+
+
+<script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>
+
+
+<p>&#8220;`</p>
 
 <!--more-->
 
