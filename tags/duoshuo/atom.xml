@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: duoshuo | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/duoshuo/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-28T23:49:47+08:00</updated>
+  <updated>2014-07-29T21:21:09+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -72,12 +72,12 @@ duoshuo_short_name: yourname
 
 <p>&nbsp;3. 在 <code>source\_layouts\post.html</code> disqus设置下面添加:
 <code>html
-{% raw %}{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}{% endraw %}
+{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}
   &lt;section&gt;
     &lt;h1&gt;Comments&lt;/h1&gt;
-    &lt;div id="comments" aria-live="polite"&gt;{% raw %}{% include post/duoshuo.html %}{% endraw %}&lt;/div&gt;
+    &lt;div id="comments" aria-live="polite"&gt;{% include post/duoshuo.html %}&lt;/div&gt;
   &lt;/section&gt;
-{% raw %}{% endif %}{% endraw %}
+{% endif %}
 </code></p>
 
 <!--more-->

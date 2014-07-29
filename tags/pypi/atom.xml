@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: PyPi | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/pypi/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-28T23:49:47+08:00</updated>
+  <updated>2014-07-29T21:21:09+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -26,28 +26,28 @@
 
 <p>1. 准备好 <code>setup.py</code>, 提供一下 <code>setup.cfg</code></p>
 
-<p>{% codeblock lang:ini setup.cfg %}
-[metadata]
-description-file = README.md
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>setup.cfg </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[metadata]</span>
+</span><span class='line'><span class="na">description-file</span> <span class="o">=</span> <span class="s">README.md</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>2. 注册:</p>
 
-<p>{% codeblock %}
-python setup.py register -r pypi
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure></p>
 
 <p>按提示做选择就可以了:</p>
 
-<p>{% img <a href="http://lixxu.qiniudn.com/pypi.png">http://lixxu.qiniudn.com/pypi.png</a> %}</p>
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi.png">http://lixxu.qiniudn.com/pypi.png</a>&#8221;></p>
 
 <p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
 
-<p>{% codeblock %}
-python setup.py upload -r pypi
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure></p>
 
-<p>{% img <a href="http://lixxu.qiniudn.com/pypi_upload.png">http://lixxu.qiniudn.com/pypi_upload.png</a> %}</p>
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi_upload.png">http://lixxu.qiniudn.com/pypi_upload.png</a>&#8221;></p>
 ]]></content>
   </entry>
   

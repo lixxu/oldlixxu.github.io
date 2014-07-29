@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: NSSM | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/nssm/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-28T23:49:47+08:00</updated>
+  <updated>2014-07-29T21:21:09+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -21,14 +21,22 @@
     <content type="html"><![CDATA[<p>工厂里的某些测试电脑存在时间不对的问题, 最开始使用简单的批处理加上
 <a href="http://nssm.cc/">nssm</a> 安装成 service 的方式, 比如下面的示例:</p>
 
-<p>{% codeblock sync_time.bat %}
-sync_time:
-net time \a.b.c.d /set /y</p>
-
-<p>sleep 3600
-goto sync_time</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>sync_time.bat </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>sync_time:
+</span><span class='line'>net time \a.b.c.d <span class="n">/set</span> <span class="n">/y&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span><span class="n">sleep</span> <span class="m">3600</span>
+</span><span class='line'><span class="k">goto</span> <span class="nl">sync_time</span>&lt;<span class="n">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span>&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>但在使用的过程中出现了这个 service 吃掉许多 CPU 的问题.
 按道理说在 sleep 后应该会进入休眠状态, 不应该再占用 CPU.
@@ -39,91 +47,166 @@ goto sync_time</p>
 
 <p>1. 主程序 <code>main.py</code></p>
 
-<p>{% codeblock main.py lang:python %}</p>
-
-<h1>!/usr/bin/env python</h1>
-
-<h1>-<em>- coding: utf-8 -</em>-</h1>
-
-<p>from <strong>future</strong> import unicode_literals
-import subprocess
-import time
-import click</p>
-
-<p><strong>version</strong> = &lsquo;0.1&rsquo;
-DEFAULT_SERVERS = &lsquo;server_a,server_b&rsquo;
-IP_MAPS = dict(server_a=&lsquo;a.b.c.d&rsquo;, server_b=&lsquo;a.b.c.e&rsquo;)
-CMD = r&#8217;net time \{} /set /y&#8217;</p>
-
-<p>def run_cmd(server):
-    status = subprocess.call(CMD.format(server))
-    if status == 0:
-        return True</p>
-
-<pre><code>ip = IP_MAPS.get(server)
-if ip:
-    return subprocess.call(CMD.format(ip), shell=True) == 0
-
-return False
-</code></pre>
-
-<p>@click.command()
-@click.option(&lsquo;&ndash;servers&rsquo;, default=DEFAULT_SERVERS,
-              help=&lsquo;servers name or IP list, seperated by &ldquo;,&rdquo;&rsquo;)
-@click.option(&lsquo;&ndash;sleep&rsquo;, default=600,
-              help=&lsquo;sleep seconds till next run, default is 600s (10 minutes)&rsquo;)
-def sync_time(servers, sleep):
-    while 1:
-        for server in servers.split(&lsquo;,&rsquo;):
-            if run_cmd(server.strip()):
-                break</p>
-
-<pre><code>    time.sleep(sleep)
-</code></pre>
-
-<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:
-    sync_time()</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>main.py </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">!</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">python</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;-&lt;</span><span class="n">em</span><span class="o">&gt;-</span> <span class="n">coding</span><span class="p">:</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span> <span class="o">-&lt;/</span><span class="n">em</span><span class="o">&gt;-&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">future</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">unicode_literals</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">subprocess</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">click</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">version</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">0.1</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'><span class="n">DEFAULT_SERVERS</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">server_a</span><span class="p">,</span><span class="n">server_b</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'><span class="n">IP_MAPS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">server_a</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">a</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">d</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">server_b</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">a</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">e</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span>
+</span><span class='line'><span class="n">CMD</span> <span class="o">=</span> <span class="n">r</span><span class="o">&amp;</span><span class="c">#8217;net time \{} /set /y&amp;#8217;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">run_cmd</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">status</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">CMD</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">server</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">True</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ip</span> <span class="o">=</span> <span class="n">IP_MAPS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="n">ip</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">CMD</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="bp">False</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nd">@click.command</span><span class="p">()</span>
+</span><span class='line'><span class="nd">@click.option</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="n">servers</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_SERVERS</span><span class="p">,</span>
+</span><span class='line'>              <span class="n">help</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">servers</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">IP</span> <span class="nb">list</span><span class="p">,</span> <span class="n">seperated</span> <span class="n">by</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;,</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span>
+</span><span class='line'><span class="nd">@click.option</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="n">sleep</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">default</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+</span><span class='line'>              <span class="n">help</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">sleep</span> <span class="n">seconds</span> <span class="n">till</span> <span class="nb">next</span> <span class="n">run</span><span class="p">,</span> <span class="n">default</span> <span class="ow">is</span> <span class="mi">600</span><span class="n">s</span> <span class="p">(</span><span class="mi">10</span> <span class="n">minutes</span><span class="p">)</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">sync_time</span><span class="p">(</span><span class="n">servers</span><span class="p">,</span> <span class="n">sleep</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">servers</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;,</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;):</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">run_cmd</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">strip</span><span class="p">()):</span>
+</span><span class='line'>                <span class="k">break</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">main</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&amp;</span><span class="n">rsquo</span><span class="p">;:</span>
+</span><span class='line'>    <span class="n">sync_time</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>2. 使用 <code>py2exe</code> 或其他工具打包 <code>main.py</code> 为可执行文件, 比如 <code>SyncTimer.exe</code></p>
 
 <p>3. 然后是安装/删除 service 的批处理:</p>
 
 <p>3.1 <code>install.bat</code>
-{% codeblock install.bat %}
-@echo off
-set service=SyncTimer
-echo %PROCESSOR_ARCHITECTURE% | find /i &ldquo;x86&rdquo; > nul
-if %errorlevel%==0 (
-    set nssm=nssm32.exe
-) else (
-    set nssm=nssm64.exe
-)</p>
-
-<p>%nssm% install &ldquo;%service%&rdquo; &ldquo;%~dp0SyncTimer.exe&rdquo;</p>
-
-<p>net start %service%</p>
-
-<p>sleep 5
-{% endcodeblock %}</p>
+<figure class='code'><figcaption><span>install.bat </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+</span><span class='line'><span class="k">set</span> <span class="nv">service</span><span class="o">=</span>SyncTimer
+</span><span class='line'><span class="k">echo</span> <span class="nv">%PROCESSOR_ARCHITECTURE%</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/i</span> &amp;ldquo;x<span class="m">86</span>&amp;rdquo; <span class="p">&gt;</span> <span class="n">nul</span>
+</span><span class='line'><span class="k">if</span> <span class="nv">%errorlevel%</span><span class="o">==</span><span class="m">0</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">32</span>.exe
+</span><span class='line'>) <span class="k">else</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">64</span>.exe
+</span><span class='line'>)&lt;<span class="n">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span>&gt;<span class="nv">%nssm%</span> install &amp;ldquo;<span class="nv">%service%</span>&amp;rdquo; &amp;ldquo;<span class="nv">%~dp0SyncTimer</span>.exe&amp;rdquo;&lt;<span class="n">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span><span class="n">net</span> start <span class="nv">%service%</span>&lt;<span class="n">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span><span class="n">sleep</span> <span class="m">5</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>3.2 <code>remove.bat</code>
-{% codeblock remove.bat %}
-@echo off
-set exename=SyncTimer
-net stop %exename%</p>
-
-<p>echo %PROCESSOR_ARCHITECTURE% | find /i &ldquo;x86&rdquo; > nul
-if %errorlevel%==0 (
-    set nssm=nssm32.exe
-) else (
-    set nssm=nssm64.exe
-)</p>
-
-<p>%nssm% remove &ldquo;%exename%&rdquo; confirm
-sleep 5
-{% endcodeblock %}</p>
+<figure class='code'><figcaption><span>remove.bat </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+</span><span class='line'><span class="k">set</span> <span class="nv">exename</span><span class="o">=</span>SyncTimer
+</span><span class='line'>net stop <span class="nv">%exename%</span>&lt;<span class="n">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span><span class="n">echo</span> <span class="nv">%PROCESSOR_ARCHITECTURE%</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/i</span> &amp;ldquo;x<span class="m">86</span>&amp;rdquo; <span class="p">&gt;</span> <span class="n">nul</span>
+</span><span class='line'><span class="k">if</span> <span class="nv">%errorlevel%</span><span class="o">==</span><span class="m">0</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">32</span>.exe
+</span><span class='line'>) <span class="k">else</span> (
+</span><span class='line'>    <span class="k">set</span> <span class="nv">nssm</span><span class="o">=</span>nssm<span class="m">64</span>.exe
+</span><span class='line'>)&lt;<span class="n">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span>&gt;<span class="nv">%nssm%</span> remove &amp;ldquo;<span class="nv">%exename%</span>&amp;rdquo; confirm
+</span><span class='line'>sleep <span class="m">5</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>当然了, 你需要到 <a href="http://nssm.cc/download">http://nssm.cc/download</a> 下载 <code>nssm</code> 的执行程序.
 分别把 32 位和 64 位的执行文件和你的 EXE 文件放到一起, 并改名为 <code>nssm32.exe</code> 和 <code>nssm64.exe</code>. 在安装 service 后也不能删除这些文件, 因为 service 关联的程序是 <code>nssm</code>.</p>

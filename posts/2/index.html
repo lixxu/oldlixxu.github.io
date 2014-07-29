@@ -9,8 +9,11 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="我中毒了: http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000
-http://ju.outofmemory.cn/entry/28653 好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, &hellip;">
+  <meta name="description" content="参考链接, 看 geographika 的答案即可: http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server 记录一下如何在 pyodbc 中使用 in 查询: 1
+2
+3
+4
+5 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +27,7 @@ http://ju.outofmemory.cn/entry/28653 好吧, 我决定败个 type-s 无刻的, �
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -79,6 +82,74 @@ http://ju.outofmemory.cn/entry/28653 好吧, 我决定败个 type-s 无刻的, �
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/12/sql-in-operator-in-pyodbc/">Pyodbc in 查询</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T11:37:58+08:00" pubdate data-updated="true">May 12<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/05/12/sql-in-operator-in-pyodbc/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/05/12/sql-in-operator-in-pyodbc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>参考链接, 看 <code>geographika</code> 的答案即可:</p>
+
+<p><a href="http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server">http://stackoverflow.com/questions/4819356/sql-in-operator-using-pyodbc-and-sql-server</a></p>
+
+<p>记录一下如何在 <code>pyodbc</code> 中使用 <code>in</code> 查询:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pyodbc</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span class='line'><span class="n">sql</span> <span class="o">=</span> <span class="s">&#39;select * from table where field1 in (</span><span class="si">%s</span><span class="s">)&#39;</span>
+</span><span class='line'><span class="n">conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span><span class='line'><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;?&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">))),</span> <span class="n">alist</span><span class="p">)</span>
+</span><span class='line'><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -602,58 +673,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/16/use-thin-as-preview-server/">使用 Thin 作为 Octopress 预览服务器</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-16T10:06:15+08:00" pubdate data-updated="true">Jan 16<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/01/16/use-thin-as-preview-server/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/16/use-thin-as-preview-server/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Windows 平台下 Octopress 自带的 <code>WEBrick</code> 有点慢, 于是就想使用 <code>Thin</code> 代替.
-放狗一搜, 这里有答案了:</p>
-
-<ul>
-<li><a href="http://blog.geoffpetrie.com/blog/2012/10/14/octopress-change-the-default-preview-server/">http://blog.geoffpetrie.com/blog/2012/10/14/octopress-change-the-default-preview-server/</a></li>
-</ul>
-
-
-<h4>操作步骤:</h4>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/16/use-thin-as-preview-server/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -675,6 +694,10 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/29/a-wealthy-day/">富有的一天</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a>
       </li>
     
@@ -690,10 +713,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
         <a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -705,6 +724,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
+<li class='category'><a href='/blog/categories/other/'>other (1)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (10)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
@@ -740,6 +760,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
 <a style="font-size: 110%" href="/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 80%" href="/tags/git/">git</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
