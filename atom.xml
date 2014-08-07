@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-07-31T14:14:29+08:00</updated>
+  <updated>2014-08-07T19:13:18+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[作为一个东北人, 被人无数次问过]]></title>
+    <link href="http://lixxu.me/blog/2014/08/07/as-a-man/"/>
+    <updated>2014-08-07T18:39:52+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/07/as-a-man</id>
+    <content type="html"><![CDATA[<p>网上看到, 忍不住放到这里收藏下:</p>
+
+<p><img src="http://lixxu.qiniudn.com/dongbeiren.jpg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[富有的一天]]></title>
@@ -1634,28 +1645,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 </span><span class='line'>    <span class="n">run</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[新年展望]]></title>
-    <link href="http://lixxu.me/blog/2014/02/06/new-year-holiday-back/"/>
-    <updated>2014-02-06T09:32:37+08:00</updated>
-    <id>http://lixxu.me/blog/2014/02/06/new-year-holiday-back</id>
-    <content type="html"><![CDATA[<p>今天是新年节后的第一天上班, 下着雨, 人不多, 多数没回.</p>
-
-<p>记一下今年打算做的事情:</p>
-
-<ol>
-<li>使用 <code>PySide</code> 作为图形开发平台, 过去的一年还没做过任何图形工具, 今年要学习一下. 以前用的 <code>wxPython</code> 不打算再用了, 虽然很强大</li>
-<li>使用 <code>PySide</code> 做一个全厂通用的 log 文件传送工具, 通过 <code>plugin</code> 处理不同项目和不同格式的 log</li>
-<li>做一个小东西或学习一个平台监控一下在管的几台服务器</li>
-<li>改善手里的几个 flask 系统</li>
-<li>学习/使用 <code>Semantic UI</code> 作为主力 CSS 框架</li>
-</ol>
-
-
-<p>以上.</p>
 ]]></content>
   </entry>
   
