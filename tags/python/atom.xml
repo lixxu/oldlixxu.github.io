@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: Python | 杂七杂八记一下]]></title>
+  <title><![CDATA[Tag: python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-08-07T19:13:18+08:00</updated>
+  <updated>2014-08-08T17:18:59+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -14,527 +14,64 @@
 
   
   <entry>
-    <title type="html"><![CDATA[抓取 <<码农故事>> 文本]]></title>
-    <link href="http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web/"/>
-    <updated>2014-07-25T08:46:39+08:00</updated>
-    <id>http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web</id>
-    <content type="html"><![CDATA[<p>偶然看到这样一篇关于码农的小说, 感觉还可以, 就想收集下来慢慢看.
-但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到.</p>
+    <title type="html"><![CDATA[令人崩溃的 marrow.mailer 的 py2exe 打包历程]]></title>
+    <link href="http://lixxu.me/blog/2014/08/08/suck-marrow-mailer/"/>
+    <updated>2014-08-08T16:10:51+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/08/suck-marrow-mailer</id>
+    <content type="html"><![CDATA[<p>今天在打包一个小工具时, 由于使用 <code>marrow.mailer</code>, 碰到了经典的 <code>py2exe 找不到使用 pip 安装的包</code> 的问题.
+于是使用了以前的大法: <a href="http://www.py2exe.org/index.cgi/ExeWithEggs">http://www.py2exe.org/index.cgi/ExeWithEggs</a>
+再加上又碰到的各种各种的问题. 虽然最后解决了, 但是过程太崩溃了, 不想多说, 只记下过程.</p>
 
-<p>接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 <code>requests</code> 和 <code>BeautifulSoup</code> 来提取文本.</p>
+<p>1. 下载 <code>marrow.mailer</code> 压缩包, 解压, 用上面的大法安装
+<code>
+python setup.py install_lib
+</code></p>
 
-<p>很少使用 <code>BeautifulSoup</code>, 所以临时去看了一下文档, 开始走起.</p>
+<p>2. 同上, 依次安装 <code>marrow.util</code>, <code>marrow.interface</code>, <code>futures</code></p>
 
-<p>1. 先用浏览器的 <code>审查元素</code> 获取分页的页面结构, 这里我们只需要 <code>标题</code> 和 <code>链接地址</code> 即可</p>
+<p>3. 程序里类似这样的</p>
 
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/coder_page.png">http://lixxu.qiniudn.com/coder_page.png</a>&#8221;></p>
-
-<!--more-->
-
-
-<p>2. 分析页面内容抓取 <code>标题</code> 和 <code>链接地址</code>, 还一并抓取当前的章节, 否则就没法知道顺序了</p>
-
-<p>3. 根据获取的链接抓取全文</p>
-
-<p>4. 分析全文, 在 <code>entry</code> 下面的 <code>p</code> 和 <code>span</code> 里, 一开始我以为都在 <code>p</code> 结构里, 结果最后发现有的章节是空的, 看了下空的章节的结构, 原来用的是 <code>&lt;div&gt;&lt;span&gt;...&lt;/span&gt;&lt;/div&gt;</code> 的结构</p>
-
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/coder_post.png">http://lixxu.qiniudn.com/coder_post.png</a>&#8221;></p>
-
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/coder_post2.png">http://lixxu.qiniudn.com/coder_post2.png</a>&#8221;></p>
-
-<p>5. 这些都确定了后就可以开工了, 当然我是逐步确定的. 我的流程是: 按章节写到单独的文件里, 最后再合并. 好了, <code>Talk is cheap, show me the code.</code>:</p>
-
-<pre><code class="python coder_story.py">#!/usr/bin/env python
+<pre><code class="python">#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-import os
-import os.path
-import requests
-from bs4 import BeautifulSoup
-import re
+from __future__ import unicode_literals
 
-digit_re = re.compile('(\d+-?\d*)')
-url = r'http://blog.jobbole.com/tag/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B/page/{}/'
-if not os.path.exists('coder_story'):
-    os.makedirs('coder_story')
+from marrow.mailer.manager import futures
+from marrow.mailer.transport import smtp
+from marrow.mailer import Mailer, Message
 
-os.chdir('coder_story')
-for page in (1, 2, 3):
-    r = requests.get(url.format(page))
-    # soup = BeautifulSoup(r.content)  # lxml未安装时用这行
-    soup = BeautifulSoup(r.content, 'lxml')
-    for meta_title in soup.find_all('a', class_='meta-title'):
-        # 我们要的都必须有title
-        if 'title' not in meta_title.attrs:
-            continue
+host = 'localhost'
+mailer = Mailer({'manager.use': futures.FuturesManager,
+                 'transport.use': smtp.SMTPTransport,
+                 'transport.host': host,
+                 })
+mailer.start()
+author = (('Sender', 'no-reply@example.com'))
+msg = Message(author=author)
+msg.subject = 'Subject'
+msg.to = ['aaa@example.com']
+msg.plain = 'plain mail'
+msg.rich = 'rich html'
 
-        # 不是这个小说不要
-        if u'老码农原创小说' not in meta_title['title']:
-            continue
-
-        print(meta_title)  # 打印一下标题
-        href = meta_title.get('href')  # 获取文章链接
-        # 获取章节序号
-        found = digit_re.findall(meta_title['title'])
-        if not found:
-            continue
-
-        # 个位数章节前补0, 为了后面的合并
-        page_no = found[0]
-        if int(page_no.split('-')[0]) &lt; 10:
-            page_no = '0' + page_no
-
-        # 获取文章的内容
-        r2 = requests.get(href)
-        # s2 = BeautifulSoup(r2.content)  # lxml未安装时用这行
-        s2 = BeautifulSoup(r2.content, 'lxml')
-        entry = s2.find('div', class_='entry')
-        with open('{}.txt'.format(page_no), 'w') as f:
-            # 内容在 &lt;p&gt;...&lt;/p&gt; 或 &lt;div&gt;&lt;span&gt;...&lt;/span&gt;&lt;/div&gt;里
-            for p in entry.find_all(['p', 'span']):
-                # copyright-meta部分, 跳过
-                if p.get('class'):
-                    continue
-
-                # 空白行, 文件里写两行空白, 便于阅读
-                text = p.get_text()
-                if not text:
-                    f.write('\r\n\r\n')
-                    continue
-
-                f.write(text.encode('utf-8') + '\r\n')
-                # "待续" 的地方, 接着就是另一章了, 插入空行
-                if text.endswith(u'&lt;\u5f85\u7eed&gt;'):
-                    f.write('\r\n')
+mailer.send(msg)
+mailer.stop()
 </code></pre>
 
-<p>6. 合并到一个文件, 用 <code>Python</code> 碰到编码错误, 时间紧, 就用批处理好了, 还简单
-<code>
-copy *.txt 码农故事.txt
-</code></p>
+<p>备注:</p>
 
-<p>7. 打完收工.</p>
+<p>由于 <code>marrow.mailer</code> 的 bug: <a href="https://github.com/marrow/marrow.mailer/issues/36">https://github.com/marrow/marrow.mailer/issues/36</a> , 导致 <code>manager.use</code>, <code>transport.use</code> 要写成上面的格式, 看了源码才发现.当然这种写法在不需要打包时是不需要的:</p>
 
-<p>后记:</p>
+<pre><code class="python site-packages\marrow\mailer\__init__.py">
+# ...
+if not isinstance(Manager, IManager):
+    raise TypeError("Chosen manager does not conform to the manager API.")
 
-<p>就在合并时, 看到最后的一句话, 马上吐出一升老血:</p>
+# ...
+if not isinstance(Transport, ITransport):
+    raise TypeError("Chosen transport does not conform to the transport API.")
 
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/coder_end.png">http://lixxu.qiniudn.com/coder_end.png</a>&#8221;></p>
-
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/tuxie.gif">http://lixxu.qiniudn.com/tuxie.gif</a>&#8221;></p>
-
-<p>不过, 在 <code>kindle</code> 上还是 txt 的效果好一些, pdf 转换的有些乱码, 不完美.</p>
-
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/kindle_bug.png">http://lixxu.qiniudn.com/kindle_bug.png</a>&#8221;></p>
-
-<p>附下载地址:</p>
-
-<p>1. TXT <a href="http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.txt">http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.txt</a></p>
-
-<p>2. PDF <a href="http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.pdf">http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.pdf</a></p>
-
-<!--more-->
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用 Python 设置系统时间]]></title>
-    <link href="http://lixxu.me/blog/2014/06/22/use-python-set-system-time/"/>
-    <updated>2014-06-22T16:53:43+08:00</updated>
-    <id>http://lixxu.me/blog/2014/06/22/use-python-set-system-time</id>
-    <content type="html"><![CDATA[<p>接上文: <a href="/blog/2014/06/22/nssm-install-windows-service">使用 NSSM 安装 Windows 系统服务</a></p>
-
-<p>上一篇介绍使用了 <code>net time</code> 来同步系统时间, 后来突然想到如果没有服务器可供同步时间或电脑无法直接连接到服务器怎么办?</p>
-
-<p>就去找了下使用 <code>Python</code> 设置时间的例子, 还真有: <a href="http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time">http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time</a></p>
-
-<p>直接贴在这里:
-&#8220;`python set_time.py
-import sys
-import datetime</p>
-
-<p>time_tuple = (2012, # Year
-                 9, # Month
-                 6, # Day
-                 0, # Hour
-                38, # Minute
-                 0, # Second
-                 0, # Millisecond
-              )</p>
-
-<p>def _win_set_time(time_tuple):
-    import pywin32
-    # <a href="http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html">http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html</a>
-    # pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)
-    dayOfWeek = datetime.datetime(time_tuple).isocalendar()[2]
-    pywin32.SetSystemTime(time_tuple[:2] + (dayOfWeek,) + time_tuple[2:])</p>
-
-<p>def _linux_set_time(time_tuple):
-    import ctypes
-    import ctypes.util
-    import time</p>
-
-<pre><code># /usr/include/linux/time.h:
-#
-# define CLOCK_REALTIME                     0
-CLOCK_REALTIME = 0
-
-# /usr/include/time.h
-#
-# struct timespec
-#  {
-#    __time_t tv_sec;            /* Seconds.  */
-#    long int tv_nsec;           /* Nanoseconds.  */
-#  };
-class timespec(ctypes.Structure):
-    _fields_ = [("tv_sec", ctypes.c_long),
-                ("tv_nsec", ctypes.c_long)]
-
-librt = ctypes.CDLL(ctypes.util.find_library("rt"))
-
-ts = timespec()
-ts.tv_sec = int(time.mktime(datetime.datetime(*time_tuple[:6]).timetuple()))
-ts.tv_nsec = time_tuple[6] * 1000000 # Millisecond to nanosecond
-
-# http://linux.die.net/man/3/clock_settime
-librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
+# ...
 </code></pre>
-
-<p>if sys.platform==&lsquo;linux2&rsquo;:
-    _linux_set_time(time_tuple)</p>
-
-<p>elif  sys.platform==&lsquo;win32&rsquo;:
-    _win_set_time(time_tuple)</p>
-
-<p>&#8220;`</p>
-
-<!--more-->
-
-
-<p>可是没有可供同步用的服务器, 那时间怎么来呢?</p>
-
-<p>1. 跑一个 web, 可以返回一个 <code>json</code> 的数据, 如:
-&#8220;`python</p>
-
-<h1>!/usr/bin/env python</h1>
-
-<h1>-<em>- coding: utf-8 -</em>-</h1>
-
-<p>from <strong>future</strong> import unicode_literals
-from datetime import datetime
-from flask import Flask, jsonify</p>
-
-<p>app = Flask(<strong>name</strong>)</p>
-
-<p>@app.route(&lsquo;/api/get-time/&rsquo;)
-def get_time():
-    return jsonify(time=tuple(datetime.utcnow().timetuple()))</p>
-
-<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:
-    app.run(debug=True, host=&lsquo;0.0.0.0&rsquo;)</p>
-
-<pre><code>
-客户端可以这样来获取和同步时间 (假设是 Windows 平台), 上面的 `set_time.py` 需要改一下:
-</code></pre>
-
-<p>import sys
-import datetime</p>
-
-<p>def _win_set_time(time_tuple):
-    &lsquo;&rsquo;&lsquo;time_tuple:
-    year, month, day, hour, minute, second, day_of_week, day_of_year, is_dist
-    &rsquo;&lsquo;&rsquo;
-    import pywin32
-    # <a href="http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html">http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html</a>
-    # pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)
-    tt = list(time_tuple)
-    tt.insert(2, tt[6]) # add day_of_week
-    tt.insert(7, 0)  # set miliseconds
-    pywin32.SetSystemTime(*tt[:8])</p>
-
-<p>def _linux_set_time(time_tuple):
-    import ctypes
-    import ctypes.util
-    import time</p>
-
-<pre><code># /usr/include/linux/time.h:
-#
-# define CLOCK_REALTIME                     0
-CLOCK_REALTIME = 0
-
-# /usr/include/time.h
-#
-# struct timespec
-#  {
-#    __time_t tv_sec;            /* Seconds.  */
-#    long int tv_nsec;           /* Nanoseconds.  */
-#  };
-class timespec(ctypes.Structure):
-    _fields_ = [("tv_sec", ctypes.c_long),
-                ("tv_nsec", ctypes.c_long)]
-
-librt = ctypes.CDLL(ctypes.util.find_library("rt"))
-
-ts = timespec()
-ts.tv_sec = int(time.mktime(datetime.datetime(*time_tuple[:6]).timetuple()))
-ts.tv_nsec = time_tuple[6] * 1000000 # Millisecond to nanosecond
-
-# http://linux.die.net/man/3/clock_settime
-librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
-</code></pre>
-
-<p>def set_time(time_tuple):
-    if sys.platform==&lsquo;linux2&rsquo;:
-        _linux_set_time(time_tuple)</p>
-
-<pre><code>elif  sys.platform=='win32':
-    _win_set_time(time_tuple)
-</code></pre>
-
-<pre><code></code></pre>
-
-<h1>!/usr/bin/env python</h1>
-
-<h1>-<em>- coding: utf-8 -</em>-</h1>
-
-<p>from <strong>future</strong> import unicode_literals
-import time
-from datetime import datetime, timedelta
-import requests
-import set_time2</p>
-
-<p>URL = &lsquo;<a href="http://a.b.c.d:5000/api/get-time/">http://a.b.c.d:5000/api/get-time/</a>&rsquo;
-offset = time.timezone if (time.localtime().tm_isdst == 0) else time.altzone
-LOCAL_TZ = offset / 60 / 60 * -1</p>
-
-<p>def get_time():
-    r = requests.get(URL)
-    json = r.json()
-    return json[&lsquo;time&rsquo;]</p>
-
-<p>def sync_time(tz, ts):
-    ts = get_time()
-    to_time = datetime(*ts[:6]) + timedelta(hours=LOCAL_TZ)
-    set_time2.set_time(to_time.timetuple())</p>
-
-<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:
-    sync_time()</p>
-
-<p>&#8220;`</p>
-
-<p>注意: 以上代码未经测试, 可能有错误.</p>
-
-<p>2. 如果无法直接连接到提供时间的服务器呢?
-比如有两个网络, 一个是测试电脑的内部网, 服务器在测试的通用网络.</p>
-
-<p>可以使用一个可以连通两个网络的电脑上作为交换数据的中间人, 具体的是使用文件交换还是像 <code>socket</code> 之类的网络接口服务交换就随你的喜好了.</p>
-
-<p>拙见.</p>
-
-<!--more-->
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flask-script 和 gevent 结合使用]]></title>
-    <link href="http://lixxu.me/blog/2014/06/10/use-gevent-with-flask-script/"/>
-    <updated>2014-06-10T15:09:51+08:00</updated>
-    <id>http://lixxu.me/blog/2014/06/10/use-gevent-with-flask-script</id>
-    <content type="html"><![CDATA[<p>之前一直没用过 <code>flask-script</code>, 可是看了很多其他人的例子都在用这么个玩意. 碰巧手上有个现在做的一个应用, 所以打算用一下.</p>
-
-<p>用了之后出现问题了: <code>python manage.py runserver</code> 使用的是默认的 <code>wsgi 服务器</code>, 而我在 windows 下一直使用 <code>gevent</code> 调试的.
-看了下文档, 差不多就是这样:
-<figure class='code'><figcaption><span>manage.py mark:40-53 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">!</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">python</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;-&lt;</span><span class="n">em</span><span class="o">&gt;-</span> <span class="n">coding</span><span class="p">:</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span> <span class="o">-&lt;/</span><span class="n">em</span><span class="o">&gt;-&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">future</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">unicode_literals</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os.path</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">create_app</span><span class="p">,</span> <span class="n">db</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">app.models</span> <span class="kn">import</span> <span class="n">User</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">flask.ext.script</span> <span class="kn">import</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">Shell</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">flask.ext.migrate</span> <span class="kn">import</span> <span class="n">Migrate</span><span class="p">,</span> <span class="n">MigrateCommand</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">app</span><span class="o">.</span><span class="n">env</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;):</span>
-</span><span class='line'>    <span class="c"># print(&amp;lsquo;importing environment from app.env&amp;hellip;&amp;rsquo;)</span>
-</span><span class='line'>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">app</span><span class="o">.</span><span class="n">env</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="c">#&amp;rsquo;) and &amp;lsquo;=&amp;rsquo; in line:</span>
-</span><span class='line'>                <span class="n">items</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">=&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">APP_ENV</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="ow">or</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">default</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span>
-</span><span class='line'><span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</span><span class='line'><span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">make_shell_context</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">User</span><span class="o">=</span><span class="n">User</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">shell</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">Shell</span><span class="p">(</span><span class="n">make_context</span><span class="o">=</span><span class="n">make_shell_context</span><span class="p">))</span>
-</span><span class='line'><span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">db</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">MigrateCommand</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nd">@manager.command</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">deploy</span><span class="p">():</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">flask.ext.migrate</span> <span class="kn">import</span> <span class="n">upgrade</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">upgrade</span><span class="p">()</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nd">@manager.command</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">rungevent</span><span class="p">():</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">werkzeug.serving</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">werkzeug.debug</span> <span class="kn">import</span> <span class="n">DebuggedApplication</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">gevent.wsgi</span> <span class="kn">import</span> <span class="n">WSGIServer</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nd">@werkzeug.serving.run_with_reloader</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>    <span class="n">dapp</span> <span class="o">=</span> <span class="n">DebuggedApplication</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">evalex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">ws</span> <span class="o">=</span> <span class="n">WSGIServer</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="n">dapp</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">ws</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">run</span><span class="p">()</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">main</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&amp;</span><span class="n">rsquo</span><span class="p">;:</span>
-</span><span class='line'>    <span class="n">manager</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>然后使用下面的命令就可以了:
-<code>bash
-python manage.py rungevent
-</code></p>
-
-<p>可是在 <code>rungevent</code> 里, 无论怎么传参数控制是否处在 <code>debug</code> 状态, 始终是 <code>autoreload</code>, 这可能是 <code>app.env</code> 里我设定了开发模式导致的.</p>
-
-<p>不过, 算了, 生产环境我是用 <code>uwsgi</code> 的, 用不到这个玩意.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在 PyPi 上发布软件包]]></title>
-    <link href="http://lixxu.me/blog/2014/06/09/how-to-register-pypi/"/>
-    <updated>2014-06-09T14:33:10+08:00</updated>
-    <id>http://lixxu.me/blog/2014/06/09/how-to-register-pypi</id>
-    <content type="html"><![CDATA[<p>距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘:</p>
-
-<p>来源: <a href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
-
-<p>基本操作:</p>
-
-<p>1. 准备好 <code>setup.py</code>, 提供一下 <code>setup.cfg</code></p>
-
-<p><figure class='code'><figcaption><span>setup.cfg </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[metadata]</span>
-</span><span class='line'><span class="na">description-file</span> <span class="o">=</span> <span class="s">README.md</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>2. 注册:</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure></p>
-
-<p>按提示做选择就可以了:</p>
-
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi.png">http://lixxu.qiniudn.com/pypi.png</a>&#8221;></p>
-
-<p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure></p>
-
-<p><img class="<a" src="href="http://lixxu.qiniudn.com/pypi_upload.png">http://lixxu.qiniudn.com/pypi_upload.png</a>&#8221;></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[程序员版<<泡沫>>]]></title>
-    <link href="http://lixxu.me/blog/2014/05/19/coder-bubbles/"/>
-    <updated>2014-05-19T13:25:19+08:00</updated>
-    <id>http://lixxu.me/blog/2014/05/19/coder-bubbles</id>
-    <content type="html"><![CDATA[<p>程序员版&lt;&lt;泡沫>> <a href="http://www.v2ex.com/t/113021#reply17">http://www.v2ex.com/t/113021#reply17</a></p>
-
-<p><code>派森大法</code>, <code>烫烫烫烫烫烫烫烫烫烫烫烫烫烫</code>, &hellip;</p>
-
-<p>视频在此, 加上弹幕才欢乐:</p>
-
-<p><a href="http://www.acfun.com/v/ac1171084">http://www.acfun.com/v/ac1171084</a></p>
-
-<object type="application/x-shockwave-flash" data="http://static.acfun.com/player/ACFlashPlayer.out.swf" width="550" height="348"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="always"><param name="seamlesstabbing" value="true"><param name="wmode" value="direct"><param name="allowFullscreenInteractive" value="true"><param name="flashvars" value="type=page&url=http://www.acfun.com/v/ac1171084"></object>
-
-
-
 ]]></content>
   </entry>
   

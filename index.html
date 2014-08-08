@@ -9,7 +9,9 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="网上看到, 忍不住放到这里收藏下: ">
+  <meta name="description" content="今天在打包一个小工具时, 由于使用 marrow.mailer, 碰到了经典的 py2exe 找不到使用 pip 安装的包 的问题.
+于是使用了以前的大法: http://www.py2exe.org/index.cgi/ExeWithEggs
+再加上又碰到的各种各种的问题. 虽然最后解决了, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +80,133 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-08T16:10:51+08:00" pubdate data-updated="true">Aug 8<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/08/08/suck-marrow-mailer/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/08/08/suck-marrow-mailer/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天在打包一个小工具时, 由于使用 <code>marrow.mailer</code>, 碰到了经典的 <code>py2exe 找不到使用 pip 安装的包</code> 的问题.
+于是使用了以前的大法: <a href="http://www.py2exe.org/index.cgi/ExeWithEggs">http://www.py2exe.org/index.cgi/ExeWithEggs</a>
+再加上又碰到的各种各种的问题. 虽然最后解决了, 但是过程太崩溃了, 不想多说, 只记下过程.</p>
+
+<p>1. 下载 <code>marrow.mailer</code> 压缩包, 解压, 用上面的大法安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py install_lib</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2. 同上, 依次安装 <code>marrow.util</code>, <code>marrow.interface</code>, <code>futures</code></p>
+
+<p>3. 程序里类似这样的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">marrow.mailer.manager</span> <span class="kn">import</span> <span class="n">futures</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">marrow.mailer.transport</span> <span class="kn">import</span> <span class="n">smtp</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">marrow.mailer</span> <span class="kn">import</span> <span class="n">Mailer</span><span class="p">,</span> <span class="n">Message</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">host</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+</span><span class='line'><span class="n">mailer</span> <span class="o">=</span> <span class="n">Mailer</span><span class="p">({</span><span class="s">&#39;manager.use&#39;</span><span class="p">:</span> <span class="n">futures</span><span class="o">.</span><span class="n">FuturesManager</span><span class="p">,</span>
+</span><span class='line'>                 <span class="s">&#39;transport.use&#39;</span><span class="p">:</span> <span class="n">smtp</span><span class="o">.</span><span class="n">SMTPTransport</span><span class="p">,</span>
+</span><span class='line'>                 <span class="s">&#39;transport.host&#39;</span><span class="p">:</span> <span class="n">host</span><span class="p">,</span>
+</span><span class='line'>                 <span class="p">})</span>
+</span><span class='line'><span class="n">mailer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span class='line'><span class="n">author</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Sender&#39;</span><span class="p">,</span> <span class="s">&#39;no-reply@example.com&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">)</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="s">&#39;Subject&#39;</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;aaa@example.com&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">plain</span> <span class="o">=</span> <span class="s">&#39;plain mail&#39;</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">rich</span> <span class="o">=</span> <span class="s">&#39;rich html&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mailer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span class='line'><span class="n">mailer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>备注:</p>
+
+<p>由于 <code>marrow.mailer</code> 的 bug: <a href="https://github.com/marrow/marrow.mailer/issues/36">https://github.com/marrow/marrow.mailer/issues/36</a> , 导致 <code>manager.use</code>, <code>transport.use</code> 要写成上面的格式, 看了源码才发现.当然这种写法在不需要打包时是不需要的:</p>
+
+<figure class='code'><figcaption><span>site-packages\marrow\mailer\__init__.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Manager</span><span class="p">,</span> <span class="n">IManager</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Chosen manager does not conform to the manager API.&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Transport</span><span class="p">,</span> <span class="n">ITransport</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Chosen transport does not conform to the transport API.&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># ...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -872,49 +1001,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/26/what-happened-after-enter-url/">从输入 URL 到页面加载完成的过程中都发生了什么事情?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-26T16:25:28+08:00" pubdate data-updated="true">May 26<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/05/26/what-happened-after-enter-url/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/05/26/what-happened-after-enter-url/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="http://lixxu.qiniudn.com/nwind-weibo.png"></p>
-
-<p>原文很长, 没看完我就觉得什么也不懂了, 囧.</p>
-
-<p><a href="http://fex.baidu.com/blog/2014/05/what-happen/">http://fex.baidu.com/blog/2014/05/what-happen/</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -934,6 +1020,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/07/as-a-man/">作为一个东北人, 被人无数次问过</a>
       </li>
     
@@ -947,10 +1037,6 @@
     
       <li class="post">
         <a href="/blog/2014/07/25/get-coder-story-text-from-web/">抓取 <<码农故事>> 文本</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a>
       </li>
     
   </ul>
@@ -967,7 +1053,7 @@
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
 <li class='category'><a href='/blog/categories/other/'>other (1)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
-<li class='category'><a href='/blog/categories/python/'>python (10)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (11)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
 
@@ -1003,9 +1089,12 @@
 <a style="font-size: 110%" href="/tags/gevent/">gevent</a> &mdash; 
 <a style="font-size: 80%" href="/tags/git/">git</a> &mdash; 
 <a style="font-size: 80%" href="/tags/joke/">joke</a> &mdash; 
+<a style="font-size: 80%" href="/tags/marrowmailer/">marrowmailer</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/tags/py2exe/">py2exe</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 80%" href="/tags/python/">python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
 <a style="font-size: 80%" href="/tags/requests/">requests</a>
 

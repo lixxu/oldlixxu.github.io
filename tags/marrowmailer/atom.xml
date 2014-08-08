@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: marrowmailer | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/marrowmailer/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-08-08T17:18:59+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[令人崩溃的 marrow.mailer 的 py2exe 打包历程]]></title>
+    <link href="http://lixxu.me/blog/2014/08/08/suck-marrow-mailer/"/>
+    <updated>2014-08-08T16:10:51+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/08/suck-marrow-mailer</id>
+    <content type="html"><![CDATA[<p>今天在打包一个小工具时, 由于使用 <code>marrow.mailer</code>, 碰到了经典的 <code>py2exe 找不到使用 pip 安装的包</code> 的问题.
+于是使用了以前的大法: <a href="http://www.py2exe.org/index.cgi/ExeWithEggs">http://www.py2exe.org/index.cgi/ExeWithEggs</a>
+再加上又碰到的各种各种的问题. 虽然最后解决了, 但是过程太崩溃了, 不想多说, 只记下过程.</p>
+
+<p>1. 下载 <code>marrow.mailer</code> 压缩包, 解压, 用上面的大法安装
+<code>
+python setup.py install_lib
+</code></p>
+
+<p>2. 同上, 依次安装 <code>marrow.util</code>, <code>marrow.interface</code>, <code>futures</code></p>
+
+<p>3. 程序里类似这样的</p>
+
+<pre><code class="python">#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+
+from marrow.mailer.manager import futures
+from marrow.mailer.transport import smtp
+from marrow.mailer import Mailer, Message
+
+host = 'localhost'
+mailer = Mailer({'manager.use': futures.FuturesManager,
+                 'transport.use': smtp.SMTPTransport,
+                 'transport.host': host,
+                 })
+mailer.start()
+author = (('Sender', 'no-reply@example.com'))
+msg = Message(author=author)
+msg.subject = 'Subject'
+msg.to = ['aaa@example.com']
+msg.plain = 'plain mail'
+msg.rich = 'rich html'
+
+mailer.send(msg)
+mailer.stop()
+</code></pre>
+
+<p>备注:</p>
+
+<p>由于 <code>marrow.mailer</code> 的 bug: <a href="https://github.com/marrow/marrow.mailer/issues/36">https://github.com/marrow/marrow.mailer/issues/36</a> , 导致 <code>manager.use</code>, <code>transport.use</code> 要写成上面的格式, 看了源码才发现.当然这种写法在不需要打包时是不需要的:</p>
+
+<pre><code class="python site-packages\marrow\mailer\__init__.py">
+# ...
+if not isinstance(Manager, IManager):
+    raise TypeError("Chosen manager does not conform to the manager API.")
+
+# ...
+if not isinstance(Transport, ITransport):
+    raise TypeError("Chosen transport does not conform to the transport API.")
+
+# ...
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
