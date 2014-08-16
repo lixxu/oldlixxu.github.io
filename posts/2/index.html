@@ -9,8 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content=" 原文很长, 没看完我就觉得什么也不懂了, 囧. http://fex.baidu.com/blog/2014/05/what-happen/
-">
+  <meta name="description" content="距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘: 来源: http://peterdowns.com/posts/first-time-with-pypi.html 基本操作: 1. 准备好 setup.py, 提供一下 setup.cfg &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/09/how-to-register-pypi/">在 PyPi 上发布软件包</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-09T14:33:10+08:00" pubdate data-updated="true">Jun 9<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/06/09/how-to-register-pypi/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/06/09/how-to-register-pypi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘:</p>
+
+<p>来源: <a href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
+
+<p>基本操作:</p>
+
+<p>1. 准备好 <code>setup.py</code>, 提供一下 <code>setup.cfg</code></p>
+
+<figure class='code'><figcaption><span>setup.cfg </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[metadata]</span>
+</span><span class='line'><span class="na">description-file</span> <span class="o">=</span> <span class="s">README.md</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2. 注册:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按提示做选择就可以了:</p>
+
+<p><img src="http://lixxu.qiniudn.com/pypi.png"></p>
+
+<p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://lixxu.qiniudn.com/pypi_upload.png"></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -581,63 +651,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/">MongoDB是否适合在传统公司使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-27T10:52:35+08:00" pubdate data-updated="true">Feb 27<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>注: 这里的传统公司指的是程序, 系统等只是在内部使用,
-没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
-工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务.</p>
-
-<p>从几年前知道 <code>MongoDB</code> 开始, 我也在公司内部的许多 web 项目上用上了它.
-下面以我当前的情况简单说明一下:</p>
-
-<p>需求: <code>保存设备的测试数据, 维修数据以提供统计分析</code></p>
-
-<p>工厂里数据逻辑不是太复杂, 但是单数据有时候不小, 总量也大.
-比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
-
-<p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
-<img src="http://lixxu.qiniudn.com/data_size.png"></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/27/mongodb-is-ready-for-enterprise/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -659,6 +672,10 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/16/good-prog-tools/">改善生活的好工具</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
       </li>
     
@@ -674,10 +691,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
         <a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/07/25/get-coder-story-text-from-web/">抓取 <<码农故事>> 文本</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -690,7 +703,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
-<li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (2)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (11)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
@@ -729,10 +742,11 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/tags/joke/">joke</a> &mdash; 
 <a style="font-size: 80%" href="/tags/marrowmailer/">marrowmailer</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/tags/prog/">prog</a> &mdash; 
 <a style="font-size: 80%" href="/tags/py2exe/">py2exe</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
-<a style="font-size: 80%" href="/tags/python/">python</a> &mdash; 
+<a style="font-size: 110%" href="/tags/python/">python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
 <a style="font-size: 80%" href="/tags/requests/">requests</a>
 
