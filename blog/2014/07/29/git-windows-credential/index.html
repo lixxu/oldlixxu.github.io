@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>富有的一天 - 杂七杂八记一下</title>
+  <title>Windows下git保存密码 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="从昨天发现刚到手的键盘包有一处漏缝的地方开始, 就开始连连地变得富有起来: 1. 键盘包提手颠倒 2. 今早自行车不见 3. 打车走错路 4. 刚到手没多久的翻新鼠标全新版降到历史价, 还是良心的美亚, 现在的鼠标不光是翻新货, 左键也有了问题, 迟早是个得换微动的料 怎么样, 是不是很富有的一天 &hellip;">
+  <meta name="description" content="更新: 直接保存密码是不行的, 需要安装 git-credential-winstore.
+安装后, 就可以手动添加密码了. 越来越觉得 SourceTree 启动慢, 我都尽量在命令行下使用 git 了 (这样才是正道吧).
+每次的推送都要输入用户名和密码, 用了 _netrc 大法也不管用, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.me/blog/2014/07/29/a-wealthy-day">
+  <link rel="canonical" href="http://lixxu.me/blog/2014/07/29/git-windows-credential">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -81,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">富有的一天</h1>
+      <h1 class="entry-title">Windows下git保存密码</h1>
     
     
       <p class="meta">
@@ -107,22 +109,8 @@
   </header>
 
 
-<div class="entry-content"><p>从昨天发现刚到手的键盘包有一处漏缝的地方开始, 就开始连连地变得富有起来:</p>
-
-<p>1. 键盘包提手颠倒</p>
-
-<p>2. 今早自行车不见</p>
-
-<p>3. 打车走错路</p>
-
-<p>4. 刚到手没多久的翻新鼠标全新版降到历史价, 还是良心的美亚, 现在的鼠标不光是翻新货, 左键也有了问题, 迟早是个得换微动的料</p>
-
-<p>怎么样, 是不是很富有的一天?</p>
-
-<p>不过, 今天还是有点收获的:</p>
-
-<!--more-->
-
+<div class="entry-content"><p>更新: 直接保存密码是不行的, 需要安装 <code>git-credential-winstore</code>.
+安装后, 就可以手动添加密码了.</p>
 
 <p>越来越觉得 <code>SourceTree</code> 启动慢, 我都尽量在命令行下使用 <code>git</code> 了 (这样才是正道吧).
 每次的推送都要输入用户名和密码, 用了 <code>_netrc</code> 大法也不管用, 隐约记得之前可以的, 是人品越来越好了吗?</p>
@@ -130,14 +118,15 @@
 <p>总感觉不甘心, 就翻看 <a href="http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,">http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,</a> 看到 <code>git-credential-winstore</code> 这里, 就进去看看, 下载安装, 很小巧的东西, 才十几K.</p>
 
 <p>接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
-没有安装 <code>git-credential-winstore</code> 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
+没有安装 <code>git-credential-winstore</code> (<a href="https://gitcredentialstore.codeplex.com/">https://gitcredentialstore.codeplex.com/</a>) 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
 
 <p><img src="http://lixxu.qiniudn.com/windows_git_save_password.png"></p>
 
 <p>顺便换上了 <code>度娘</code> 的CDN, 还用上了雅黑字体:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>还有 <code>渣浪</code> 和 <code>小斗士</code> 的:</p>
@@ -147,12 +136,8 @@
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!--more-->
+</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -181,7 +166,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/other/'>other</a>
+    <a class='category' href='/blog/categories/git/'>git</a>
   
 </span>
 
@@ -233,7 +218,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2014/07/29/a-wealthy-day/">富有的一天</a>
+        <a href="/blog/2014/07/29/git-windows-credential/">Windows下git保存密码</a>
       </li>
     
       <li class="post">
@@ -251,12 +236,11 @@
   <ul id="categories">
     <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
 <li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
-<li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
 <li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
 <li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
-<li class='category'><a href='/blog/categories/other/'>other (1)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (11)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
@@ -333,8 +317,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://lixxu.me/blog/2014/07/29/a-wealthy-day/';
-        var disqus_url = 'http://lixxu.me/blog/2014/07/29/a-wealthy-day/';
+        var disqus_identifier = 'http://lixxu.me/blog/2014/07/29/git-windows-credential/';
+        var disqus_url = 'http://lixxu.me/blog/2014/07/29/git-windows-credential/';
         var disqus_script = 'embed.js';
       
     (function () {

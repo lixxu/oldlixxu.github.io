@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-08-08T17:18:59+08:00</updated>
+  <updated>2014-08-16T22:38:14+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -122,26 +122,12 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[富有的一天]]></title>
-    <link href="http://lixxu.me/blog/2014/07/29/a-wealthy-day/"/>
+    <title type="html"><![CDATA[Windows下git保存密码]]></title>
+    <link href="http://lixxu.me/blog/2014/07/29/git-windows-credential/"/>
     <updated>2014-07-29T20:27:58+08:00</updated>
-    <id>http://lixxu.me/blog/2014/07/29/a-wealthy-day</id>
-    <content type="html"><![CDATA[<p>从昨天发现刚到手的键盘包有一处漏缝的地方开始, 就开始连连地变得富有起来:</p>
-
-<p>1. 键盘包提手颠倒</p>
-
-<p>2. 今早自行车不见</p>
-
-<p>3. 打车走错路</p>
-
-<p>4. 刚到手没多久的翻新鼠标全新版降到历史价, 还是良心的美亚, 现在的鼠标不光是翻新货, 左键也有了问题, 迟早是个得换微动的料</p>
-
-<p>怎么样, 是不是很富有的一天?</p>
-
-<p>不过, 今天还是有点收获的:</p>
-
-<!--more-->
-
+    <id>http://lixxu.me/blog/2014/07/29/git-windows-credential</id>
+    <content type="html"><![CDATA[<p>更新: 直接保存密码是不行的, 需要安装 <code>git-credential-winstore</code>.
+安装后, 就可以手动添加密码了.</p>
 
 <p>越来越觉得 <code>SourceTree</code> 启动慢, 我都尽量在命令行下使用 <code>git</code> 了 (这样才是正道吧).
 每次的推送都要输入用户名和密码, 用了 <code>_netrc</code> 大法也不管用, 隐约记得之前可以的, 是人品越来越好了吗?</p>
@@ -149,14 +135,15 @@
 <p>总感觉不甘心, 就翻看 <a href="http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,">http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,</a> 看到 <code>git-credential-winstore</code> 这里, 就进去看看, 下载安装, 很小巧的东西, 才十几K.</p>
 
 <p>接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
-没有安装 <code>git-credential-winstore</code> 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
+没有安装 <code>git-credential-winstore</code> (<a href="https://gitcredentialstore.codeplex.com/">https://gitcredentialstore.codeplex.com/</a>) 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
 
 <p><img src="http://lixxu.qiniudn.com/windows_git_save_password.png"></p>
 
 <p>顺便换上了 <code>度娘</code> 的CDN, 还用上了雅黑字体:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>还有 <code>渣浪</code> 和 <code>小斗士</code> 的:</p>
@@ -166,12 +153,8 @@
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!--more-->
+</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
@@ -1337,11 +1320,19 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[HHKB PRO2]]></title>
+    <title type="html"><![CDATA[有时候, 你总要犒劳下自己]]></title>
     <link href="http://lixxu.me/blog/2014/05/12/hhkb-pro2/"/>
     <updated>2014-05-12T09:19:52+08:00</updated>
     <id>http://lixxu.me/blog/2014/05/12/hhkb-pro2</id>
-    <content type="html"><![CDATA[<p>我中毒了:</p>
+    <content type="html"><![CDATA[<p>更新:<br />
+<font color="red">到手一段时间了, 还是用的 <code>Sublime Text</code>, 惭愧.
+试用后确实已经不习惯其他的键盘了.
+</font></p>
+
+<p>工作照:
+<img src="http://lixxu.qiniudn.com/hhkb_working.png"></p>
+
+<p>虽然一直想试试机械的, 苦等不到红轴的好价, 却没想到等来等去等到中毒了:</p>
 
 <p><a href="http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000">http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000</a>
 <a href="http://ju.outofmemory.cn/entry/28653">http://ju.outofmemory.cn/entry/28653</a></p>
@@ -1349,7 +1340,7 @@
 <p>好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
 <img src="http://lixxu.qiniudn.com/hhkb_pro2_types.png"></p>
 
-<p>随之配合的是, 以后要多用 Vim 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
+<p>随之配合的是, 以后要多用 <code>Vim</code> 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
 ]]></content>
   </entry>
   
