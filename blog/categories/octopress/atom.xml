@@ -4,7 +4,11 @@
   <title><![CDATA[Category: Octopress | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
+<<<<<<< HEAD
   <updated>2014-07-23T10:31:47+08:00</updated>
+=======
+  <updated>2014-08-17T00:31:08+08:00</updated>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -14,6 +18,68 @@
 
   
   <entry>
+<<<<<<< HEAD
+=======
+    <title type="html"><![CDATA[使用七牛作为博客静态文件存放地]]></title>
+    <link href="http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server/"/>
+    <updated>2014-07-28T22:53:29+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server</id>
+    <content type="html"><![CDATA[<p>之前的图片放在 <code>images</code> 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的.</p>
+
+<p>碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 <code>七牛</code>, 而我对七牛算是有点了解, 知道这是一家使用 <code>go</code> 语言作为后台的云存储公司. 又在上海GDG组织的一次活动上听过创始人许式伟的演讲, 所以对七牛比较熟悉, 并且每月有10G的免费流量可以用, 个人用的话应该足够了, 就决定使用七牛放放静态文件.</p>
+
+<p>好了, 不废话了.</p>
+
+<p>1. 首先到官网注册账号 (推荐绑定手机号, 可以有更多的免费资源可用): <a href="https://portal.qiniu.com/signup">https://portal.qiniu.com/signup</a></p>
+
+<!--more-->
+
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_signup.png">http://lixxu.qiniudn.com/qiniu_signup.png</a>&#8221;></p>
+
+<p>2. 创建存储空间, 博客用的话就创建一个公开空间</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_add_space.png">http://lixxu.qiniudn.com/qiniu_add_space.png</a>&#8221;></p>
+
+<p>3. 简单设置一下</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_basic_setting.png">http://lixxu.qiniudn.com/qiniu_basic_setting.png</a>&#8221;></p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_advanced_setting.png">http://lixxu.qiniudn.com/qiniu_advanced_setting.png</a>&#8221;></p>
+
+<p>4. 把密钥记录下来, 待会的上传脚本需要用到</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_key.png">http://lixxu.qiniudn.com/qiniu_key.png</a>&#8221;></p>
+
+<p>5. 到这里下载客户端工具 (<a href="http://developer.qiniu.com/docs/v6/tools/qrsync.html">http://developer.qiniu.com/docs/v6/tools/qrsync.html</a>), 有命令行和图形两种, 参照右面的说明就可以了.</p>
+
+<p>需要注意的是配置文件里 <code>dest</code> 的部分不要像文档里的那样分行显得好看, 全部合并到一行里, 否则会出错. 把红框里的换成你自己的目录, 密钥和空间名.</p>
+
+<p>更多详情可以参考官方文档, 比如本地文件上传后就可以删除了, 如果需要同步删除的应该怎么做等</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_rsync_config.png">http://lixxu.qiniudn.com/qiniu_rsync_config.png</a>&#8221;></p>
+
+<p>6. 创建一个批处理文件, 方便上传, 如 <code>qiniu_pub.bat</code></p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_rsync_bat.png">http://lixxu.qiniudn.com/qiniu_rsync_bat.png</a>&#8221;></p>
+
+<p>7. 以后有需要上传的文件, 就丢到你定义好的 <code>public</code> 文件夹里, 再运行 <code>qiniu_pub.bat</code> 就可以了, 已经同步的文件如果没有修改就不会同步的</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_upload.png">http://lixxu.qiniudn.com/qiniu_upload.png</a>&#8221;></p>
+
+<p>附我的七牛上传的目录结构, 仅供参考:</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_folders.png">http://lixxu.qiniudn.com/qiniu_folders.png</a>&#8221;></p>
+
+<p>好了, 码完收工, 早睡早起.</p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+  <entry>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
     <title type="html"><![CDATA[使用 Thin 作为 Octopress 预览服务器]]></title>
     <link href="http://lixxu.me/blog/2014/01/16/use-thin-as-preview-server/"/>
     <updated>2014-01-16T10:06:15+08:00</updated>
@@ -37,7 +103,11 @@ gem install thin
 </code></p>
 
 <p>&nbsp;2. 更改 <code>Gemfile</code>, 在 <code>development</code> 里面最后添加一行
+<<<<<<< HEAD
 ``` ruby Gemfile
+=======
+&#8220;` ruby Gemfile
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 source &ldquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rdquo;</p>
 
 <p>group :development do
@@ -59,7 +129,11 @@ source &ldquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rdquo;
 end</p>
 
 <p>gem &lsquo;sinatra&rsquo;, &lsquo;~> 1.4.2&rsquo;
+<<<<<<< HEAD
 ```</p>
+=======
+&#8220;`</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <p>&nbsp;3. 重新运行 <code>rake preview</code> 就会使用 <code>Thin</code> 了</p>
 
@@ -93,6 +167,7 @@ end</p>
 <!--more-->
 
 
+<<<<<<< HEAD
 <p>```html source_layouts\default.html
 {% if site.duoshuo_short_name and site.duoshuo_comments == true %}
   <!-- 多说js加载开始，一个页面只需要加载一次 -->
@@ -114,6 +189,25 @@ end</p>
 ```</p>
 
 <p>```html source_includes\post\duoshuo.html</p>
+=======
+<pre><code class="html source\_layouts\default.html">{% if site.duoshuo_short_name and site.duoshuo_comments == true %}
+  &lt;!-- 多说js加载开始，一个页面只需要加载一次 --&gt;
+  &lt;script type="text/javascript"&gt;
+    var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  &lt;/script&gt;
+  &lt;!-- 多说js加载结束，一个页面只需要加载一次 --&gt;
+{% endif %}
+</code></pre>
+
+<p>&#8220;`html source_includes\post\duoshuo.html</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!-- Duoshuo Comment BEGIN -->
 
@@ -126,6 +220,7 @@ end</p>
 
 <p><code>
 </code>html source_includes\article.html
+<<<<<<< HEAD
 {% if site.duoshuo_short_name and page.comments != false and post.comments != false and site.duoshuo_comments == true %}</p>
 
 <pre><code>| &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments"&gt;&lt;span class="ds-thread-count" data-thread-key="{% if index %}{{ post.url }}{% else %}{{ page.url }}{% endif %}" data-count-type="comments"&gt;暂无评论&lt;/span&gt;&lt;/a&gt;
@@ -133,6 +228,12 @@ end</p>
 
 <p>{% endif %}
 ```</p>
+=======
+{% if site.duoshuo_short_name and page.comments != false and post.comments != false and site.duoshuo_comments == true %}
+    | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments"><span class="ds-thread-count" data-thread-key="{% if index %}{{ post.url }}{% else %}{{ page.url }}{% endif %}" data-count-type="comments">暂无评论</span></a>
+{% endif %}
+&#8220;`</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!--more-->
 
@@ -144,7 +245,15 @@ end</p>
     <link href="http://lixxu.me/blog/2014/01/15/use-duoshuo/"/>
     <updated>2014-01-15T09:44:48+08:00</updated>
     <id>http://lixxu.me/blog/2014/01/15/use-duoshuo</id>
+<<<<<<< HEAD
     <content type="html"><![CDATA[<p>参考来源:</p>
+=======
+    <content type="html"><![CDATA[<p>更新:</p>
+
+<p>我又用回 <code>disqus</code> 了, 为什么? 讨厌那个经常弹出来授权过期重新授权的东西, 烦不烦啊?</p>
+
+<p>参考来源:</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <ul>
 <li><a href="http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/">http://dinever.com/blog/2012/12/05/zai-octopresszhong-shi-yong-duo-shuo/</a></li>
@@ -158,7 +267,11 @@ end</p>
 
 
 <p>&nbsp;1. 注册多说, 不必多说, 复制生成的代码到 <code>source\_includes\post</code> 下新建 <code>duoshuo.html</code>
+<<<<<<< HEAD
 ```html</p>
+=======
+&#8220;`html</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!-- Duoshuo Comment BEGIN -->
 
@@ -182,15 +295,22 @@ end</p>
 <!-- Duoshuo Comment END -->
 
 
+<<<<<<< HEAD
 <p>```</p>
 
 <p>&nbsp;2. 编辑 <code>_config.yml</code>, 添加下面两行:
 ```yaml</p>
+=======
+<pre><code>
+&amp;nbsp;2. 编辑 `_config.yml`, 添加下面两行:
+</code></pre>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <h1>duoshuo comments</h1>
 
 <p>duoshuo_comments: true
 duoshuo_short_name: yourname
+<<<<<<< HEAD
 ```</p>
 
 <p>&nbsp;3. 在 <code>source\_layouts\post.html</code> disqus设置下面添加:
@@ -205,6 +325,19 @@ duoshuo_short_name: yourname
 <p>  </section>
 {% endif %}
 ```</p>
+=======
+&#8220;`</p>
+
+<p>&nbsp;3. 在 <code>source\_layouts\post.html</code> disqus设置下面添加:
+<code>html
+{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}
+  &lt;section&gt;
+    &lt;h1&gt;Comments&lt;/h1&gt;
+    &lt;div id="comments" aria-live="polite"&gt;{% include post/duoshuo.html %}&lt;/div&gt;
+  &lt;/section&gt;
+{% endif %}
+</code></p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!--more-->
 
@@ -225,7 +358,11 @@ duoshuo_short_name: yourname
 
 <ol>
 <li>在 <code>plugins</code> 目录下新建一个 ruby 代码文件, 如 <code>category_list_tag.rb</code>
+<<<<<<< HEAD
 ```ruby category_list_tag.rb
+=======
+&#8220;`ruby category_list_tag.rb
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 module Jekyll
 class CategoryListTag &lt; Liquid::Tag
  def render(context)
@@ -234,7 +371,11 @@ class CategoryListTag &lt; Liquid::Tag
    categories.sort.each do |category|
      posts_in_category = context.registers[:site].categories[category].size
      category_dir = context.registers[:site].config[&lsquo;category_dir&rsquo;]
+<<<<<<< HEAD
      category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &lsquo;&ndash;&rsquo;).gsub(/&ndash;{2,}/, &lsquo;&ndash;&rsquo;).downcase)
+=======
+     category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &lsquo;-&rsquo;).gsub(/-{2,}/, &lsquo;-&rsquo;).downcase)
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
      html &lt;&lt; &ldquo;<li class='category'><a href='http://lixxu.me/#{category_url}/'>#{category} (#{posts_in_category})</a></li>\n&rdquo;
    end
    html
@@ -247,13 +388,18 @@ end</li>
 <p>Liquid::Template.register_tag(&lsquo;category_list&rsquo;, Jekyll::CategoryListTag)
 <code>``
 2. 在</code>source/_includes/asides<code>下新建一个 html 文件, 如</code>category_list.html`
+<<<<<<< HEAD
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>category_list.html </span></figcaption>
+=======
+<figure class='code'><figcaption><span>category_list.html </span></figcaption>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<<<<<<< HEAD
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
@@ -392,6 +538,31 @@ git push origin source
 <p>&nbsp;&nbsp;&nbsp;&nbsp;12. 打完收工.</p>
 
 <h5>参考文章 <a href="http://www.xiaoche.me/blog/2012/01/18/install-octopress/">http://www.xiaoche.me/blog/2012/01/18/install-octopress/</a></h5>
+=======
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    {% category_list %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>我还顺手添了一个外部链接列表的边栏 <code>asides/other_links.html</code>, 先添一个, 后续再加
+<code>html asides/other_links.html
+&lt;section&gt;
+  &lt;h1&gt;Links&lt;/h1&gt;
+  &lt;ul id="links"&gt;
+    &lt;li&gt;&lt;a href="https://github.com/lixxu/"&gt;GitHub projects&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+</code>
+3. 修改 <code>_config.yml</code>, 添加分类和外部链接
+<code>yaml _config.yml
+default_asides: [asides/recent_posts.html, asides/category_list.html, asides/other_links.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+</code></p>
+
+<p>另外, 如果想在分类里使用空格, 直接按 html 语法写 <code>CAT1&amp;nbsp;CAT11</code></p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!--more-->
 

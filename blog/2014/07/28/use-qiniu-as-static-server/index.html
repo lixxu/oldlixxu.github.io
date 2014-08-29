@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>使用七牛作为博客静态文件存放地 - 杂七杂八记一下</title>
+  <meta name="author" content="Lix Xu">
+
+  
+  <meta name="description" content="之前的图片放在 images 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的. 碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 七牛, 而我对七牛算是有点了解, 知道这是一家使用 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47125020-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">杂七杂八记一下</a></h1>
+  
+    <h2>花落花开花相似, 岁岁年年人不同</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lixxu.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">使用七牛作为博客静态文件存放地</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-28T22:53:29+08:00" pubdate data-updated="true">Jul 28<sup>th</sup>, 2014</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>之前的图片放在 <code>images</code> 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的.</p>
+
+<p>碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 <code>七牛</code>, 而我对七牛算是有点了解, 知道这是一家使用 <code>go</code> 语言作为后台的云存储公司. 又在上海GDG组织的一次活动上听过创始人许式伟的演讲, 所以对七牛比较熟悉, 并且每月有10G的免费流量可以用, 个人用的话应该足够了, 就决定使用七牛放放静态文件.</p>
+
+<p>好了, 不废话了.</p>
+
+<p>1. 首先到官网注册账号 (推荐绑定手机号, 可以有更多的免费资源可用): <a href="https://portal.qiniu.com/signup">https://portal.qiniu.com/signup</a></p>
+
+<!--more-->
+
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_signup.png"></p>
+
+<p>2. 创建存储空间, 博客用的话就创建一个公开空间</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_add_space.png"></p>
+
+<p>3. 简单设置一下</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_basic_setting.png"></p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_advanced_setting.png"></p>
+
+<p>4. 把密钥记录下来, 待会的上传脚本需要用到</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_key.png"></p>
+
+<p>5. 到这里下载客户端工具 (<a href="http://developer.qiniu.com/docs/v6/tools/qrsync.html">http://developer.qiniu.com/docs/v6/tools/qrsync.html</a>), 有命令行和图形两种, 参照右面的说明就可以了.</p>
+
+<p>需要注意的是配置文件里 <code>dest</code> 的部分不要像文档里的那样分行显得好看, 全部合并到一行里, 否则会出错. 把红框里的换成你自己的目录, 密钥和空间名.</p>
+
+<p>更多详情可以参考官方文档, 比如本地文件上传后就可以删除了, 如果需要同步删除的应该怎么做等</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_rsync_config.png"></p>
+
+<p>6. 创建一个批处理文件, 方便上传, 如 <code>qiniu_pub.bat</code></p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_rsync_bat.png"></p>
+
+<p>7. 以后有需要上传的文件, 就丢到你定义好的 <code>public</code> 文件夹里, 再运行 <code>qiniu_pub.bat</code> 就可以了, 已经同步的文件如果没有修改就不会同步的</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_upload.png"></p>
+
+<p>附我的七牛上传的目录结构, 仅供参考:</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_folders.png"></p>
+
+<p>好了, 码完收工, 早睡早起.</p>
+
+<!--more-->
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-28T22:53:29+08:00" pubdate data-updated="true">Jul 28<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/25/get-coder-story-text-from-web/" title="Previous Post: 抓取 <<码农故事>> 文本">&laquo; 抓取 <<码农故事>> 文本</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/29/git-windows-credential/" title="Next Post: Windows下git保存密码">Windows下git保存密码 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <img src="http://www.gravatar.com/avatar/20d98692a314c016ab84b6304e78467c?s=128" />
+  <p><a href="/about"><strong>Lix Xu</strong></a> - 神仙? 妖怪? 谢谢.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/16/good-prog-tools/">改善生活的好工具</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/07/as-a-man/">作为一个东北人, 被人无数次问过</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/29/git-windows-credential/">Windows下git保存密码</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
+<li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
+<li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
+<li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
+<li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (2)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (11)</a></li>
+<li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/tags/beautifulsoup/">BeautifulSoup</a> &mdash; 
+<a style="font-size: 80%" href="/tags/database/">Database</a> &mdash; 
+<a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
+<a style="font-size: 80%" href="/tags/hhkb/">HHKB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
+<a style="font-size: 158%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
+<a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
+<a style="font-size: 110%" href="/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 80%" href="/tags/thin/">Thin</a> &mdash; 
+<a style="font-size: 80%" href="/tags/web/">Web</a> &mdash; 
+<a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
+<a style="font-size: 80%" href="/tags/bs4/">bs4</a> &mdash; 
+<a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/disqus/">disqus</a> &mdash; 
+<a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
+<a style="font-size: 110%" href="/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 80%" href="/tags/git/">git</a> &mdash; 
+<a style="font-size: 80%" href="/tags/joke/">joke</a> &mdash; 
+<a style="font-size: 80%" href="/tags/marrowmailer/">marrowmailer</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/tags/prog/">prog</a> &mdash; 
+<a style="font-size: 80%" href="/tags/py2exe/">py2exe</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 110%" href="/tags/python/">python</a> &mdash; 
+<a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
+<a style="font-size: 80%" href="/tags/requests/">requests</a>
+
+  </ul>
+</section><section>
+  <h1>Links</h1>
+  <ul id="links">
+    <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
+  </ul>
+</section><section>
+  <h1>Recent Comments</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Lix Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'lixxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server/';
+        var disqus_url = 'http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

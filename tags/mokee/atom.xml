@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Mokee | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/mokee/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-08-17T00:31:08+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Android刷机相关]]></title>
+    <link href="http://lixxu.me/blog/2014/07/01/android-flash-stuff/"/>
+    <updated>2014-07-01T18:31:16+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/01/android-flash-stuff</id>
+    <content type="html"><![CDATA[<p>记录下来备忘:</p>
+
+<p>背景:</p>
+
+<pre><code>1. Nexus 4
+
+2. Mokee 4.4.4
+
+3. TWRP
+</code></pre>
+
+<p>我保存的基带共享链接: <a href="http://pan.baidu.com/s/1gdf4pfd">http://pan.baidu.com/s/1gdf4pfd</a></p>
+
+<p>原帖看这里: <a href="http://bbs.mfunz.com/thread-947343-1-1.html">http://bbs.mfunz.com/thread-947343-1-1.html</a></p>
+
+<p>1. 刷基带, 按照帖子来就可以, 简单就是
+<code>
+1. 进入fastboot
+2. flash-all.bat
+</code></p>
+
+<p>2. 更新TWRP <a href="http://teamw.in/project/twrp2/129">http://teamw.in/project/twrp2/129</a></p>
+
+<pre><code>Download - Recovery Image Method:
+
+Download the newest .img file here
+
+Download the above file.  Turn off your device. Turn on the device and keep
+holding volume down until a menu shows up. The device will now be in fastboot
+mode. Plug the device into your computer.  If you have the right drivers
+installed, your screen should now say FASTBOOT USB.  Run the following command
+via the command line:
+
+fastboot flash recovery recoveryfilename.img
+
+Note that you will need to change the last part to match the name of the file
+that you just downloaded.  You will also need adb and fastboot for your computer.
+</code></pre>
+
+<p>简单讲就是:
+&#8220;`
+1. 下载.img文件
+2. 进入fastboot
+3. 运行 fastboot flash recovery openrecovery-twrp-2.7.1.0-mako.img</p>
+
+<p>注意:
+1. 这里的 openrecovery-twrp-2.7.1.0-mako.img 要换成你对应的名字
+2. fastboot 实际是 fastboot.exe
+&#8220;`</p>
+
+<p>补: 如何进 <code>fastboot</code>?</p>
+
+<pre><code>1. 关机
+2. 电源 + 音量-, 直到出现菜单
+</code></pre>
+
+<p>以上.</p>
+]]></content>
+  </entry>
+  
+</feed>

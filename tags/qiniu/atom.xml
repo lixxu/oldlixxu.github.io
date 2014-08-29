@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: qiniu | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/qiniu/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-08-17T00:31:08+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用七牛作为博客静态文件存放地]]></title>
+    <link href="http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server/"/>
+    <updated>2014-07-28T22:53:29+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server</id>
+    <content type="html"><![CDATA[<p>之前的图片放在 <code>images</code> 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的.</p>
+
+<p>碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 <code>七牛</code>, 而我对七牛算是有点了解, 知道这是一家使用 <code>go</code> 语言作为后台的云存储公司. 又在上海GDG组织的一次活动上听过创始人许式伟的演讲, 所以对七牛比较熟悉, 并且每月有10G的免费流量可以用, 个人用的话应该足够了, 就决定使用七牛放放静态文件.</p>
+
+<p>好了, 不废话了.</p>
+
+<p>1. 首先到官网注册账号 (推荐绑定手机号, 可以有更多的免费资源可用): <a href="https://portal.qiniu.com/signup">https://portal.qiniu.com/signup</a></p>
+
+<!--more-->
+
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_signup.png">http://lixxu.qiniudn.com/qiniu_signup.png</a>&#8221;></p>
+
+<p>2. 创建存储空间, 博客用的话就创建一个公开空间</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_add_space.png">http://lixxu.qiniudn.com/qiniu_add_space.png</a>&#8221;></p>
+
+<p>3. 简单设置一下</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_basic_setting.png">http://lixxu.qiniudn.com/qiniu_basic_setting.png</a>&#8221;></p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_advanced_setting.png">http://lixxu.qiniudn.com/qiniu_advanced_setting.png</a>&#8221;></p>
+
+<p>4. 把密钥记录下来, 待会的上传脚本需要用到</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_key.png">http://lixxu.qiniudn.com/qiniu_key.png</a>&#8221;></p>
+
+<p>5. 到这里下载客户端工具 (<a href="http://developer.qiniu.com/docs/v6/tools/qrsync.html">http://developer.qiniu.com/docs/v6/tools/qrsync.html</a>), 有命令行和图形两种, 参照右面的说明就可以了.</p>
+
+<p>需要注意的是配置文件里 <code>dest</code> 的部分不要像文档里的那样分行显得好看, 全部合并到一行里, 否则会出错. 把红框里的换成你自己的目录, 密钥和空间名.</p>
+
+<p>更多详情可以参考官方文档, 比如本地文件上传后就可以删除了, 如果需要同步删除的应该怎么做等</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_rsync_config.png">http://lixxu.qiniudn.com/qiniu_rsync_config.png</a>&#8221;></p>
+
+<p>6. 创建一个批处理文件, 方便上传, 如 <code>qiniu_pub.bat</code></p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_rsync_bat.png">http://lixxu.qiniudn.com/qiniu_rsync_bat.png</a>&#8221;></p>
+
+<p>7. 以后有需要上传的文件, 就丢到你定义好的 <code>public</code> 文件夹里, 再运行 <code>qiniu_pub.bat</code> 就可以了, 已经同步的文件如果没有修改就不会同步的</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_upload.png">http://lixxu.qiniudn.com/qiniu_upload.png</a>&#8221;></p>
+
+<p>附我的七牛上传的目录结构, 仅供参考:</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/qiniu_folders.png">http://lixxu.qiniudn.com/qiniu_folders.png</a>&#8221;></p>
+
+<p>好了, 码完收工, 早睡早起.</p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: pip | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/pip/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-08-17T00:31:08+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下升级pip]]></title>
+    <link href="http://lixxu.me/blog/2014/05/07/update-pip/"/>
+    <updated>2014-05-07T09:08:11+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/07/update-pip</id>
+    <content type="html"><![CDATA[<p>在Windows下由于pip是个exe的可执行文件, 如果使用<code>pip install -U pip</code>的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
+<code>python -m pip install -U pip</code></p>
+
+<p>记录下备忘.</p>
+
+<p>Linux下是没有这个问题的, 暂时没研究是什么原理.</p>
+]]></content>
+  </entry>
+  
+</feed>

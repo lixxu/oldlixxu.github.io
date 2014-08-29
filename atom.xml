@@ -4,7 +4,11 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
+<<<<<<< HEAD
   <updated>2014-07-23T10:31:47+08:00</updated>
+=======
+  <updated>2014-08-17T00:31:08+08:00</updated>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -14,6 +18,7 @@
 
   
   <entry>
+<<<<<<< HEAD
     <title type="html"><![CDATA[笨鸟海淘晒单]]></title>
     <link href="http://lixxu.me/blog/2014/07/08/ben-niao-haitao/"/>
     <updated>2014-07-08T08:29:54+08:00</updated>
@@ -31,10 +36,211 @@
 <p>只可惜鼠标不是很好. 底部刮痕厉害, 几天后感觉左键不是很好, 有时没有弹性.</p>
 
 <p>好了, 不多说了, 晒单了. 东西很简单, 没有包装盒: 仅鼠标, 爱老婆电池, 数据线, 延长线.</p>
+=======
+    <title type="html"><![CDATA[改善生活的好工具]]></title>
+    <link href="http://lixxu.me/blog/2014/08/16/good-prog-tools/"/>
+    <updated>2014-08-16T23:16:27+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/16/good-prog-tools</id>
+    <content type="html"><![CDATA[<p>只记录, 不作解释.</p>
+
+<p>1. 字体 (雅黑混合)<br />
+    <a href="http://lixxu.qiniudn.com/MSYHMONO.7z">http://lixxu.qiniudn.com/MSYHMONO.7z</a></p>
+
+<p>2. 命令行工具 ConEmu<br />
+    <a href="http://lixxu.qiniudn.com/ConEmuPack.140707.7z">http://lixxu.qiniudn.com/ConEmuPack.140707.7z</a></p>
+
+<p>3. 资源管理器 FreeCommander<br />
+    <a href="http://www.freecommander.com/">http://www.freecommander.com/</a></p>
+
+<p>4. 编辑器 Sublime Text 2<br />
+    <a href="http://lixxu.qiniudn.com/Sublime3.7z">http://lixxu.qiniudn.com/Sublime3.7z</a></p>
+
+<p>5. git 工具 SourceTree<br />
+    <a href="http://www.sourcetreeapp.com/">http://www.sourcetreeapp.com/</a></p>
+
+<p>6. 键盘 HHKB<br />
+    <a href="http://lixxu.me/blog/2014/05/12/hhkb-pro2">有时候, 你总要犒劳下自己</a></p>
+
+<p>7. 电脑 Mac Air Retina (未装备, 未上市)<br />
+    <a href="http://www.apple.com/macbook-air/">http://www.apple.com/macbook-air/</a></p>
+
+<p>8. 显示器 DELL u2414h (未装备)<br />
+    <a href="http://show.smzdm.com/detail/64119">http://show.smzdm.com/detail/64119</a></p>
+
+<p>9. 有史以来最健康舒适的工作座椅 Herman Miller Aeron (未装备)<br />
+    <a href="http://knewone.com/things/herman-miller-aeron">http://knewone.com/things/herman-miller-aeron</a></p>
+
+<p>10. 鼠标 G700s (我的痛, 微动有问题, 无法保修)<br />
+    <a href="http://item.jd.com/875174.html">http://item.jd.com/875174.html</a></p>
+
+<p>待续.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[令人崩溃的 marrow.mailer 的 Py2exe 打包历程]]></title>
+    <link href="http://lixxu.me/blog/2014/08/08/suck-marrow-mailer/"/>
+    <updated>2014-08-08T16:10:51+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/08/suck-marrow-mailer</id>
+    <content type="html"><![CDATA[<p>今天在打包一个小工具时, 由于使用 <code>marrow.mailer</code>, 碰到了经典的 <code>py2exe 找不到使用 pip 安装的包</code> 的问题.
+于是使用了以前的大法: <a href="http://www.py2exe.org/index.cgi/ExeWithEggs">http://www.py2exe.org/index.cgi/ExeWithEggs</a>
+再加上又碰到的各种各种的问题. 虽然最后解决了, 但是过程太崩溃了, 不想多说, 只记下过程.</p>
+
+<p>1. 下载 <code>marrow.mailer</code> 压缩包, 解压, 用上面的大法安装</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py install_lib</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2. 同上, 依次安装 <code>marrow.util</code>, <code>marrow.interface</code>, <code>futures</code></p>
+
+<p>3. 程序里类似这样的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">marrow.mailer.manager</span> <span class="kn">import</span> <span class="n">futures</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">marrow.mailer.transport</span> <span class="kn">import</span> <span class="n">smtp</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">marrow.mailer</span> <span class="kn">import</span> <span class="n">Mailer</span><span class="p">,</span> <span class="n">Message</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">host</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+</span><span class='line'><span class="n">mailer</span> <span class="o">=</span> <span class="n">Mailer</span><span class="p">({</span><span class="s">&#39;manager.use&#39;</span><span class="p">:</span> <span class="n">futures</span><span class="o">.</span><span class="n">FuturesManager</span><span class="p">,</span>
+</span><span class='line'>                 <span class="s">&#39;transport.use&#39;</span><span class="p">:</span> <span class="n">smtp</span><span class="o">.</span><span class="n">SMTPTransport</span><span class="p">,</span>
+</span><span class='line'>                 <span class="s">&#39;transport.host&#39;</span><span class="p">:</span> <span class="n">host</span><span class="p">,</span>
+</span><span class='line'>                 <span class="p">})</span>
+</span><span class='line'><span class="n">mailer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span class='line'><span class="n">author</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Sender&#39;</span><span class="p">,</span> <span class="s">&#39;no-reply@example.com&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">)</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="s">&#39;Subject&#39;</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;aaa@example.com&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">plain</span> <span class="o">=</span> <span class="s">&#39;plain mail&#39;</span>
+</span><span class='line'><span class="n">msg</span><span class="o">.</span><span class="n">rich</span> <span class="o">=</span> <span class="s">&#39;rich html&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mailer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span class='line'><span class="n">mailer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>备注:</p>
+
+<p>由于 <code>marrow.mailer</code> 的 bug: <a href="https://github.com/marrow/marrow.mailer/issues/36">https://github.com/marrow/marrow.mailer/issues/36</a> , 导致 <code>manager.use</code>, <code>transport.use</code> 要写成上面的格式, 看了源码才发现.当然这种写法在不需要打包时是不需要的:</p>
+
+<figure class='code'><figcaption><span>site-packages\marrow\mailer\__init__.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Manager</span><span class="p">,</span> <span class="n">IManager</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Chosen manager does not conform to the manager API.&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Transport</span><span class="p">,</span> <span class="n">ITransport</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Chosen transport does not conform to the transport API.&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># ...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[作为一个东北人, 被人无数次问过]]></title>
+    <link href="http://lixxu.me/blog/2014/08/07/as-a-man/"/>
+    <updated>2014-08-07T18:39:52+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/07/as-a-man</id>
+    <content type="html"><![CDATA[<p>网上看到, 忍不住放到这里收藏下:</p>
+
+<p><img src="http://lixxu.qiniudn.com/dongbeiren.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下git保存密码]]></title>
+    <link href="http://lixxu.me/blog/2014/07/29/git-windows-credential/"/>
+    <updated>2014-07-29T20:27:58+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/29/git-windows-credential</id>
+    <content type="html"><![CDATA[<p>更新: 直接保存密码是不行的, 需要安装 <code>git-credential-winstore</code>.
+安装后, 就可以手动添加密码了.</p>
+
+<p>越来越觉得 <code>SourceTree</code> 启动慢, 我都尽量在命令行下使用 <code>git</code> 了 (这样才是正道吧).
+每次的推送都要输入用户名和密码, 用了 <code>_netrc</code> 大法也不管用, 隐约记得之前可以的, 是人品越来越好了吗?</p>
+
+<p>总感觉不甘心, 就翻看 <a href="http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,">http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,</a> 看到 <code>git-credential-winstore</code> 这里, 就进去看看, 下载安装, 很小巧的东西, 才十几K.</p>
+
+<p>接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
+没有安装 <code>git-credential-winstore</code> (<a href="https://gitcredentialstore.codeplex.com/">https://gitcredentialstore.codeplex.com/</a>) 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
+
+<p><img src="http://lixxu.qiniudn.com/windows_git_save_password.png"></p>
+
+<p>顺便换上了 <code>度娘</code> 的CDN, 还用上了雅黑字体:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还有 <code>渣浪</code> 和 <code>小斗士</code> 的:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用七牛作为博客静态文件存放地]]></title>
+    <link href="http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server/"/>
+    <updated>2014-07-28T22:53:29+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/28/use-qiniu-as-static-server</id>
+    <content type="html"><![CDATA[<p>之前的图片放在 <code>images</code> 目录下, 不过随着博客的文章会越来越多, 将导致整个库变得越来越大, 而这些静态文件是没必要放在库里的.</p>
+
+<p>碰巧在网上看到一篇提问说&#8221; 博客的静态文件都放在哪里托管? &ldquo;, 回答有各种, 也有 <code>七牛</code>, 而我对七牛算是有点了解, 知道这是一家使用 <code>go</code> 语言作为后台的云存储公司. 又在上海GDG组织的一次活动上听过创始人许式伟的演讲, 所以对七牛比较熟悉, 并且每月有10G的免费流量可以用, 个人用的话应该足够了, 就决定使用七牛放放静态文件.</p>
+
+<p>好了, 不废话了.</p>
+
+<p>1. 首先到官网注册账号 (推荐绑定手机号, 可以有更多的免费资源可用): <a href="https://portal.qiniu.com/signup">https://portal.qiniu.com/signup</a></p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!--more-->
 
 
+<<<<<<< HEAD
 <p>本体加所有附件
 <img src="http://lixxu.qiniudn.com/g700s_all.png"></p>
 
@@ -56,6 +262,237 @@
 
 <p>总结:
 这次的翻新不是很满意, 左键有问题, 有时没有弹性, 算是失败的一次购物.</p>
+=======
+<p><img src="http://lixxu.qiniudn.com/qiniu_signup.png"></p>
+
+<p>2. 创建存储空间, 博客用的话就创建一个公开空间</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_add_space.png"></p>
+
+<p>3. 简单设置一下</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_basic_setting.png"></p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_advanced_setting.png"></p>
+
+<p>4. 把密钥记录下来, 待会的上传脚本需要用到</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_key.png"></p>
+
+<p>5. 到这里下载客户端工具 (<a href="http://developer.qiniu.com/docs/v6/tools/qrsync.html">http://developer.qiniu.com/docs/v6/tools/qrsync.html</a>), 有命令行和图形两种, 参照右面的说明就可以了.</p>
+
+<p>需要注意的是配置文件里 <code>dest</code> 的部分不要像文档里的那样分行显得好看, 全部合并到一行里, 否则会出错. 把红框里的换成你自己的目录, 密钥和空间名.</p>
+
+<p>更多详情可以参考官方文档, 比如本地文件上传后就可以删除了, 如果需要同步删除的应该怎么做等</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_rsync_config.png"></p>
+
+<p>6. 创建一个批处理文件, 方便上传, 如 <code>qiniu_pub.bat</code></p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_rsync_bat.png"></p>
+
+<p>7. 以后有需要上传的文件, 就丢到你定义好的 <code>public</code> 文件夹里, 再运行 <code>qiniu_pub.bat</code> 就可以了, 已经同步的文件如果没有修改就不会同步的</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_upload.png"></p>
+
+<p>附我的七牛上传的目录结构, 仅供参考:</p>
+
+<p><img src="http://lixxu.qiniudn.com/qiniu_folders.png"></p>
+
+<p>好了, 码完收工, 早睡早起.</p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[抓取 <<码农故事>> 文本]]></title>
+    <link href="http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web/"/>
+    <updated>2014-07-25T08:46:39+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/25/get-coder-story-text-from-web</id>
+    <content type="html"><![CDATA[<p>偶然看到这样一篇关于码农的小说, 感觉还可以, 就想收集下来慢慢看.
+但是都是网页而且还挺多, 就看看有没有整理好的全本, 搜了一下没找到.</p>
+
+<p>接着就手动复制粘贴, 贴了几篇感觉太枯燥, 就琢磨着如何使用 <code>requests</code> 和 <code>BeautifulSoup</code> 来提取文本.</p>
+
+<p>很少使用 <code>BeautifulSoup</code>, 所以临时去看了一下文档, 开始走起.</p>
+
+<p>1. 先用浏览器的 <code>审查元素</code> 获取分页的页面结构, 这里我们只需要 <code>标题</code> 和 <code>链接地址</code> 即可</p>
+
+<p><img src="http://lixxu.qiniudn.com/coder_page.png"></p>
+
+<!--more-->
+
+
+<p>2. 分析页面内容抓取 <code>标题</code> 和 <code>链接地址</code>, 还一并抓取当前的章节, 否则就没法知道顺序了</p>
+
+<p>3. 根据获取的链接抓取全文</p>
+
+<p>4. 分析全文, 在 <code>entry</code> 下面的 <code>p</code> 和 <code>span</code> 里, 一开始我以为都在 <code>p</code> 结构里, 结果最后发现有的章节是空的, 看了下空的章节的结构, 原来用的是 <code>&lt;div&gt;&lt;span&gt;...&lt;/span&gt;&lt;/div&gt;</code> 的结构</p>
+
+<p><img src="http://lixxu.qiniudn.com/coder_post.png"></p>
+
+<p><img src="http://lixxu.qiniudn.com/coder_post2.png"></p>
+
+<p>5. 这些都确定了后就可以开工了, 当然我是逐步确定的. 我的流程是: 按章节写到单独的文件里, 最后再合并. 好了, <code>Talk is cheap, show me the code.</code>:</p>
+
+<figure class='code'><figcaption><span>coder_story.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os.path</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">requests</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">digit_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;(\d+-?\d*)&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">url</span> <span class="o">=</span> <span class="s">r&#39;http://blog.jobbole.com/tag/</span><span class="si">%E</span><span class="s">7%A0</span><span class="si">%81%</span><span class="s">E5</span><span class="si">%86%</span><span class="s">9C</span><span class="si">%E</span><span class="s">6</span><span class="si">%95%</span><span class="s">85</span><span class="si">%E</span><span class="s">4%BA%8B/page/{}/&#39;</span>
+</span><span class='line'><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;coder_story&#39;</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s">&#39;coder_story&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">&#39;coder_story&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+</span><span class='line'>    <span class="c"># soup = BeautifulSoup(r.content)  # lxml未安装时用这行</span>
+</span><span class='line'>    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s">&#39;lxml&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">meta_title</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">&#39;meta-title&#39;</span><span class="p">):</span>
+</span><span class='line'>        <span class="c"># 我们要的都必须有title</span>
+</span><span class='line'>        <span class="k">if</span> <span class="s">&#39;title&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_title</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">continue</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># 不是这个小说不要</span>
+</span><span class='line'>        <span class="k">if</span> <span class="s">u&#39;老码农原创小说&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_title</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">]:</span>
+</span><span class='line'>            <span class="k">continue</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="n">meta_title</span><span class="p">)</span>  <span class="c"># 打印一下标题</span>
+</span><span class='line'>        <span class="n">href</span> <span class="o">=</span> <span class="n">meta_title</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">)</span>  <span class="c"># 获取文章链接</span>
+</span><span class='line'>        <span class="c"># 获取章节序号</span>
+</span><span class='line'>        <span class="n">found</span> <span class="o">=</span> <span class="n">digit_re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">meta_title</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">continue</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># 个位数章节前补0, 为了后面的合并</span>
+</span><span class='line'>        <span class="n">page_no</span> <span class="o">=</span> <span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">page_no</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">page_no</span> <span class="o">=</span> <span class="s">&#39;0&#39;</span> <span class="o">+</span> <span class="n">page_no</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># 获取文章的内容</span>
+</span><span class='line'>        <span class="n">r2</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+</span><span class='line'>        <span class="c"># s2 = BeautifulSoup(r2.content)  # lxml未安装时用这行</span>
+</span><span class='line'>        <span class="n">s2</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s">&#39;lxml&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">&#39;entry&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;{}.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_no</span><span class="p">),</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span class='line'>            <span class="c"># 内容在 &lt;p&gt;...&lt;/p&gt; 或 &lt;div&gt;&lt;span&gt;...&lt;/span&gt;&lt;/div&gt;里</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">find_all</span><span class="p">([</span><span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="s">&#39;span&#39;</span><span class="p">]):</span>
+</span><span class='line'>                <span class="c"># copyright-meta部分, 跳过</span>
+</span><span class='line'>                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">):</span>
+</span><span class='line'>                    <span class="k">continue</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="c"># 空白行, 文件里写两行空白, 便于阅读</span>
+</span><span class='line'>                <span class="n">text</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</span><span class='line'>                <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="p">:</span>
+</span><span class='line'>                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\r\n\r\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>                    <span class="k">continue</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\r\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="c"># &quot;待续&quot; 的地方, 接着就是另一章了, 插入空行</span>
+</span><span class='line'>                <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">u&#39;&lt;</span><span class="se">\u5f85\u7eed</span><span class="s">&gt;&#39;</span><span class="p">):</span>
+</span><span class='line'>                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\r\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>6. 合并到一个文件, 用 <code>Python</code> 碰到编码错误, 时间紧, 就用批处理好了, 还简单</p>
+
+<figure class='code'><figcaption><span>coder_story.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">copy</span> <span class="o">*.</span><span class="n">txt</span> <span class="err">码农故事</span><span class="o">.</span><span class="n">txt</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7. 打完收工.</p>
+
+<p>后记:</p>
+
+<p>就在合并时, 看到最后的一句话, 马上吐出一升老血:</p>
+
+<p><img src="http://lixxu.qiniudn.com/coder_end.png"></p>
+
+<p><img src="http://lixxu.qiniudn.com/tuxie.gif"></p>
+
+<p>不过, 在 <code>kindle</code> 上还是 txt 的效果好一些, pdf 转换的有些乱码, 不完美.</p>
+
+<p><img src="http://lixxu.qiniudn.com/kindle_bug.png"></p>
+
+<p>附下载地址:</p>
+
+<p>1. TXT <a href="http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.txt">http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.txt</a></p>
+
+<p>2. PDF <a href="http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.pdf">http://lixxu.qiniudn.com/%E7%A0%81%E5%86%9C%E6%95%85%E4%BA%8B.pdf</a></p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <!--more-->
 
@@ -285,6 +722,12 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<<<<<<< HEAD
+=======
+<!--more-->
+
+
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 <p>可是没有可供同步用的服务器, 那时间怎么来呢?</p>
 
 <p>1. 跑一个 web, 可以返回一个 <code>json</code> 的数据, 如:</p>
@@ -504,6 +947,12 @@
 <p>可以使用一个可以连通两个网络的电脑上作为交换数据的中间人, 具体的是使用文件交换还是像 <code>socket</code> 之类的网络接口服务交换就随你的喜好了.</p>
 
 <p>拙见.</p>
+<<<<<<< HEAD
+=======
+
+<!--more-->
+
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 ]]></content>
   </entry>
   
@@ -533,6 +982,12 @@
 按道理说在 sleep 后应该会进入休眠状态, 不应该再占用 CPU.
 不清楚什么原因, 就使用 <code>Python</code> 重写了.</p>
 
+<<<<<<< HEAD
+=======
+<!--more-->
+
+
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 <p>1. 主程序 <code>main.py</code></p>
 
 <figure class='code'><figcaption><span>main.py </span></figcaption>
@@ -705,6 +1160,12 @@
 后来看了下系统日志, 发现是路径的问题. 后面就使用 exe 的绝对路径并且把后面的 <code>confirm</code> 给去掉了才算正常.</p>
 
 <p>本来打算写如何使用 <code>Python</code> 设置系统时间的怎么变成 <code>nssm</code> 了?</p>
+<<<<<<< HEAD
+=======
+
+<!--more-->
+
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 ]]></content>
   </entry>
   
@@ -960,11 +1421,27 @@
   </entry>
   
   <entry>
+<<<<<<< HEAD
     <title type="html"><![CDATA[HHKB PRO2]]></title>
     <link href="http://lixxu.me/blog/2014/05/12/hhkb-pro2/"/>
     <updated>2014-05-12T09:19:52+08:00</updated>
     <id>http://lixxu.me/blog/2014/05/12/hhkb-pro2</id>
     <content type="html"><![CDATA[<p>我中毒了:</p>
+=======
+    <title type="html"><![CDATA[有时候, 你总要犒劳下自己]]></title>
+    <link href="http://lixxu.me/blog/2014/05/12/hhkb-pro2/"/>
+    <updated>2014-05-12T09:19:52+08:00</updated>
+    <id>http://lixxu.me/blog/2014/05/12/hhkb-pro2</id>
+    <content type="html"><![CDATA[<p>更新:<br />
+<font color="red">到手一段时间了, 还是用的 <code>Sublime Text</code>, 惭愧.
+试用后确实已经不习惯其他的键盘了.
+</font></p>
+
+<p>工作照:
+<img src="http://lixxu.qiniudn.com/hhkb_working.png"></p>
+
+<p>虽然一直想试试机械的, 苦等不到红轴的好价, 却没想到等来等去等到中毒了:</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <p><a href="http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000">http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000</a>
 <a href="http://ju.outofmemory.cn/entry/28653">http://ju.outofmemory.cn/entry/28653</a></p>
@@ -972,7 +1449,11 @@
 <p>好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
 <img src="http://lixxu.qiniudn.com/hhkb_pro2_types.png"></p>
 
+<<<<<<< HEAD
 <p>随之配合的是, 以后要多用 Vim 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
+=======
+<p>随之配合的是, 以后要多用 <code>Vim</code> 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 ]]></content>
   </entry>
   
@@ -1117,7 +1598,11 @@
     <link href="http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/"/>
     <updated>2014-05-08T11:46:45+08:00</updated>
     <id>http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text</id>
+<<<<<<< HEAD
     <content type="html"><![CDATA[<p><code>Ctrl+`</code> 或菜单里 <code>View</code> &ndash;> <code>Show Console</code>, 在文本框中输入:</p>
+=======
+    <content type="html"><![CDATA[<p><code>Ctrl+`</code> 或菜单里 <code>View</code> -> <code>Show Console</code>, 在文本框中输入:</p>
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 
 <h1>Sublime3:</h1>
 
@@ -1242,6 +1727,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 ]]></content>
   </entry>
   
+<<<<<<< HEAD
   <entry>
     <title type="html"><![CDATA[MongoDB是否适合在传统公司使用]]></title>
     <link href="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/"/>
@@ -1549,4 +2035,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 ]]></content>
   </entry>
   
+=======
+>>>>>>> d326ff0540e12f51f276153375cfaac02aa2f20f
 </feed>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2014-08-17T00:31:08+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下git保存密码]]></title>
+    <link href="http://lixxu.me/blog/2014/07/29/git-windows-credential/"/>
+    <updated>2014-07-29T20:27:58+08:00</updated>
+    <id>http://lixxu.me/blog/2014/07/29/git-windows-credential</id>
+    <content type="html"><![CDATA[<p>更新: 直接保存密码是不行的, 需要安装 <code>git-credential-winstore</code>.
+安装后, 就可以手动添加密码了.</p>
+
+<p>越来越觉得 <code>SourceTree</code> 启动慢, 我都尽量在命令行下使用 <code>git</code> 了 (这样才是正道吧).
+每次的推送都要输入用户名和密码, 用了 <code>_netrc</code> 大法也不管用, 隐约记得之前可以的, 是人品越来越好了吗?</p>
+
+<p>总感觉不甘心, 就翻看 <a href="http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,">http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,</a> 看到 <code>git-credential-winstore</code> 这里, 就进去看看, 下载安装, 很小巧的东西, 才十几K.</p>
+
+<p>接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
+没有安装 <code>git-credential-winstore</code> (<a href="https://gitcredentialstore.codeplex.com/">https://gitcredentialstore.codeplex.com/</a>) 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
+
+<p><img class="<a" src="href="http://lixxu.qiniudn.com/windows_git_save_password.png">http://lixxu.qiniudn.com/windows_git_save_password.png</a>&#8221;></p>
+
+<p>顺便换上了 <code>度娘</code> 的CDN, 还用上了雅黑字体:
+&#8220;`</p>
+
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+
+<pre><code>
+还有 `渣浪` 和 `小斗士` 的:
+</code></pre>
+
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+
+
+
+
+<script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>
+
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下使用ssh连接github]]></title>
+    <link href="http://lixxu.me/blog/2014/01/14/windows-git-ssh/"/>
+    <updated>2014-01-14T18:56:34+08:00</updated>
+    <id>http://lixxu.me/blog/2014/01/14/windows-git-ssh</id>
+    <content type="html"><![CDATA[<p>在<a href="/blog/2014/01/14/first-post/">上一篇</a>中大概介绍了初始环境的搭建, 不过发现在Windows下部署时出了点问题,
+问了下狗, 找到解决方法了, 暂时记下来.</p>
+
+<p><strong>注:</strong> 我用的是 <a href="http://www.syntevo.com/smartgithg/">SmartGitHg</a> 带的git程序.</p>
+
+<!--more-->
+
+
+<h4>1. 生成ssh key文件</h4>
+
+<p>键入文件名, 如 <code>id_rsa.github</code>
+<code>
+ssh-keygen -C your_email_address@email.com -t rsa
+</code></p>
+
+<h4>2. 添加到github</h4>
+
+<p>到<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>添加刚刚创建的key, 标题随便写, 把 <code>id_rsa.github.pub</code> 公钥里的内容复制粘贴到 <code>Key</code> 里面</p>
+
+<h4>3. 复制密钥文件</h4>
+
+<p>复制 <code>id_rsa.github</code> 和 <code>id_rsa.github.pub</code> 到<code>[SmartGitHg folder]\git\.ssh</code>文件夹下</p>
+
+<h4>4. 测试</h4>
+
+<p>运行<code>[SmartGitHg folder]\git\git-bash.bat</code> 或 <code>git-cmd.bat</code>进行测试
+<code>
+ssh -T git@github.com
+</code>
+如果出现<code>Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.</code>就说明成功了. 以后就可以直接提交了</p>
+
+<p><font color="red"><strong>注</strong>: 不能直接使用 <strong>cmd.exe</strong> 进行测试和提交</font></p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+</feed>
