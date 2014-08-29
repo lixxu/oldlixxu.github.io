@@ -44,7 +44,7 @@ tags: prog python
     <http://flask.pocoo.org/>
 
 13\. Git (最好用的版本管控软件, 没有之一, 内部用可以试试 gitlab, 很好很强大, oschina的代码托管就是基于它)<br />
-    [Git](http://git-scm.com/)<br />
+    [官方Git](http://git-scm.com/)<br />
     [史上最浅显易懂的Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
 14\. Postgresql (最强大的开源数据库, 有的特性连一些商业数据库都不具备)<br />
