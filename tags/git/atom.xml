@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: git | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/git/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-08-08T17:18:59+08:00</updated>
+  <updated>2014-08-29T09:16:15+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -14,26 +14,12 @@
 
   
   <entry>
-    <title type="html"><![CDATA[富有的一天]]></title>
-    <link href="http://lixxu.me/blog/2014/07/29/a-wealthy-day/"/>
+    <title type="html"><![CDATA[Windows下git保存密码]]></title>
+    <link href="http://lixxu.me/blog/2014/07/29/git-windows-credential/"/>
     <updated>2014-07-29T20:27:58+08:00</updated>
-    <id>http://lixxu.me/blog/2014/07/29/a-wealthy-day</id>
-    <content type="html"><![CDATA[<p>从昨天发现刚到手的键盘包有一处漏缝的地方开始, 就开始连连地变得富有起来:</p>
-
-<p>1. 键盘包提手颠倒</p>
-
-<p>2. 今早自行车不见</p>
-
-<p>3. 打车走错路</p>
-
-<p>4. 刚到手没多久的翻新鼠标全新版降到历史价, 还是良心的美亚, 现在的鼠标不光是翻新货, 左键也有了问题, 迟早是个得换微动的料</p>
-
-<p>怎么样, 是不是很富有的一天?</p>
-
-<p>不过, 今天还是有点收获的:</p>
-
-<!--more-->
-
+    <id>http://lixxu.me/blog/2014/07/29/git-windows-credential</id>
+    <content type="html"><![CDATA[<p>更新: 直接保存密码是不行的, 需要安装 <code>git-credential-winstore</code>.
+安装后, 就可以手动添加密码了.</p>
 
 <p>越来越觉得 <code>SourceTree</code> 启动慢, 我都尽量在命令行下使用 <code>git</code> 了 (这样才是正道吧).
 每次的推送都要输入用户名和密码, 用了 <code>_netrc</code> 大法也不管用, 隐约记得之前可以的, 是人品越来越好了吗?</p>
@@ -41,7 +27,7 @@
 <p>总感觉不甘心, 就翻看 <a href="http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,">http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,</a> 看到 <code>git-credential-winstore</code> 这里, 就进去看看, 下载安装, 很小巧的东西, 才十几K.</p>
 
 <p>接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
-没有安装 <code>git-credential-winstore</code> 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
+没有安装 <code>git-credential-winstore</code> (<a href="https://gitcredentialstore.codeplex.com/">https://gitcredentialstore.codeplex.com/</a>) 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
 
 <p><img class="<a" src="href="http://lixxu.qiniudn.com/windows_git_save_password.png">http://lixxu.qiniudn.com/windows_git_save_password.png</a>&#8221;></p>
 
@@ -64,9 +50,6 @@
 
 
 <p>&#8220;`</p>
-
-<!--more-->
-
 ]]></content>
   </entry>
   

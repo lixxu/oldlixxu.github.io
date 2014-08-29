@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-08-08T17:18:59+08:00</updated>
+  <updated>2014-08-29T09:16:15+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[改善生活的好工具]]></title>
+    <link href="http://lixxu.me/blog/2014/08/16/good-prog-tools/"/>
+    <updated>2014-08-16T23:16:27+08:00</updated>
+    <id>http://lixxu.me/blog/2014/08/16/good-prog-tools</id>
+    <content type="html"><![CDATA[<p>只记录, 不作解释.</p>
+
+<p>1. 字体 (雅黑混合)<br />
+    <a href="http://lixxu.qiniudn.com/MSYHMONO.7z">http://lixxu.qiniudn.com/MSYHMONO.7z</a></p>
+
+<p>2. 命令行工具 ConEmu<br />
+    <a href="http://lixxu.qiniudn.com/ConEmuPack.140707.7z">http://lixxu.qiniudn.com/ConEmuPack.140707.7z</a></p>
+
+<p>3. 资源管理器 FreeCommander<br />
+    <a href="http://www.freecommander.com/">http://www.freecommander.com/</a></p>
+
+<p>4. 编辑器 Sublime Text 2<br />
+    <a href="http://lixxu.qiniudn.com/Sublime3.7z">http://lixxu.qiniudn.com/Sublime3.7z</a></p>
+
+<p>5. git 工具 SourceTree<br />
+    <a href="http://www.sourcetreeapp.com/">http://www.sourcetreeapp.com/</a></p>
+
+<p>6. 键盘 HHKB<br />
+    <a href="http://lixxu.me/blog/2014/05/12/hhkb-pro2">有时候, 你总要犒劳下自己</a></p>
+
+<p>7. 电脑 Mac Air Retina<br />
+    <a href="http://www.apple.com/macbook-air/">http://www.apple.com/macbook-air/</a></p>
+
+<p>8. 显示器 DELL u2414h<br />
+    <a href="http://show.smzdm.com/detail/64119">http://show.smzdm.com/detail/64119</a></p>
+
+<p>9. 有史以来最健康舒适的工作座椅 Herman Miller Aeron<br />
+    <a href="http://knewone.com/things/herman-miller-aeron">http://knewone.com/things/herman-miller-aeron</a></p>
+
+<p>10. 鼠标 G700s (快捷键复制, 剪切, 粘贴, 关闭窗口, 后退, 前进等, 谁用谁知道)</p>
+
+<p>11. tornado (异步, 高性能, 值得拥有, 学习中&hellip;)<br />
+    <a href="http://www.tornadoweb.org/en/stable/">http://www.tornadoweb.org/en/stable/</a></p>
+
+<p>12. flask (文档最好的微框架, 看完后基本了解 web 是怎么一回事了, 扩展很方便)<br />
+    <a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></p>
+
+<p>13. Git (最好用的版本管控软件, 没有之一, 内部用可以试试 gitlab, 很好很强大, oschina的代码托管就是基于它)<br />
+    <a href="http://git-scm.com/">Git</a><br />
+    <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">史上最浅显易懂的Git教程</a></p>
+
+<p>14. Postgresql (最强大的开源数据库, 有的特性连一些商业数据库都不具备)<br />
+    <a href="http://www.postgresql.org/">http://www.postgresql.org/</a></p>
+
+<p>15. mongodb (很强大的 NoSQL 文档数据库, 值得一试)<br />
+    <a href="http://www.mongodb.org/">http://www.mongodb.org/</a></p>
+
+<p>顺序乱, 想哪写哪.</p>
+
+<p>待续.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[令人崩溃的 marrow.mailer 的 Py2exe 打包历程]]></title>
@@ -122,26 +180,12 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[富有的一天]]></title>
-    <link href="http://lixxu.me/blog/2014/07/29/a-wealthy-day/"/>
+    <title type="html"><![CDATA[Windows下git保存密码]]></title>
+    <link href="http://lixxu.me/blog/2014/07/29/git-windows-credential/"/>
     <updated>2014-07-29T20:27:58+08:00</updated>
-    <id>http://lixxu.me/blog/2014/07/29/a-wealthy-day</id>
-    <content type="html"><![CDATA[<p>从昨天发现刚到手的键盘包有一处漏缝的地方开始, 就开始连连地变得富有起来:</p>
-
-<p>1. 键盘包提手颠倒</p>
-
-<p>2. 今早自行车不见</p>
-
-<p>3. 打车走错路</p>
-
-<p>4. 刚到手没多久的翻新鼠标全新版降到历史价, 还是良心的美亚, 现在的鼠标不光是翻新货, 左键也有了问题, 迟早是个得换微动的料</p>
-
-<p>怎么样, 是不是很富有的一天?</p>
-
-<p>不过, 今天还是有点收获的:</p>
-
-<!--more-->
-
+    <id>http://lixxu.me/blog/2014/07/29/git-windows-credential</id>
+    <content type="html"><![CDATA[<p>更新: 直接保存密码是不行的, 需要安装 <code>git-credential-winstore</code>.
+安装后, 就可以手动添加密码了.</p>
 
 <p>越来越觉得 <code>SourceTree</code> 启动慢, 我都尽量在命令行下使用 <code>git</code> 了 (这样才是正道吧).
 每次的推送都要输入用户名和密码, 用了 <code>_netrc</code> 大法也不管用, 隐约记得之前可以的, 是人品越来越好了吗?</p>
@@ -149,14 +193,15 @@
 <p>总感觉不甘心, 就翻看 <a href="http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,">http://stackoverflow.com/questions/6031214/git-how-to-use-netrc-file-on-windows-to-save-user-and-password,</a> 看到 <code>git-credential-winstore</code> 这里, 就进去看看, 下载安装, 很小巧的东西, 才十几K.</p>
 
 <p>接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
-没有安装 <code>git-credential-winstore</code> 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
+没有安装 <code>git-credential-winstore</code> (<a href="https://gitcredentialstore.codeplex.com/">https://gitcredentialstore.codeplex.com/</a>) 的同学可以手动添加试试, 此法仅限于 <code>http</code> 方式的验证, 不适合 <code>ssh</code> 模式.</p>
 
 <p><img src="http://lixxu.qiniudn.com/windows_git_save_password.png"></p>
 
 <p>顺便换上了 <code>度娘</code> 的CDN, 还用上了雅黑字体:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>还有 <code>渣浪</code> 和 <code>小斗士</code> 的:</p>
@@ -166,12 +211,8 @@
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!--more-->
+</span><span class='line'>&lt;script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
@@ -1337,11 +1378,19 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[HHKB PRO2]]></title>
+    <title type="html"><![CDATA[有时候, 你总要犒劳下自己]]></title>
     <link href="http://lixxu.me/blog/2014/05/12/hhkb-pro2/"/>
     <updated>2014-05-12T09:19:52+08:00</updated>
     <id>http://lixxu.me/blog/2014/05/12/hhkb-pro2</id>
-    <content type="html"><![CDATA[<p>我中毒了:</p>
+    <content type="html"><![CDATA[<p>更新:<br />
+<font color="red">到手一段时间了, 还是用的 <code>Sublime Text</code>, 惭愧.
+试用后确实已经不习惯其他的键盘了.
+</font></p>
+
+<p>工作照:
+<img src="http://lixxu.qiniudn.com/hhkb_working.png"></p>
+
+<p>虽然一直想试试机械的, 苦等不到红轴的好价, 却没想到等来等去等到中毒了:</p>
 
 <p><a href="http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000">http://knewone.com/things/hhkb-pro-2/reviews/536c3b0731302d3b70ed0000</a>
 <a href="http://ju.outofmemory.cn/entry/28653">http://ju.outofmemory.cn/entry/28653</a></p>
@@ -1349,7 +1398,7 @@
 <p>好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
 <img src="http://lixxu.qiniudn.com/hhkb_pro2_types.png"></p>
 
-<p>随之配合的是, 以后要多用 Vim 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
+<p>随之配合的是, 以后要多用 <code>Vim</code> 了, 或许再学习下 <code>神的编辑器: EMACS</code>?</p>
 ]]></content>
   </entry>
   
@@ -1613,81 +1662,6 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <p>ActionScript</p>
 
 <p><img src="http://lixxu.qiniudn.com/actionscript-human.png"></p>
-
-<!--more-->
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MongoDB是否适合在传统公司使用]]></title>
-    <link href="http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise/"/>
-    <updated>2014-02-27T10:52:35+08:00</updated>
-    <id>http://lixxu.me/blog/2014/02/27/mongodb-is-ready-for-enterprise</id>
-    <content type="html"><![CDATA[<p>注: 这里的传统公司指的是程序, 系统等只是在内部使用,
-没有对外提供软件服务的公司, 比如工厂等, 下面就以工厂代替.
-工厂里的服务器不会太多, 可能只有一台, 还要提供多种服务.</p>
-
-<p>从几年前知道 <code>MongoDB</code> 开始, 我也在公司内部的许多 web 项目上用上了它.
-下面以我当前的情况简单说明一下:</p>
-
-<p>需求: <code>保存设备的测试数据, 维修数据以提供统计分析</code></p>
-
-<p>工厂里数据逻辑不是太复杂, 但是单数据有时候不小, 总量也大.
-比如: 某客户的每个产品的测试数据有几K, 几十K, 或上百K, 每月有几万, 几十万或上百万的数据, 当然也有更多的, 取决于产量的多少. 有的产品没有一次测试通过, 需要测试第二次或更多次. 没有测试通过的产品会送到维修区进行维修, 维修的记录也要保存下来, 等等.</p>
-
-<p>这里的图片是一个用于管理维修的 <code>flask</code> 项目的数据.
-<img src="http://lixxu.qiniudn.com/data_size.png"></p>
-
-<!--more-->
-
-
-<p>可以看到, 此服务器的内存为 <code>4G</code>, 数据为 <code>1.23G</code>, 索引为 <code>1.56G</code>, 可用的内存还有 <code>1.55G</code>.
-这个项目从去年3月底开始试运行, 到现在差不多有一年的数据量 (430W).<br />
-可以预见的是在接下来差不多一年左右, 服务器的内存就要被吃光了, 而且这个吃光是实实在在的吃光, 因为 <code>MongoDB</code> 会把 <code>索引</code> 全部放进内存中, 如果内存容不下 <code>索引 + 工作集 (working set)</code>, 会导致性能急剧下降, 甚至达到不可用的程度.</p>
-
-<p>解决方法无非有这几个:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1. 做 Shard, 把数据分到多台服务器上
-</span><span class='line'>2. 增加内存
-</span><span class='line'>3. 优化索引, 只保留确实需要的
-</span><span class='line'>4. 用 SSD 代替 HDD</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而对我所在工厂有效的只有2 和 3, 可是我在用一台PC作服务器, 我会说吗?
-有时候工厂就是这种情况, 由于不是IT部门, 所以基本上没有正规的服务器使用, 大多时候都是使用普通PC作为服务器.
-就是可以加内存, 也不能无限地加, 随着时间的推移, 数据会越来越多, 迟早有吃尽内存的那天.</p>
-
-<p>在设计数据库的结构时, 有几点没有考虑到:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1. 没有预见到数据有这么大
-</span><span class='line'>2. 数据量大的 collection 的字段没有使用尽量短的命名</span></code></pre></td></tr></table></div></figure>
-
-
-<p>当然对数据量不大的项目来说, <code>MongoDB</code> 还是一个不错的选择:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1. 无需定义表结构, 随时增加/删除字段, 这也是我在开始选择它的原因. 没有在工厂里需求三天一变的体验过的人是不知道这个是多么重要的, 个人猜测互联网公司选择 `MongoDB` 也是看中它的快速开发
-</span><span class='line'>2. 速度够快, 可以支持列表, 字典等复杂数据类型, 可以让逻辑更简单</span></code></pre></td></tr></table></div></figure>
-
-
-<p>乱七八糟地说了这么多, 我的结论是:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>如果你没有可以自由使用的服务器的话, 并且数据量较大, 那就不要使用它了, 老老实实地使用关系数据库吧.
-</span><span class='line'>我也会在接下来的时间把数据库换成 PostgreSQL.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>以后的关注点也将集中在: <code>SQLAlchemy</code>, <code>PostgreSQL</code>.
-对了, 我的工作环境基于: <code>Python</code>, <code>flask</code></p>
 
 <!--more-->
 
