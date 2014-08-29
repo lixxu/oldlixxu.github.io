@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2014-08-29T09:35:26+08:00</updated>
+  <updated>2014-08-29T11:12:40+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -56,7 +56,7 @@
     <a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></p>
 
 <p>13. Git (最好用的版本管控软件, 没有之一, 内部用可以试试 gitlab, 很好很强大, oschina的代码托管就是基于它)<br />
-    <a href="http://git-scm.com/">Git</a><br />
+    <a href="http://git-scm.com/">官方Git</a><br />
     <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">史上最浅显易懂的Git教程</a></p>
 
 <p>14. Postgresql (最强大的开源数据库, 有的特性连一些商业数据库都不具备)<br />
