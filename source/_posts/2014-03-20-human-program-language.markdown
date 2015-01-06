@@ -15,70 +15,70 @@ categories: prog
 Python
 
 
-{% img http://lixxu.qiniudn.com/python-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/python-human.png %}
 <!--more-->
 Java
 
 
-{% img http://lixxu.qiniudn.com/java-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/java-human.png %}
 
 C++
 
 
-{% img http://lixxu.qiniudn.com/cpp-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/cpp-human.png %}
 
 Ruby
 
 
-{% img http://lixxu.qiniudn.com/ruby-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/ruby-human.png %}
 
 PHP
 
 
-{% img http://lixxu.qiniudn.com/php-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/php-human.png %}
 
 C#
 
 
-{% img http://lixxu.qiniudn.com/csharp-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/csharp-human.png %}
 
 JavaScript
 
 
-{% img http://lixxu.qiniudn.com/js-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/js-human.png %}
 
 Perl
 
 
-{% img http://lixxu.qiniudn.com/perl-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/perl-human.png %}
 
 C
 
 
-{% img http://lixxu.qiniudn.com/c-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/c-human.png %}
 
 VisualBasic
 
 
-{% img http://lixxu.qiniudn.com/vb-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/vb-human.png %}
 
 R
 
 
-{% img http://lixxu.qiniudn.com/r-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/r-human.png %}
 
 Scala
 
 
-{% img http://lixxu.qiniudn.com/scala-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/scala-human.png %}
 
 Shell
 
 
-{% img http://lixxu.qiniudn.com/shell-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/shell-human.png %}
 
 ActionScript
 
 
-{% img http://lixxu.qiniudn.com/actionscript-human.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/actionscript-human.png %}
 <!--more-->

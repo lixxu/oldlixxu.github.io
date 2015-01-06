@@ -18,3 +18,8 @@ group :development do
 end
 
 gem 'sinatra', '~> 1.4.2'
+
+require 'rbconfig'
+if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
+  gem 'wdm', '>= 0.1.0'
+end

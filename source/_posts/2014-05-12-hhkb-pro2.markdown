@@ -12,7 +12,7 @@ tags: HHKB
 </font>
 
 工作照:
-{% img http://lixxu.qiniudn.com/hhkb_working.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/hhkb_working.png %}
 
 虽然一直想试试机械的, 苦等不到红轴的好价, 却没想到等来等去等到中毒了:
 
@@ -20,6 +20,6 @@ tags: HHKB
 <http://ju.outofmemory.cn/entry/28653>
 
 好吧, 我决定败个 type-s 无刻的, 到时候就会是这样的, 是不是很装X?
-{% img http://lixxu.qiniudn.com/hhkb_pro2_types.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/hhkb_pro2_types.png %}
 
 随之配合的是, 以后要多用 `Vim` 了, 或许再学习下 `神的编辑器: EMACS`?

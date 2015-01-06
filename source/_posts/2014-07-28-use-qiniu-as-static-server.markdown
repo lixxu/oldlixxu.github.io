@@ -14,21 +14,21 @@ tags: Octopress qiniu
 
 1\. 首先到官网注册账号 (推荐绑定手机号, 可以有更多的免费资源可用): https://portal.qiniu.com/signup
 <!--more-->
-{% img http://lixxu.qiniudn.com/qiniu_signup.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_signup.png %}
 
 2\. 创建存储空间, 博客用的话就创建一个公开空间
 
-{% img http://lixxu.qiniudn.com/qiniu_add_space.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_add_space.png %}
 
 3\. 简单设置一下
 
-{% img http://lixxu.qiniudn.com/qiniu_basic_setting.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_basic_setting.png %}
 
-{% img http://lixxu.qiniudn.com/qiniu_advanced_setting.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_advanced_setting.png %}
 
 4\. 把密钥记录下来, 待会的上传脚本需要用到
 
-{% img http://lixxu.qiniudn.com/qiniu_key.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_key.png %}
 
 5\. 到这里下载客户端工具 (http://developer.qiniu.com/docs/v6/tools/qrsync.html), 有命令行和图形两种, 参照右面的说明就可以了.
 
@@ -36,19 +36,19 @@ tags: Octopress qiniu
 
 更多详情可以参考官方文档, 比如本地文件上传后就可以删除了, 如果需要同步删除的应该怎么做等
 
-{% img http://lixxu.qiniudn.com/qiniu_rsync_config.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_rsync_config.png %}
 
 6\. 创建一个批处理文件, 方便上传, 如 `qiniu_pub.bat`
 
-{% img http://lixxu.qiniudn.com/qiniu_rsync_bat.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_rsync_bat.png %}
 
 7\. 以后有需要上传的文件, 就丢到你定义好的 `public` 文件夹里, 再运行 `qiniu_pub.bat` 就可以了, 已经同步的文件如果没有修改就不会同步的
 
-{% img http://lixxu.qiniudn.com/qiniu_upload.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_upload.png %}
 
 附我的七牛上传的目录结构, 仅供参考:
 
-{% img http://lixxu.qiniudn.com/qiniu_folders.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/qiniu_folders.png %}
 
 好了, 码完收工, 早睡早起.
 <!--more-->

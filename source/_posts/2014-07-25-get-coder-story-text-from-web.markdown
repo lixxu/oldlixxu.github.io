@@ -15,7 +15,7 @@ tags: Python requests bs4 BeautifulSoup
 
 1\. 先用浏览器的 `审查元素` 获取分页的页面结构, 这里我们只需要 `标题` 和 `链接地址` 即可
 
-{% img http://lixxu.qiniudn.com/coder_page.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/coder_page.png %}
 
 <!--more-->
 
@@ -25,9 +25,9 @@ tags: Python requests bs4 BeautifulSoup
 
 4\. 分析全文, 在 `entry` 下面的 `p` 和 `span` 里, 一开始我以为都在 `p` 结构里, 结果最后发现有的章节是空的, 看了下空的章节的结构, 原来用的是 `<div><span>...</span></div>` 的结构
 
-{% img http://lixxu.qiniudn.com/coder_post.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/coder_post.png %}
 
-{% img http://lixxu.qiniudn.com/coder_post2.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/coder_post2.png %}
 
 5\. 这些都确定了后就可以开工了, 当然我是逐步确定的. 我的流程是: 按章节写到单独的文件里, 最后再合并. 好了, `Talk is cheap, show me the code.`:
 
@@ -108,18 +108,18 @@ copy *.txt 码农故事.txt
 
 就在合并时, 看到最后的一句话, 马上吐出一升老血:
 
-{% img http://lixxu.qiniudn.com/coder_end.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/coder_end.png %}
 
-{% img http://lixxu.qiniudn.com/tuxie.gif %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/tuxie.gif %}
 
 不过, 在 `kindle` 上还是 txt 的效果好一些, pdf 转换的有些乱码, 不完美.
 
-{% img http://lixxu.qiniudn.com/kindle_bug.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/kindle_bug.png %}
 
 附下载地址:
 
-1\. TXT http://lixxu.qiniudn.com/码农故事.txt
+1\. TXT http://7ktor3.com1.z0.glb.clouddn.com/码农故事.txt
 
-2\. PDF http://lixxu.qiniudn.com/码农故事.pdf
+2\. PDF http://7ktor3.com1.z0.glb.clouddn.com/码农故事.pdf
 
 <!--more-->

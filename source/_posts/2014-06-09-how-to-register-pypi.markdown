@@ -28,7 +28,7 @@ python setup.py register -r pypi
 
 按提示做选择就可以了:
 
-{% img http://lixxu.qiniudn.com/pypi.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/pypi.png %}
 
 3\. 上传, 一串字符滚过之后看到 `200` 就 OK 了
 
@@ -36,4 +36,4 @@ python setup.py register -r pypi
 python setup.py upload -r pypi
 {% endcodeblock %}
 
-{% img http://lixxu.qiniudn.com/pypi_upload.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/pypi_upload.png %}

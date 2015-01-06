@@ -17,7 +17,7 @@ tags: git
 接着再推送时, 弹出对话框, 输入用户名和密码, 就可以了. 看这个窗口的架势, 是在系统的密码管理里面, 进去一看, 果不其然, 在通用安全里, 静静地躺着刚刚保存的密码.
 没有安装 `git-credential-winstore` (https://gitcredentialstore.codeplex.com/) 的同学可以手动添加试试, 此法仅限于 `http` 方式的验证, 不适合 `ssh` 模式.
 
-{% img http://lixxu.qiniudn.com/windows_git_save_password.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/windows_git_save_password.png %}
 
 顺便换上了 `度娘` 的CDN, 还用上了雅黑字体:
 ```

@@ -10,7 +10,7 @@ tags: Python ctypes
 最近有在 Windows 命令行程序下打印彩色文字的需要, 放了半天狗, 试了几个包, 都不是很满意, 最后还是使用决定 `ctypes`.
 
 先看下例子 (超过 15 好像就是背景色了):
-{% img http://lixxu.qiniudn.com/color_terminal.png %}
+{% img http://7ktor3.com1.z0.glb.clouddn.com/color_terminal.png %}
 <!--more-->
 具体用法(Python 2.7.6下):
 ```python color_terminal_test.py

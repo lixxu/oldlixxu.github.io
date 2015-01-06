@@ -9,16 +9,16 @@ tags: prog python
 只记录, 不作解释.
 
 1\. 字体 (雅黑混合)<br />
-    <http://lixxu.qiniudn.com/MSYHMONO.7z>
+    <http://7ktor3.com1.z0.glb.clouddn.com/MSYHMONO.7z>
 
 2\. 命令行工具 ConEmu<br />
-    <http://lixxu.qiniudn.com/ConEmuPack.140707.7z>
+    <http://7ktor3.com1.z0.glb.clouddn.com/ConEmuPack.140707.7z>
 
 3\. 资源管理器 FreeCommander<br />
     <http://www.freecommander.com/>
 
 4\. 编辑器 Sublime Text 2<br />
-    <http://lixxu.qiniudn.com/Sublime3.7z>
+    <http://7ktor3.com1.z0.glb.clouddn.com/Sublime3.7z>
 
 5\. git 工具 SourceTree<br />
     <http://www.sourcetreeapp.com/>
