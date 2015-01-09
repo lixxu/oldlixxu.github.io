@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: xiaomi | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/xiaomi/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2015-01-09T20:41:43+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[小米1/1S刷魔趣4.4.4]]></title>
+    <link href="http://lixxu.me/blog/2015/01/09/mi-flash-mokee/"/>
+    <updated>2015-01-09T19:30:01+08:00</updated>
+    <id>http://lixxu.me/blog/2015/01/09/mi-flash-mokee</id>
+    <content type="html"><![CDATA[<p>小米1已经是很老的机器了, 以至于 <code>MIUI</code> 都放弃了它 (最新系统是开发版 V5 4.12.5).
+而民间的系统魔趣却有最新的 <code>Android 4.4.4</code> 可以刷 (<a href="http://download.mokeedev.com/?device=mione_plus">http://download.mokeedev.com/?device=mione_plus</a>), 于是没忍住, 今天查了下教程, 开刷, 这里记下步骤.</p>
+
+<p><font color="red">刷前确保电量充足</font></p>
+
+<p>主要参考: <a href="http://bbs.xiaomi.cn/thread-9531742-1-1.html">http://bbs.xiaomi.cn/thread-9531742-1-1.html</a></p>
+
+<p>附上需要用到的文件:<br />
+1. 小米1驱动<br />
+    <a href="http://lixxu.qiniudn.com/miDriver.rar">http://lixxu.qiniudn.com/miDriver.rar</a></p>
+
+<p>2. 双系统recovery文件<br />
+    <a href="http://lixxu.qiniudn.com/ClockWorkModDualSystem_mione_plus_6.0.3.3.zip">http://lixxu.qiniudn.com/ClockWorkModDualSystem_mione_plus_6.0.3.3.zip</a>
+    <br />参考: <a href="http://bbs.xiaomi.cn/thread-9531742-1-1.html">http://bbs.xiaomi.cn/thread-9531742-1-1.html</a></p>
+
+<p>3. 线刷recovery文件<br />
+    <a href="http://lixxu.qiniudn.com/mione_recovery_upgrade.7z">http://lixxu.qiniudn.com/mione_recovery_upgrade.7z</a></p>
+
+<p>4. 魔趣ROM<br />
+    <a href="http://lixxu.qiniudn.com/MK44.4-mione_plus-141223-RELEASE.zip">http://lixxu.qiniudn.com/MK44.4-mione_plus-141223-RELEASE.zip</a>
+    <br />或到官网下载最新
+    <a href="http://download.mokeedev.com/?device=mione_plus">http://download.mokeedev.com/?device=mione_plus</a></p>
+
+<!--more-->
+
+
+<p>步骤:<br />
+1. 安装小米1驱动, 一定要确保adb驱动正常全装, 把魔趣的 ROM 和<code>ClockWorkModDualSystem_mione_plus_6.0.3.3.zip</code> 放入手机根文件夹
+    <img class="<a" src="href="http://lixxu.qiniudn.com/mione_adb.jpg">http://lixxu.qiniudn.com/mione_adb.jpg</a>&#8221;></p>
+
+<p>2. 刷入第三方recovery<br />
+    直接用MIUI的 <code>更新系统</code>, 选择安装包, 找到zip文件刷入即可, 刷完重启
+    <br /><font color="red">注意: <br />这时候重启后进入的是系统2, 需要手动重启进新recovery, 新recovery里面有高级功能, 步骤如下: 高级 &ndash; 调整分区大小 &ndash; 500M</font></p>
+
+<p>3. 重启或卸电池, 进fastboot线刷新recovery<br />
+    <font color="red">(1) 网上说正常会重启, 重启后进入线刷模式. 但是个人经验一定会卡死, 所以显示刷机成功后重启, 卡死后大家卸电池, 再装回电池, 然后米1按组合键进入线刷模式 (电源键+米键+音量减), 也就是fastboot模式下.</font><br />
+    <font color="red">(2) 再刷入新recovery, 用的是 <code>mi-one recovery upgrade.7z</code>, 解压, 执行 <code>shuaji.bat</code>, 成功后, 重启进recovery (电源键+音量加)</font></p>
+
+<p>4. 刷入魔趣ROM<br />
+    <img class="<a" src="href="http://lixxu.qiniudn.com/mi_rom.jpg">http://lixxu.qiniudn.com/mi_rom.jpg</a>&#8221;>
+    <br />高级-> 打开双系统 -> 返回 -> 安装系统 -> 从SD卡选择系统 -> 找到魔趣ROM -> 开刷 (我的是系统2, 可能你的不同), 选择刷进系统2 -> 清空虚拟机缓存 -> 重启, 选择系统2. 大功告成</p>
+
+<p>5. 安装谷歌服务包<br />
+    启动后, 到 <code>设置 -&gt; 魔趣中心 -&gt; 扩展组件</code>, 刷新, 下载 <code>谷歌服务包</code>
+    <font color="red">注意:<br />下载完不要选安装, 因为会装进系统1, 需要手动进recovery 刷入 (下载的文件放在 <code>mkextras</code> 文件夹), 和刷ROM一个步骤, 不需要双清</font></p>
+
+<p>至此, 所有的步骤都完了, 进系统体验 <code>google服务</code>吧, <code>Gmail, G+</code> 就等你来折腾了!</p>
+
+<!--more-->
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -9,7 +9,8 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="只记录, 不作解释. 1. 字体 (雅黑混合) http://7ktor3.com1.z0.glb.clouddn.com/MSYHMONO.7z 2. 命令行工具 ConEmu http://7ktor3.com1.z0.glb.clouddn.com/ConEmuPack.140707.7z &hellip;">
+  <meta name="description" content="小米1已经是很老的机器了, 以至于 MIUI 都放弃了它 (最新系统是开发版 V5 4.12.5).
+而民间的系统魔趣却有最新的 Android 4.4.4 可以刷 (http://download.mokeedev.com/?device=mione_plus), 于是没忍住, 今天查了下教程 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/09/mi-flash-mokee/">小米1/1S刷魔趣4.4.4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-09T19:30:01+08:00" pubdate data-updated="true">Jan 9<sup>th</sup>, 2015</time>
+        
+           | <a href="/blog/2015/01/09/mi-flash-mokee/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2015/01/09/mi-flash-mokee/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>小米1已经是很老的机器了, 以至于 <code>MIUI</code> 都放弃了它 (最新系统是开发版 V5 4.12.5).
+而民间的系统魔趣却有最新的 <code>Android 4.4.4</code> 可以刷 (<a href="http://download.mokeedev.com/?device=mione_plus">http://download.mokeedev.com/?device=mione_plus</a>), 于是没忍住, 今天查了下教程, 开刷, 这里记下步骤.</p>
+
+<p><font color="red">刷前确保电量充足</font></p>
+
+<p>主要参考: <a href="http://bbs.xiaomi.cn/thread-9531742-1-1.html">http://bbs.xiaomi.cn/thread-9531742-1-1.html</a></p>
+
+<p>附上需要用到的文件:<br />
+1. 小米1驱动<br />
+    <a href="http://lixxu.qiniudn.com/miDriver.rar">http://lixxu.qiniudn.com/miDriver.rar</a></p>
+
+<p>2. 双系统recovery文件<br />
+    <a href="http://lixxu.qiniudn.com/ClockWorkModDualSystem_mione_plus_6.0.3.3.zip">http://lixxu.qiniudn.com/ClockWorkModDualSystem_mione_plus_6.0.3.3.zip</a>
+    <br />参考: <a href="http://bbs.xiaomi.cn/thread-9531742-1-1.html">http://bbs.xiaomi.cn/thread-9531742-1-1.html</a></p>
+
+<p>3. 线刷recovery文件<br />
+    <a href="http://lixxu.qiniudn.com/mione_recovery_upgrade.7z">http://lixxu.qiniudn.com/mione_recovery_upgrade.7z</a></p>
+
+<p>4. 魔趣ROM<br />
+    <a href="http://lixxu.qiniudn.com/MK44.4-mione_plus-141223-RELEASE.zip">http://lixxu.qiniudn.com/MK44.4-mione_plus-141223-RELEASE.zip</a>
+    <br />或到官网下载最新
+    <a href="http://download.mokeedev.com/?device=mione_plus">http://download.mokeedev.com/?device=mione_plus</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/01/09/mi-flash-mokee/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -859,175 +925,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/10/use-gevent-with-flask-script/">Flask-script 和 Gevent 结合使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-10T15:09:51+08:00" pubdate data-updated="true">Jun 10<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/06/10/use-gevent-with-flask-script/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/06/10/use-gevent-with-flask-script/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>之前一直没用过 <code>flask-script</code>, 可是看了很多其他人的例子都在用这么个玩意. 碰巧手上有个现在做的一个应用, 所以打算用一下.</p>
-
-<p>用了之后出现问题了: <code>python manage.py runserver</code> 使用的是默认的 <code>wsgi 服务器</code>, 而我在 windows 下一直使用 <code>gevent</code> 调试的.
-看了下文档, 差不多就是这样:</p>
-
-<figure class='code'><figcaption><span>manage.py mark:40-53 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#-*- coding: utf-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os.path</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">create_app</span><span class="p">,</span> <span class="n">db</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">app.models</span> <span class="kn">import</span> <span class="n">User</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">flask.ext.script</span> <span class="kn">import</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">Shell</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">flask.ext.migrate</span> <span class="kn">import</span> <span class="n">Migrate</span><span class="p">,</span> <span class="n">MigrateCommand</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s">&#39;app.env&#39;</span><span class="p">):</span>
-</span><span class='line'>    <span class="c"># print(&#39;importing environment from app.env...&#39;)</span>
-</span><span class='line'>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;app.env&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;#&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s">&#39;=&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-</span><span class='line'>                <span class="n">items</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">&#39;APP_ENV&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s">&#39;default&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</span><span class='line'><span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">make_shell_context</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">User</span><span class="o">=</span><span class="n">User</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="s">&#39;shell&#39;</span><span class="p">,</span> <span class="n">Shell</span><span class="p">(</span><span class="n">make_context</span><span class="o">=</span><span class="n">make_shell_context</span><span class="p">))</span>
-</span><span class='line'><span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="s">&#39;db&#39;</span><span class="p">,</span> <span class="n">MigrateCommand</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@manager.command</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">deploy</span><span class="p">():</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">flask.ext.migrate</span> <span class="kn">import</span> <span class="n">upgrade</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">upgrade</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@manager.command</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">rungevent</span><span class="p">():</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">werkzeug.serving</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">werkzeug.debug</span> <span class="kn">import</span> <span class="n">DebuggedApplication</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">gevent.wsgi</span> <span class="kn">import</span> <span class="n">WSGIServer</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@werkzeug.serving.run_with_reloader</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-</span><span class='line'>        <span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>        <span class="n">dapp</span> <span class="o">=</span> <span class="n">DebuggedApplication</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">evalex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">ws</span> <span class="o">=</span> <span class="n">WSGIServer</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="n">dapp</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">ws</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">run</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">manager</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后使用下面的命令就可以了:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>python manage.py rungevent
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是在 <code>rungevent</code> 里, 无论怎么传参数控制是否处在 <code>debug</code> 状态, 始终是 <code>autoreload</code>, 这可能是 <code>app.env</code> 里我设定了开发模式导致的.</p>
-
-<p>不过, 算了, 生产环境我是用 <code>uwsgi</code> 的, 用不到这个玩意.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1047,6 +944,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/09/mi-flash-mokee/">小米1/1S刷魔趣4.4.4</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/16/good-prog-tools/">改善生活的好工具</a>
       </li>
     
@@ -1062,16 +963,12 @@
         <a href="/blog/2014/07/29/git-windows-credential/">Windows下git保存密码</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/07/28/use-qiniu-as-static-server/">使用七牛作为博客静态文件存放地</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/android/'>android (1)</a></li>
+    <li class='category'><a href='/blog/categories/android/'>android (2)</a></li>
 <li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
 <li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
@@ -1116,6 +1013,8 @@
 <a style="font-size: 80%" href="/tags/git/">git</a> &mdash; 
 <a style="font-size: 80%" href="/tags/joke/">joke</a> &mdash; 
 <a style="font-size: 80%" href="/tags/marrowmailer/">marrowmailer</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mione/">mione</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mokee/">mokee</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/tags/prog/">prog</a> &mdash; 
 <a style="font-size: 80%" href="/tags/py2exe/">py2exe</a> &mdash; 
@@ -1123,7 +1022,8 @@
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
 <a style="font-size: 110%" href="/tags/python/">python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
-<a style="font-size: 80%" href="/tags/requests/">requests</a>
+<a style="font-size: 80%" href="/tags/requests/">requests</a> &mdash; 
+<a style="font-size: 80%" href="/tags/xiaomi/">xiaomi</a>
 
   </ul>
 </section><section>
