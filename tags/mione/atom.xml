@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: mione | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/tags/mione/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2015-01-09T20:41:43+08:00</updated>
+  <updated>2015-01-13T17:27:04+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -18,7 +18,9 @@
     <link href="http://lixxu.me/blog/2015/01/09/mi-flash-mokee/"/>
     <updated>2015-01-09T19:30:01+08:00</updated>
     <id>http://lixxu.me/blog/2015/01/09/mi-flash-mokee</id>
-    <content type="html"><![CDATA[<p>小米1已经是很老的机器了, 以至于 <code>MIUI</code> 都放弃了它 (最新系统是开发版 V5 4.12.5).
+    <content type="html"><![CDATA[<p><font color="red">更新: 大家不要刷了, 我的已不能开机了, 也不能线刷了. 老的手机就不要太折腾了</font></p>
+
+<p>小米1已经是很老的机器了, 以至于 <code>MIUI</code> 都放弃了它 (最新系统是开发版 V5 4.12.5).
 而民间的系统魔趣却有最新的 <code>Android 4.4.4</code> 可以刷 (<a href="http://download.mokeedev.com/?device=mione_plus">http://download.mokeedev.com/?device=mione_plus</a>), 于是没忍住, 今天查了下教程, 开刷, 这里记下步骤.</p>
 
 <p><font color="red">刷前确保电量充足</font></p>
