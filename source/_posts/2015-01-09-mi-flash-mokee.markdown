@@ -6,6 +6,8 @@ comments: true
 categories: android
 tags: mione xiaomi mokee
 ---
+<font color="red">更新: 大家不要刷了, 我的已不能开机了, 也不能线刷了. 老的手机就不要太折腾了</font>
+
 小米1已经是很老的机器了, 以至于 `MIUI` 都放弃了它 (最新系统是开发版 V5 4.12.5).
 而民间的系统魔趣却有最新的 `Android 4.4.4` 可以刷 (<http://download.mokeedev.com/?device=mione_plus>), 于是没忍住, 今天查了下教程, 开刷, 这里记下步骤.
 
