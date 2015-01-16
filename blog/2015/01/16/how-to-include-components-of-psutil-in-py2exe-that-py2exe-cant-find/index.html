@@ -5,11 +5,21 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: Disqus - 杂七杂八记一下</title>
+  <title>Py2exe打包psutil - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="Tag: disqus">
+  <meta name="description" content="记录备忘. 原因: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; File "zipextimporter.pyo", line 82, in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +28,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.me/tags/disqus">
+  <link rel="canonical" href="http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -77,35 +87,123 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Disqus</h1>
+    
+      <h1 class="entry-title">Py2exe打包psutil</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-16T18:18:35+08:00" pubdate data-updated="true">Jan 16<sup>th</sup>, 2015</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><p>记录备忘.</p>
 
-  
-  <h2>2014</h2>
+<p>原因:<br /></p>
 
-<article>
-  
-<h1><a href="/blog/2014/01/15/use-duoshuo/">Octopress使用多说评论系统</a></h1>
-<time datetime="2014-01-15T09:44:48+08:00" pubdate><span class='month'>Jan</span> <span class='day'>15</span> <span class='year'>2014</span></time>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Traceback (most recent call last):
+</span><span class='line'>  File "main.py", line 10, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 82, in load_module
+</span><span class='line'>  File "utils.pyo", line 10, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 82, in load_module
+</span><span class='line'>  File "psutil\__init__.pyo", line 138, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 82, in load_module
+</span><span class='line'>  File "psutil\_pswindows.pyo", line 16, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 98, in load_module
+</span><span class='line'>ImportError: MemoryLoadLibrary failed loading _psutil_windows.pyd</span></code></pre></td></tr></table></div></figure>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
 
+<p>解决办法:<br />
+1. <a href="http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find">http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find</a><br />
+    <code>dll_excludes</code> 至少添加这几项: <code>"IPHLPAPI.DLL", "NSI.dll",  "WINNSI.DLL",  "WTSAPI32.dll"</code></p>
 
-</article>
-
+<p>2. <a href="http://sourceforge.net/p/py2exe/bugs/130/">http://sourceforge.net/p/py2exe/bugs/130/</a><br />
+    <code>options</code> 里的 <code>bundle_files</code> 改成 <code>3</code>, 不过打包出来的文件会有很多个.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-16T18:18:35+08:00" pubdate data-updated="true">Jan 16<sup>th</sup>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/09/mi-flash-mokee/" title="Previous Post: 小米1/1S刷魔趣4.4.4">&laquo; 小米1/1S刷魔趣4.4.4</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -231,7 +329,10 @@
       var disqus_shortname = 'lixxu';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/';
+        var disqus_url = 'http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

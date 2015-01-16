@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: psutil | 杂七杂八记一下]]></title>
+  <link href="http://lixxu.me/tags/psutil/atom.xml" rel="self"/>
+  <link href="http://lixxu.me/"/>
+  <updated>2015-01-16T18:57:23+08:00</updated>
+  <id>http://lixxu.me/</id>
+  <author>
+    <name><![CDATA[Lix Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[py2exe打包psutil]]></title>
+    <link href="http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/"/>
+    <updated>2015-01-16T18:18:35+08:00</updated>
+    <id>http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find</id>
+    <content type="html"><![CDATA[<p>记录备忘.</p>
+
+<p>原因:<br />
+<code>
+Traceback (most recent call last):
+  File "main.py", line 10, in &lt;module&gt;
+  File "zipextimporter.pyo", line 82, in load_module
+  File "utils.pyo", line 10, in &lt;module&gt;
+  File "zipextimporter.pyo", line 82, in load_module
+  File "psutil\__init__.pyo", line 138, in &lt;module&gt;
+  File "zipextimporter.pyo", line 82, in load_module
+  File "psutil\_pswindows.pyo", line 16, in &lt;module&gt;
+  File "zipextimporter.pyo", line 98, in load_module
+ImportError: MemoryLoadLibrary failed loading _psutil_windows.pyd
+</code></p>
+
+<p>解决办法:<br />
+1. <a href="http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find">http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find</a><br />
+    <code>dll_excludes</code> 至少添加这几项: <code>"IPHLPAPI.DLL", "NSI.dll",  "WINNSI.DLL",  "WTSAPI32.dll"</code></p>
+
+<p>2. <a href="http://sourceforge.net/p/py2exe/bugs/130/">http://sourceforge.net/p/py2exe/bugs/130/</a><br />
+    <code>options</code> 里的 <code>bundle_files</code> 改成 <code>3</code>, 不过打包出来的文件会有很多个.</p>
+]]></content>
+  </entry>
+  
+</feed>

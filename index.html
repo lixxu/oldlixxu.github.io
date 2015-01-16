@@ -9,8 +9,17 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="更新: 大家不要刷了, 我的已不能开机了, 也不能线刷了. 老的手机就不要太折腾了 小米1已经是很老的机器了, 以至于 MIUI 都放弃了它 (最新系统是开发版 V5 4.12.5).
-而民间的系统魔趣却有最新的 Android 4.4.4 可以刷 (http://download. &hellip;">
+  <meta name="description" content="记录备忘. 原因: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; File "zipextimporter.pyo", line 82, in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +88,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/">Py2exe打包psutil</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-16T18:18:35+08:00" pubdate data-updated="true">Jan 16<sup>th</sup>, 2015</time>
+        
+           | <a href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>记录备忘.</p>
+
+<p>原因:<br /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Traceback (most recent call last):
+</span><span class='line'>  File "main.py", line 10, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 82, in load_module
+</span><span class='line'>  File "utils.pyo", line 10, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 82, in load_module
+</span><span class='line'>  File "psutil\__init__.pyo", line 138, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 82, in load_module
+</span><span class='line'>  File "psutil\_pswindows.pyo", line 16, in &lt;module&gt;
+</span><span class='line'>  File "zipextimporter.pyo", line 98, in load_module
+</span><span class='line'>ImportError: MemoryLoadLibrary failed loading _psutil_windows.pyd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>解决办法:<br />
+1. <a href="http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find">http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find</a><br />
+    <code>dll_excludes</code> 至少添加这几项: <code>"IPHLPAPI.DLL", "NSI.dll",  "WINNSI.DLL",  "WTSAPI32.dll"</code></p>
+
+<p>2. <a href="http://sourceforge.net/p/py2exe/bugs/130/">http://sourceforge.net/p/py2exe/bugs/130/</a><br />
+    <code>options</code> 里的 <code>bundle_files</code> 改成 <code>3</code>, 不过打包出来的文件会有很多个.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -864,69 +943,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/22/nssm-install-windows-service/">使用 NSSM 安装 Windows 系统服务</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-22T16:15:55+08:00" pubdate data-updated="true">Jun 22<sup>nd</sup>, 2014</time>
-        
-           | <a href="/blog/2014/06/22/nssm-install-windows-service/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/06/22/nssm-install-windows-service/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>工厂里的某些测试电脑存在时间不对的问题, 最开始使用简单的批处理加上
-<a href="http://nssm.cc/">nssm</a> 安装成 service 的方式, 比如下面的示例:</p>
-
-<figure class='code'><figcaption><span>sync_time.bat </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'>sync_time:
-</span><span class='line'>net time \\a.b.c.d <span class="n">/set</span> <span class="n">/y</span>
-</span><span class='line'>
-</span><span class='line'>sleep <span class="m">3600</span>
-</span><span class='line'><span class="k">goto</span> <span class="nl">sync_time</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但在使用的过程中出现了这个 service 吃掉许多 CPU 的问题.
-按道理说在 sleep 后应该会进入休眠状态, 不应该再占用 CPU.
-不清楚什么原因, 就使用 <code>Python</code> 重写了.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/22/nssm-install-windows-service/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -946,6 +962,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/">Py2exe打包psutil</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/09/mi-flash-mokee/">小米1/1S刷魔趣4.4.4</a>
       </li>
     
@@ -961,10 +981,6 @@
         <a href="/blog/2014/08/07/as-a-man/">作为一个东北人, 被人无数次问过</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/07/29/git-windows-credential/">Windows下git保存密码</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -978,7 +994,7 @@
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
 <li class='category'><a href='/blog/categories/prog/'>prog (2)</a></li>
-<li class='category'><a href='/blog/categories/python/'>python (11)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (12)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
 
@@ -1019,7 +1035,8 @@
 <a style="font-size: 80%" href="/tags/mokee/">mokee</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
 <a style="font-size: 80%" href="/tags/prog/">prog</a> &mdash; 
-<a style="font-size: 80%" href="/tags/py2exe/">py2exe</a> &mdash; 
+<a style="font-size: 80%" href="/tags/psutil/">psutil</a> &mdash; 
+<a style="font-size: 110%" href="/tags/py2exe/">py2exe</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
 <a style="font-size: 110%" href="/tags/python/">python</a> &mdash; 

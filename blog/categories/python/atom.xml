@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2015-01-13T17:27:04+08:00</updated>
+  <updated>2015-01-16T18:57:23+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Py2exe打包psutil]]></title>
+    <link href="http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/"/>
+    <updated>2015-01-16T18:18:35+08:00</updated>
+    <id>http://lixxu.me/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find</id>
+    <content type="html"><![CDATA[<p>记录备忘.</p>
+
+<p>原因:<br />
+<code>
+Traceback (most recent call last):
+  File "main.py", line 10, in &lt;module&gt;
+  File "zipextimporter.pyo", line 82, in load_module
+  File "utils.pyo", line 10, in &lt;module&gt;
+  File "zipextimporter.pyo", line 82, in load_module
+  File "psutil\__init__.pyo", line 138, in &lt;module&gt;
+  File "zipextimporter.pyo", line 82, in load_module
+  File "psutil\_pswindows.pyo", line 16, in &lt;module&gt;
+  File "zipextimporter.pyo", line 98, in load_module
+ImportError: MemoryLoadLibrary failed loading _psutil_windows.pyd
+</code></p>
+
+<p>解决办法:<br />
+1. <a href="http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find">http://stackoverflow.com/questions/20930173/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find</a><br />
+    <code>dll_excludes</code> 至少添加这几项: <code>"IPHLPAPI.DLL", "NSI.dll",  "WINNSI.DLL",  "WTSAPI32.dll"</code></p>
+
+<p>2. <a href="http://sourceforge.net/p/py2exe/bugs/130/">http://sourceforge.net/p/py2exe/bugs/130/</a><br />
+    <code>options</code> 里的 <code>bundle_files</code> 改成 <code>3</code>, 不过打包出来的文件会有很多个.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[令人崩溃的 marrow.mailer 的 Py2exe 打包历程]]></title>
@@ -539,44 +569,6 @@ python manage.py rungevent
 <p>可是在 <code>rungevent</code> 里, 无论怎么传参数控制是否处在 <code>debug</code> 状态, 始终是 <code>autoreload</code>, 这可能是 <code>app.env</code> 里我设定了开发模式导致的.</p>
 
 <p>不过, 算了, 生产环境我是用 <code>uwsgi</code> 的, 用不到这个玩意.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在 PyPi 上发布软件包]]></title>
-    <link href="http://lixxu.me/blog/2014/06/09/how-to-register-pypi/"/>
-    <updated>2014-06-09T14:33:10+08:00</updated>
-    <id>http://lixxu.me/blog/2014/06/09/how-to-register-pypi</id>
-    <content type="html"><![CDATA[<p>距上次发布软件包过去了很久, 都忘了操作步骤了, 今天碰巧发布一个小包, 放狗搜了一下, 记下来备忘:</p>
-
-<p>来源: <a href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
-
-<p>基本操作:</p>
-
-<p>1. 准备好 <code>setup.py</code>, 提供一下 <code>setup.cfg</code></p>
-
-<p><figure class='code'><figcaption><span>setup.cfg </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[metadata]</span>
-</span><span class='line'><span class="na">description-file</span> <span class="o">=</span> <span class="s">README.md</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>2. 注册:</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py register -r pypi</span></code></pre></td></tr></table></div></figure></p>
-
-<p>按提示做选择就可以了:</p>
-
-<p><img class="<a" src="href="http://7ktor3.com1.z0.glb.clouddn.com/pypi.png">http://7ktor3.com1.z0.glb.clouddn.com/pypi.png</a>&#8221;></p>
-
-<p>3. 上传, 一串字符滚过之后看到 <code>200</code> 就 OK 了</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>python setup.py upload -r pypi</span></code></pre></td></tr></table></div></figure></p>
-
-<p><img class="<a" src="href="http://7ktor3.com1.z0.glb.clouddn.com/pypi_upload.png">http://7ktor3.com1.z0.glb.clouddn.com/pypi_upload.png</a>&#8221;></p>
 ]]></content>
   </entry>
   
