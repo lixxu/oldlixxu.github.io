@@ -9,17 +9,7 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="记录备忘. 原因: 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; File "zipextimporter.pyo", line 82, in &hellip;">
+  <meta name="description" content="源贴在这里 (也是转帖): http://www.douban.com/note/196653073/ Quake-III 代码里神奇的浮点开方函数 Quake-III Arena (雷神之锤3) 是90年代的经典游戏之一. 该系列的游戏不但画面和内容不错, 而且即使计算机配置低, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +78,58 @@ Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; Fi
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/27/john-carmack/">[转] Quake-III 代码里神奇的浮点开方函数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-27T20:05:42+08:00" pubdate data-updated="true">Jan 27<sup>th</sup>, 2015</time>
+        
+           | <a href="/blog/2015/01/27/john-carmack/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2015/01/27/john-carmack/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>源贴在这里 (也是转帖): <a href="http://www.douban.com/note/196653073/">http://www.douban.com/note/196653073/</a></p>
+
+<p><img src="http://lixxu.qiniudn.com/quake.jpg"></p>
+
+<p><code>Quake-III</code> 代码里神奇的浮点开方函数</p>
+
+<p><code>Quake-III Arena (雷神之锤3)</code> 是90年代的经典游戏之一. 该系列的游戏不但画面和内容不错, 而且即使计算机配置低, 也能极其流畅地运行. 这要归功于它3D引擎的开发者<code>约翰-卡马克(John Carmack)</code>.</p>
+
+<p>事实上早在90年代初DOS时代, 只要能在PC上搞个小动画都能让人惊叹一番的时候, <code>John Carmack</code> 就推出了石破天惊的<code>Castle Wolfstein</code>, 然后再接再励, <code>doom</code>, <code>doomII</code>, <code>Quake</code>&hellip;每次都把 3-D 技术推到极致. 他的3D引擎代码极度高效, 几乎是在压榨PC机的每条运算指令. 当初MS的 <code>Direct3D</code> 也得听取他的意见, 修改了不少API.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/01/27/john-carmack/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -778,171 +820,6 @@ Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; Fi
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/22/use-python-set-system-time/">使用 Python 设置系统时间</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-22T16:53:43+08:00" pubdate data-updated="true">Jun 22<sup>nd</sup>, 2014</time>
-        
-           | <a href="/blog/2014/06/22/use-python-set-system-time/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/06/22/use-python-set-system-time/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>接上文: <a href="/blog/2014/06/22/nssm-install-windows-service">使用 NSSM 安装 Windows 系统服务</a></p>
-
-<p>上一篇介绍使用了 <code>net time</code> 来同步系统时间, 后来突然想到如果没有服务器可供同步时间或电脑无法直接连接到服务器怎么办?</p>
-
-<p>就去找了下使用 <code>Python</code> 设置时间的例子, 还真有: <a href="http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time">http://stackoverflow.com/questions/12081310/python-module-to-change-system-date-and-time</a></p>
-
-<p>直接贴在这里:</p>
-
-<figure class='code'><figcaption><span>set_time.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">datetime</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">time_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="c"># Year</span>
-</span><span class='line'>                 <span class="mi">9</span><span class="p">,</span> <span class="c"># Month</span>
-</span><span class='line'>                 <span class="mi">6</span><span class="p">,</span> <span class="c"># Day</span>
-</span><span class='line'>                 <span class="mi">0</span><span class="p">,</span> <span class="c"># Hour</span>
-</span><span class='line'>                <span class="mi">38</span><span class="p">,</span> <span class="c"># Minute</span>
-</span><span class='line'>                 <span class="mi">0</span><span class="p">,</span> <span class="c"># Second</span>
-</span><span class='line'>                 <span class="mi">0</span><span class="p">,</span> <span class="c"># Millisecond</span>
-</span><span class='line'>              <span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">pywin32</span>
-</span><span class='line'>    <span class="c"># http://timgolden.me.uk/pywin32-docs/win32api__SetSystemTime_meth.html</span>
-</span><span class='line'>    <span class="c"># pywin32.SetSystemTime(year, month, dayOfWeek, day, hour, minute, second, millseconds)</span>
-</span><span class='line'>    <span class="n">dayOfWeek</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
-</span><span class='line'>    <span class="n">pywin32</span><span class="o">.</span><span class="n">SetSystemTime</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dayOfWeek</span><span class="p">,)</span> <span class="o">+</span> <span class="n">time_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">):</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">ctypes.util</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># /usr/include/linux/time.h:</span>
-</span><span class='line'>    <span class="c">#</span>
-</span><span class='line'>    <span class="c"># define CLOCK_REALTIME                     0</span>
-</span><span class='line'>    <span class="n">CLOCK_REALTIME</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># /usr/include/time.h</span>
-</span><span class='line'>    <span class="c">#</span>
-</span><span class='line'>    <span class="c"># struct timespec</span>
-</span><span class='line'>    <span class="c">#  {</span>
-</span><span class='line'>    <span class="c">#    __time_t tv_sec;            /* Seconds.  */</span>
-</span><span class='line'>    <span class="c">#    long int tv_nsec;           /* Nanoseconds.  */</span>
-</span><span class='line'>    <span class="c">#  };</span>
-</span><span class='line'>    <span class="k">class</span> <span class="nc">timespec</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;tv_sec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
-</span><span class='line'>                    <span class="p">(</span><span class="s">&quot;tv_nsec&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">)]</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">librt</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s">&quot;rt&quot;</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">ts</span> <span class="o">=</span> <span class="n">timespec</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">time_tuple</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">timetuple</span><span class="p">()))</span>
-</span><span class='line'>    <span class="n">ts</span><span class="o">.</span><span class="n">tv_nsec</span> <span class="o">=</span> <span class="n">time_tuple</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="c"># Millisecond to nanosecond</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># http://linux.die.net/man/3/clock_settime</span>
-</span><span class='line'>    <span class="n">librt</span><span class="o">.</span><span class="n">clock_settime</span><span class="p">(</span><span class="n">CLOCK_REALTIME</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">ts</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;linux2&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">_linux_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">elif</span>  <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">==</span><span class="s">&#39;win32&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">_win_set_time</span><span class="p">(</span><span class="n">time_tuple</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/22/use-python-set-system-time/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -962,6 +839,10 @@ Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; Fi
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/27/john-carmack/">[转] Quake-III 代码里神奇的浮点开方函数</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/">Py2exe打包psutil</a>
       </li>
     
@@ -977,10 +858,6 @@ Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; Fi
         <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/08/07/as-a-man/">作为一个东北人, 被人无数次问过</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -993,7 +870,7 @@ Traceback (most recent call last): File "main.py", line 10, in &lt;module&gt; Fi
 <li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
-<li class='category'><a href='/blog/categories/prog/'>prog (2)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (3)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (12)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>

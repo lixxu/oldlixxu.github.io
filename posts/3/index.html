@@ -9,8 +9,8 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="好久没发帖了, 放上pycon2014的视频, 给不方便穿墙的同学访问. 不知道是公司还是360的问题, 上传到后来就没有速度了, 一开始还有几M的速度的. 好吧, 某度的共享违规了, 违规你 妈 啊, 用360的吧: http://yunpan.cn/QNFwAjKWvsniL
-访问密码 &hellip;">
+  <meta name="description" content="在Windows下由于pip是个exe的可执行文件, 如果使用pip install -U pip的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
+python -m pip install -U pip 记录下备忘. Linux下是没有这个问题的, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/07/update-pip/">Windows下升级pip</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-07T09:08:11+08:00" pubdate data-updated="true">May 7<sup>th</sup>, 2014</time>
+        
+           | <a href="/blog/2014/05/07/update-pip/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/05/07/update-pip/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Windows下由于pip是个exe的可执行文件, 如果使用<code>pip install -U pip</code>的方式升级pip, 将会失败, 因为无法在执行pip时再覆盖它. 这时就需要使用导入包的方式:
+<code>python -m pip install -U pip</code></p>
+
+<p>记录下备忘.</p>
+
+<p>Linux下是没有这个问题的, 暂时没研究是什么原理.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -586,52 +630,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/14/add-categories-sidebar/">添加分类列表到边栏</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-14T23:09:10+08:00" pubdate data-updated="true">Jan 14<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/01/14/add-categories-sidebar/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/01/14/add-categories-sidebar/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>来源: <a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/</a></p>
-
-<p>简单记下过程</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/14/add-categories-sidebar/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -653,6 +651,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/27/john-carmack/">[转] Quake-III 代码里神奇的浮点开方函数</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/">Py2exe打包psutil</a>
       </li>
     
@@ -668,10 +670,6 @@
         <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/08/07/as-a-man/">作为一个东北人, 被人无数次问过</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -684,7 +682,7 @@
 <li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
 <li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
-<li class='category'><a href='/blog/categories/prog/'>prog (2)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (3)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (12)</a></li>
 <li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>

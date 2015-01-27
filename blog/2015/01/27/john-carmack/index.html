@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[转] Quake-III 代码里神奇的浮点开方函数 - 杂七杂八记一下</title>
+  <meta name="author" content="Lix Xu">
+
+  
+  <meta name="description" content="源贴在这里 (也是转帖): http://www.douban.com/note/196653073/ Quake-III 代码里神奇的浮点开方函数 Quake-III Arena (雷神之锤3) 是90年代的经典游戏之一. 该系列的游戏不但画面和内容不错, 而且即使计算机配置低, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lixxu.me/blog/2015/01/27/john-carmack">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47125020-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">杂七杂八记一下</a></h1>
+  
+    <h2>花落花开花相似, 岁岁年年人不同</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lixxu.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[转] Quake-III 代码里神奇的浮点开方函数</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-27T20:05:42+08:00" pubdate data-updated="true">Jan 27<sup>th</sup>, 2015</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>源贴在这里 (也是转帖): <a href="http://www.douban.com/note/196653073/">http://www.douban.com/note/196653073/</a></p>
+
+<p><img src="http://lixxu.qiniudn.com/quake.jpg"></p>
+
+<p><code>Quake-III</code> 代码里神奇的浮点开方函数</p>
+
+<p><code>Quake-III Arena (雷神之锤3)</code> 是90年代的经典游戏之一. 该系列的游戏不但画面和内容不错, 而且即使计算机配置低, 也能极其流畅地运行. 这要归功于它3D引擎的开发者<code>约翰-卡马克(John Carmack)</code>.</p>
+
+<p>事实上早在90年代初DOS时代, 只要能在PC上搞个小动画都能让人惊叹一番的时候, <code>John Carmack</code> 就推出了石破天惊的<code>Castle Wolfstein</code>, 然后再接再励, <code>doom</code>, <code>doomII</code>, <code>Quake</code>&hellip;每次都把 3-D 技术推到极致. 他的3D引擎代码极度高效, 几乎是在压榨PC机的每条运算指令. 当初MS的 <code>Direct3D</code> 也得听取他的意见, 修改了不少API.</p>
+
+<!--more-->
+
+
+<p>最近, QUAKE的开发商 <code>ID SOFTWARE</code> 遵守GPL协议, 公开了QUAKE-III的原代码, 让世人有幸目睹Carmack传奇的3D引擎的原码. 这是QUAKE-III原代码的下载地址:
+<a href="http://www.fileshack.com/file.x?fid=7547">http://www.fileshack.com/file.x?fid=7547</a></p>
+
+<p>(下面是官方的下载网址, 搜索 <code>quake3-1.32b-source.zip</code> 可以找到一大堆中文网页的
+<a href="ftp://ftp.idsoftware.com/idstuff/source/quake3-1.32b-source.zip">ftp://ftp.idsoftware.com/idstuff/source/quake3-1.32b-source.zip</a>)</p>
+
+<p>我们知道, 越底层的函数, 调用越频繁. 3D引擎归根到底还是数学运算. 那么找到最底层的数学运算函数 (在 <code>game/code/q_math.c</code>), 必然是精心编写的. 里面有很多有趣的函数, 很多都令人惊奇, 估计我们几年时间都学不完.</p>
+
+<p>在 <code>game/code/q_math.c</code> 里发现了这样一段代码. 它的作用是将一个数开平方并取倒, 经测试这段代码比 <code>(float)(1.0/sqrt(x))</code> 快4倍:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">float</span> <span class="nf">Q_rsqrt</span><span class="p">(</span> <span class="kt">float</span> <span class="n">number</span> <span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">const</span> <span class="kt">float</span> <span class="n">threehalfs</span> <span class="o">=</span> <span class="mf">1.5F</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">x2</span> <span class="o">=</span> <span class="n">number</span> <span class="o">*</span> <span class="mf">0.5F</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">y</span>   <span class="o">=</span> <span class="n">number</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">i</span>   <span class="o">=</span> <span class="o">*</span> <span class="p">(</span> <span class="kt">long</span> <span class="o">*</span> <span class="p">)</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">;</span>   <span class="c1">// evil floating point bit level hacking</span>
+</span><span class='line'>    <span class="n">i</span>   <span class="o">=</span> <span class="mh">0x5f3759df</span> <span class="o">-</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span> <span class="p">);</span> <span class="c1">// what the fuck?</span>
+</span><span class='line'>    <span class="n">y</span>   <span class="o">=</span> <span class="o">*</span> <span class="p">(</span> <span class="kt">float</span> <span class="o">*</span> <span class="p">)</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">y</span>   <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span> <span class="n">threehalfs</span> <span class="o">-</span> <span class="p">(</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="p">)</span> <span class="p">);</span> <span class="c1">// 1st iteration</span>
+</span><span class='line'>    <span class="c1">// y   = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cp">#ifndef Q3_VM</span>
+</span><span class='line'>    <span class="cp">#ifdef __linux__</span>
+</span><span class='line'>     <span class="n">assert</span><span class="p">(</span> <span class="o">!</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// bk010122 - FPE?</span>
+</span><span class='line'>    <span class="cp">#endif</span>
+</span><span class='line'>    <span class="cp">#endif</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>函数返回 <code>1/sqrt(x)</code>, 这个函数在图像处理中比 <code>sqrt(x)</code> 更有用. 注意到这个函数只用了一次叠代! (其实就是根本没用叠代, 直接运算). 编译, 实验, 这个函数不仅工作的很好, 而且比标准的 <code>sqrt()</code> 函数快4倍! 要知道, 编译器自带的函数, 可是经过严格仔细的汇编优化的啊!</p>
+
+<p>这个简洁的函数, 最核心, 也是最让人费解的, 就是标注了 <code>what the fuck?</code> 的一句
+<code>i = 0x5f3759df - ( i &gt;&gt; 1 );</code> 再加上 <code>y = y * ( threehalfs - ( x2 * y * y ) );</code> 两句话就完成了开方运算! 而且注意到, 核心那句是定点移位运算, 速度极快! 特别在很多没有乘法指令的RISC结构CPU上, 这样做是极其高效的.</p>
+
+<p>算法的原理其实不复杂, 就是牛顿迭代法, 用 <code>x-f(x)/f'(x)</code> 来不断的逼近 <code>f(x)=a</code>的根.</p>
+
+<p>简单来说比如求平方根, <code>f(x)=x^2=a</code>, <code>f'(x)= 2*x</code>, <code>f(x)/f'(x)=x/2</code>, 把f(x)代入
+<code>x-f(x)/f'(x)</code> 后有 <code>(x+a/x)/2</code>, 现在我们选 <code>a=5</code>, 选一个猜测值比如2, 那么我们可以这么算 <code>5/2 = 2.5; (2.5+2)/2 = 2.25; 5/2.25 = xxx; (2.25+xxx)/2 = xxxx ...</code> 这样反复迭代下去, 结果必定收敛于 <code>sqrt(5)</code>.</p>
+
+<p>没错, 一般的求平方根都是这么算的. 但是卡马克(quake3作者)真正牛B的地方是他选择了一个神秘的常数 <code>0x5f3759df</code> 来计算那个猜测值. 就是我们加注释的那一行, 那一行算出的值非常接近 <code>1/sqrt(n)</code>,这样我们只需要2次牛顿迭代就可以达到我们所需要的精度.</p>
+
+<p>好吧, 如果这个还不算NB, 接着看:</p>
+
+<p>普渡大学的数学家Chris Lomont看了以后觉得有趣, 决定要研究一下卡马克弄出来的
+这个猜测值有什么奥秘. Lomont也是个牛人, 在精心研究之后从理论上也推导出一个
+最佳猜测值, 和卡马克的数字非常接近, <code>0x5f37642f</code>. 卡马克真牛, 他是外星人吗？</p>
+
+<p>传奇并没有在这里结束. Lomont计算出结果以后非常满意, 于是拿自己计算出的起始
+值和卡马克的神秘数字做比赛, 看看谁的数字能够更快更精确的求得平方根. 结果是
+卡马克赢了&hellip; 谁也不知道卡马克是怎么找到这个数字的.</p>
+
+<p>最后 Lomont怒了, 采用暴力方法一个数字一个数字试过来, 终于找到一个比卡马克数
+字要好上那么一丁点的数字, 虽然实际上这两个数字所产生的结果非常近似, 这个暴
+力得出的数字是 <code>0x5f375a86</code>.</p>
+
+<p>Lomont为此写下一篇论文, <code>"Fast Inverse Square Root"</code>.</p>
+
+<p>论文下载地址:</p>
+
+<p><a href="http://www.math.purdue.edu/~clomont/Math/Papers/2003/InvSqrt.pdf">http://www.math.purdue.edu/~clomont/Math/Papers/2003/InvSqrt.pdf</a>
+<a href="http://www.matrix67.com/data/InvSqrt.pdf">http://www.matrix67.com/data/InvSqrt.pdf</a></p>
+
+<p>参考: <code>&lt;IEEE Standard 754 for Binary Floating-Point Arithmetic&gt;&lt;FAST INVERSE SQUARE ROOT&gt;</code></p>
+
+<p>最后, 给出最精简的 <code>1/sqrt()</code> 函数:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">float</span> <span class="nf">InvSqrt</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">xhalf</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span> <span class="c1">// get bits for floating VALUE </span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">=</span> <span class="mh">0x5f375a86</span><span class="o">-</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// gives initial guess y0</span>
+</span><span class='line'>    <span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span> <span class="c1">// convert bits BACK to float</span>
+</span><span class='line'>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mf">1.5f</span><span class="o">-</span><span class="n">xhalf</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">);</span> <span class="c1">// Newton step, repeating increases accuracy</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>大家可以尝试在PC机、51、AVR、430、ARM、上面编译并实验, 惊讶一下它的工作效率.</p>
+
+<p>前兩天有一則新聞, 大意是說 Ryszard Sommefeldt 很久以前看到這麼樣的一段 code (可能出自 Quake III 的 source code):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">float</span> <span class="nf">InvSqrt</span> <span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">xhalf</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">=</span> <span class="mh">0x5f3759df</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mf">1.5f</span> <span class="o">-</span> <span class="n">xhalf</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>他一看之下驚為天人, 想要拜見這位前輩高人, 但是一路追尋下去卻一直找不到人; 同時間也有其他人在找, 雖然也沒找到出處, 但是 Chris Lomont 寫了一篇論文 (in PDF) 解析這段 code 的演算法 (用的是 Newton’s Method, 牛頓法; 比較重要的是後半段講到怎麼找出神奇的 <code>0x5f3759df</code> 的).</p>
+
+<p>PS. 這個 function 之所以重要, 是因為求 <code>開根號倒數</code> 這個動作在 3D 運算 (向量運算的部份) 裡面常常會用到, 如果你用最原始的 sqrt() 然後再倒數的話, 速度比上面的這個版本大概慢了四倍吧… XD</p>
+
+<p>PS2. 在他們追尋的過程中, 有人提到一份叫做 MIT HACKMEM 的文件, 這是 1970 年代的 MIT 強者們做的一些筆記 (hack memo), 大部份是 algorithm, 有些 code 是 PDP-10 asm 寫的, 另外有少數是 C code (有人整理了一份列表).</p>
+
+<p>附: 牛顿迭代法快速寻找平方根</p>
+
+<p>下面这种方法可以很有效地求出根号a的近似值: 首先随便猜一个近似值x, 然后不断令x等于 x 和 a/x 的平均数, 迭代个六七次后 x 的值就已经相当精确了. 例如, 我想求根号 2 等于多少. 假如我猜测的结果为4, 虽然错的离谱, 但你可以看到使用牛顿迭代法后这个值很快就趋近于根号2了:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(       4   + 2/   4     ) / 2 = 2.25
+</span><span class='line'>(     2.25   + 2/   2.25   ) / 2 = 1.56944..
+</span><span class='line'>( 1.56944..+ 2/1.56944..) / 2 = 1.42189..
+</span><span class='line'>( 1.42189..+ 2/1.42189..) / 2 = 1.41423.. 
+</span><span class='line'>....</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://lixxu.qiniudn.com/newton.jpg"></p>
+
+<p>这种算法的原理很简单, 我们仅仅是不断用 <code>(x, f(x))</code> 的切线来逼近方程 <code>x^2-a=0</code>的根. 根号a实际上就是 <code>x^2-a=0</code>的一个正实根, 这个函数的导数是2x. 也就是说, 函数上任一点 <code>(x,f(x))</code>处的切线斜率是2x. 那么, <code>x-f(x)/(2x)</code> 就是一个比 x 更接近的近似值. 代入 <code>f(x)=x^2-a</code> 得到 <code>x-(x^2-a)/(2x)</code>, 也就是 <code>(x+a/x)/2</code>.</p>
+
+<!--more-->
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-27T20:05:42+08:00" pubdate data-updated="true">Jan 27<sup>th</sup>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/prog/'>prog</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/" title="Previous Post: py2exe打包psutil">&laquo; py2exe打包psutil</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <img src="http://www.gravatar.com/avatar/20d98692a314c016ab84b6304e78467c?s=128" />
+  <p><a href="/about"><strong>Lix Xu</strong></a> - 神仙? 妖怪? 谢谢.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/27/john-carmack/">[转] Quake-III 代码里神奇的浮点开方函数</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/16/how-to-include-components-of-psutil-in-py2exe-that-py2exe-cant-find/">Py2exe打包psutil</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/09/mi-flash-mokee/">小米1/1S刷魔趣4.4.4</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/16/good-prog-tools/">改善生活的好工具</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/android/'>android (2)</a></li>
+<li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
+<li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
+<li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
+<li class='category'><a href='/blog/categories/nssm/'>nssm (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (6)</a></li>
+<li class='category'><a href='/blog/categories/prog/'>prog (3)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (12)</a></li>
+<li class='category'><a href='/blog/categories/sublime/'>sublime (2)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    <a style="font-size: 80%" href="/tags/android/">Android</a> &mdash; 
+<a style="font-size: 80%" href="/tags/beautifulsoup/">BeautifulSoup</a> &mdash; 
+<a style="font-size: 80%" href="/tags/database/">Database</a> &mdash; 
+<a style="font-size: 80%" href="/tags/fastboot/">Fastboot</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github/">Github</a> &mdash; 
+<a style="font-size: 80%" href="/tags/github-blog/">Github&nbsp;Blog</a> &mdash; 
+<a style="font-size: 80%" href="/tags/hhkb/">HHKB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mokee/">Mokee</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
+<a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
+<a style="font-size: 158%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
+<a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
+<a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
+<a style="font-size: 110%" href="/tags/sublime/">Sublime</a> &mdash; 
+<a style="font-size: 80%" href="/tags/thin/">Thin</a> &mdash; 
+<a style="font-size: 80%" href="/tags/web/">Web</a> &mdash; 
+<a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
+<a style="font-size: 80%" href="/tags/bs4/">bs4</a> &mdash; 
+<a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/disqus/">disqus</a> &mdash; 
+<a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 
+<a style="font-size: 80%" href="/tags/flask-script/">flask-script</a> &mdash; 
+<a style="font-size: 110%" href="/tags/gevent/">gevent</a> &mdash; 
+<a style="font-size: 80%" href="/tags/git/">git</a> &mdash; 
+<a style="font-size: 80%" href="/tags/joke/">joke</a> &mdash; 
+<a style="font-size: 80%" href="/tags/marrowmailer/">marrowmailer</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mione/">mione</a> &mdash; 
+<a style="font-size: 80%" href="/tags/mokee/">mokee</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pip/">pip</a> &mdash; 
+<a style="font-size: 80%" href="/tags/prog/">prog</a> &mdash; 
+<a style="font-size: 80%" href="/tags/psutil/">psutil</a> &mdash; 
+<a style="font-size: 110%" href="/tags/py2exe/">py2exe</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pycon2014/">pycon2014</a> &mdash; 
+<a style="font-size: 80%" href="/tags/pyodbc/">pyodbc</a> &mdash; 
+<a style="font-size: 110%" href="/tags/python/">python</a> &mdash; 
+<a style="font-size: 80%" href="/tags/qiniu/">qiniu</a> &mdash; 
+<a style="font-size: 80%" href="/tags/requests/">requests</a> &mdash; 
+<a style="font-size: 80%" href="/tags/xiaomi/">xiaomi</a>
+
+  </ul>
+</section><section>
+  <h1>Links</h1>
+  <ul id="links">
+    <li><a href="https://github.com/lixxu/">@lixxu on GitHub</a></li>
+  </ul>
+</section><section>
+  <h1>Recent Comments</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/lixxu/recent_comments_widget.js?hide_avatars=0"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Lix Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'lixxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2015/01/27/john-carmack/';
+        var disqus_url = 'http://lixxu.me/blog/2015/01/27/john-carmack/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
