@@ -22,7 +22,7 @@ alist = [1, 2, 3]
 sql = 'select * from table where field1 in (%s)'
 conn = pyodbc.connect(...)
 cur = conn.cursor()
-cur.execute(sql % (','.join('?' * len(alist))), alist)
+cur.execute(sql % (','.join(['?'] * len(alist))), alist)
 cur.fetchall()
 conn.close()
 ```
