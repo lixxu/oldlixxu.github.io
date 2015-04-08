@@ -9,7 +9,12 @@
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="接上文: 使用 NSSM 安装 Windows 系统服务 上一篇介绍使用了 net time 来同步系统时间, 后来突然想到如果没有服务器可供同步时间或电脑无法直接连接到服务器怎么办? 就去找了下使用 Python 设置时间的例子, 还真有: http://stackoverflow.com/ &hellip;">
+  <meta name="description" content="记录下来备忘: 背景: 1
+2
+3
+4
+5
+1. Nexus 4 2. Mokee 4.4.4 3. TWRP 我保存的基带共享链接: http://pan.baidu.com/s/1gdf4pfd 原帖看这里: http://bbs.mfunz.com/thread-947343-1-1. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +83,131 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/01/android-flash-stuff/">Android刷机相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-01T18:31:16+08:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
+        
+           | <a href="/blog/2014/07/01/android-flash-stuff/#disqus_thread"
+             data-disqus-identifier="http://lixxu.me/blog/2014/07/01/android-flash-stuff/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>记录下来备忘:</p>
+
+<p>背景:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. Nexus 4
+</span><span class='line'>
+</span><span class='line'>2. Mokee 4.4.4
+</span><span class='line'>
+</span><span class='line'>3. TWRP</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我保存的基带共享链接: <a href="http://pan.baidu.com/s/1gdf4pfd">http://pan.baidu.com/s/1gdf4pfd</a></p>
+
+<p>原帖看这里: <a href="http://bbs.mfunz.com/thread-947343-1-1.html">http://bbs.mfunz.com/thread-947343-1-1.html</a></p>
+
+<p>1. 刷基带, 按照帖子来就可以, 简单就是</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 进入fastboot
+</span><span class='line'>2. flash-all.bat</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2. 更新TWRP <a href="http://teamw.in/project/twrp2/129">http://teamw.in/project/twrp2/129</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Download - Recovery Image Method:
+</span><span class='line'>
+</span><span class='line'>Download the newest .img file here
+</span><span class='line'>
+</span><span class='line'>Download the above file.  Turn off your device. Turn on the device and keep
+</span><span class='line'>holding volume down until a menu shows up. The device will now be in fastboot
+</span><span class='line'>mode. Plug the device into your computer.  If you have the right drivers
+</span><span class='line'>installed, your screen should now say FASTBOOT USB.  Run the following command
+</span><span class='line'>via the command line:
+</span><span class='line'>
+</span><span class='line'>fastboot flash recovery recoveryfilename.img
+</span><span class='line'>
+</span><span class='line'>Note that you will need to change the last part to match the name of the file
+</span><span class='line'>that you just downloaded.  You will also need adb and fastboot for your computer.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>简单讲就是:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 下载.img文件
+</span><span class='line'>2. 进入fastboot
+</span><span class='line'>3. 运行 fastboot flash recovery openrecovery-twrp-2.7.1.0-mako.img
+</span><span class='line'>
+</span><span class='line'>注意:
+</span><span class='line'>1. 这里的 openrecovery-twrp-2.7.1.0-mako.img 要换成你对应的名字
+</span><span class='line'>2. fastboot 实际是 fastboot.exe</span></code></pre></td></tr></table></div></figure>
+
+
+<p>补: 如何进 <code>fastboot</code>?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 关机
+</span><span class='line'>2. 电源 + 音量-, 直到出现菜单</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -851,57 +981,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/08/install-package-control-for-sublime-text/">Sublime text安装Package Control</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-08T11:46:45+08:00" pubdate data-updated="true">May 8<sup>th</sup>, 2014</time>
-        
-           | <a href="/blog/2014/05/08/install-package-control-for-sublime-text/#disqus_thread"
-             data-disqus-identifier="http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>Ctrl+`</code> 或菜单里 <code>View</code> -> <code>Show Console</code>, 在文本框中输入:</p>
-
-<h1>Sublime3:</h1>
-
-<p><code>
-import urllib.request,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by = urllib.request.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h)) if dh != h else open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by)
-</code></p>
-
-<h1>Sublime2:</h1>
-
-<p><code>
-import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); by = urllib2.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by) if dh == h else None; print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h) if dh != h else &lsquo;Please restart Sublime Text to finish installation&rsquo;)
-</code></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -923,6 +1002,10 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/04/08/remove-duplicate-rows-from-postgresql/">PostgreSQL 中删除重复记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/27/john-carmack/">[转] Quake-III 代码里神奇的浮点开方函数</a>
       </li>
     
@@ -938,17 +1021,13 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
         <a href="/blog/2014/08/16/good-prog-tools/">改善生活的好工具</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/android/'>android (2)</a></li>
-<li class='category'><a href='/blog/categories/database/'>database (1)</a></li>
+<li class='category'><a href='/blog/categories/database/'>database (2)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
 <li class='category'><a href='/blog/categories/hhkb/'>hhkb (1)</a></li>
 <li class='category'><a href='/blog/categories/joke/'>joke (1)</a></li>
@@ -975,6 +1054,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/tags/mongodb/">MongoDB</a> &mdash; 
 <a style="font-size: 80%" href="/tags/nssm/">NSSM</a> &mdash; 
 <a style="font-size: 158%" href="/tags/octopress/">Octopress</a> &mdash; 
+<a style="font-size: 80%" href="/tags/postgresql/">PostgreSQL</a> &mdash; 
 <a style="font-size: 80%" href="/tags/pypi/">PyPi</a> &mdash; 
 <a style="font-size: 180%" href="/tags/python/">Python</a> &mdash; 
 <a style="font-size: 80%" href="/tags/recovery/">Recovery</a> &mdash; 
@@ -984,6 +1064,7 @@ import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + 
 <a style="font-size: 80%" href="/tags/windows-ssh/">Windows&nbsp;ssh</a> &mdash; 
 <a style="font-size: 80%" href="/tags/bs4/">bs4</a> &mdash; 
 <a style="font-size: 80%" href="/tags/ctypes/">ctypes</a> &mdash; 
+<a style="font-size: 80%" href="/tags/database/">database</a> &mdash; 
 <a style="font-size: 80%" href="/tags/disqus/">disqus</a> &mdash; 
 <a style="font-size: 80%" href="/tags/duoshuo/">duoshuo</a> &mdash; 
 <a style="font-size: 80%" href="/tags/flask/">flask</a> &mdash; 

@@ -4,7 +4,7 @@
   <title><![CDATA[杂七杂八记一下]]></title>
   <link href="http://lixxu.me/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2015-04-07T20:05:43+08:00</updated>
+  <updated>2015-04-08T11:44:32+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PostgreSQL 中删除重复记录]]></title>
+    <link href="http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql/"/>
+    <updated>2015-04-08T11:20:20+08:00</updated>
+    <id>http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql</id>
+    <content type="html"><![CDATA[<p>来源: <a href="http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries">http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries</a></p>
+
+<p>有的时候我们对一个表不会加唯一性限制, 而是在插入数据时进行检查. 但有的时候程序里的 bug 导致还是有重复的记录被插入到数据库中了, 这时候如何快速地删除重复行呢?</p>
+
+<p>显然, 用程序来删除会比较耗时, 尤其是记录比较多的时候.
+以下的方法只适用于 <code>PostgreSQL</code>, 因为不是标准的 SQL 语法.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM table USING table alias 
+</span><span class='line'>  WHERE table.field1 = alias.field1 AND table.field2 = alias.field2 AND
+</span><span class='line'>    table.max_field &lt; alias.max_field</span></code></pre></td></tr></table></div></figure>
+
+
+<p>比如, 有一个用户表, email 字段本该是唯一的, 需要删除重复的 email 记录.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM user_accounts USING user_accounts ua2
+</span><span class='line'>WHERE user_accounts.email = ua2.email AND user_accounts.id &lt; ua2.id;</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[转] Quake-III 代码里神奇的浮点开方函数]]></title>
@@ -1822,27 +1852,6 @@
 
 <!--more-->
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sublime text安装Package Control]]></title>
-    <link href="http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text/"/>
-    <updated>2014-05-08T11:46:45+08:00</updated>
-    <id>http://lixxu.me/blog/2014/05/08/install-package-control-for-sublime-text</id>
-    <content type="html"><![CDATA[<p><code>Ctrl+`</code> 或菜单里 <code>View</code> -> <code>Show Console</code>, 在文本框中输入:</p>
-
-<h1>Sublime3:</h1>
-
-<p><code>
-import urllib.request,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by = urllib.request.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h)) if dh != h else open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by)
-</code></p>
-
-<h1>Sublime2:</h1>
-
-<p><code>
-import urllib2,os,hashlib; h = &lsquo;7183a2d3e96f11eeadd761d777e62404&rsquo; + &lsquo;e330c659d4bb41d3bdf022e94cab3cd0&rsquo;; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); by = urllib2.urlopen(&lsquo;<a href="http://sublime.wbond.net/">http://sublime.wbond.net/</a>&rsquo; + pf.replace(&lsquo; &rsquo;, &lsquo;%20&rsquo;)).read(); dh = hashlib.sha256(by).hexdigest(); open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(by) if dh == h else None; print(&lsquo;Error validating download (got %s instead of %s), please try manual install&rsquo; % (dh, h) if dh != h else &lsquo;Please restart Sublime Text to finish installation&rsquo;)
-</code></p>
 ]]></content>
   </entry>
   

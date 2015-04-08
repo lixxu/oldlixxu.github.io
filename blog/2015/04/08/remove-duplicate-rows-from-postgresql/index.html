@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: Python - 杂七杂八记一下</title>
+  <title>PostgreSQL 中删除重复记录 - 杂七杂八记一下</title>
   <meta name="author" content="Lix Xu">
 
   
-  <meta name="description" content="Tag: python">
+  <meta name="description" content="来源: http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries 有的时候我们对一个表不会加唯一性限制, 而是在插入数据时进行检查. 但有的时候程序里的 bug 导致还是有重复的记录被插入到数据库中了, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lixxu.me/tags/python">
+  <link rel="canonical" href="http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杂七杂八记一下" type="application/atom+xml">
@@ -77,49 +77,113 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Python</h1>
+    
+      <h1 class="entry-title">PostgreSQL 中删除重复记录</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-08T11:20:20+08:00" pubdate data-updated="true">Apr 8<sup>th</sup>, 2015</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://lixxu.me">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><p>来源: <a href="http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries">http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries</a></p>
 
-  
-  <h2>2014</h2>
+<p>有的时候我们对一个表不会加唯一性限制, 而是在插入数据时进行检查. 但有的时候程序里的 bug 导致还是有重复的记录被插入到数据库中了, 这时候如何快速地删除重复行呢?</p>
 
-<article>
-  
-<h1><a href="/blog/2014/08/16/good-prog-tools/">改善生活的好工具</a></h1>
-<time datetime="2014-08-16T23:16:27+08:00" pubdate><span class='month'>Aug</span> <span class='day'>16</span> <span class='year'>2014</span></time>
+<p>显然, 用程序来删除会比较耗时, 尤其是记录比较多的时候.
+以下的方法只适用于 <code>PostgreSQL</code>, 因为不是标准的 SQL 语法.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/prog/'>prog</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM table USING table alias 
+</span><span class='line'>  WHERE table.field1 = alias.field1 AND table.field2 = alias.field2 AND
+</span><span class='line'>    table.max_field &lt; alias.max_field</span></code></pre></td></tr></table></div></figure>
 
 
+<p>比如, 有一个用户表, email 字段本该是唯一的, 需要删除重复的 email 记录.</p>
 
-<article>
-  
-<h1><a href="/blog/2014/08/08/suck-marrow-mailer/">令人崩溃的 marrow.mailer 的 Py2exe 打包历程</a></h1>
-<time datetime="2014-08-08T16:10:51+08:00" pubdate><span class='month'>Aug</span> <span class='day'>08</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/python/'>python</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM user_accounts USING user_accounts ua2
+</span><span class='line'>WHERE user_accounts.email = ua2.email AND user_accounts.id &lt; ua2.id;</span></code></pre></td></tr></table></div></figure>
 
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lix Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-08T11:20:20+08:00" pubdate data-updated="true">Apr 8<sup>th</sup>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/database/'>database</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/27/john-carmack/" title="Previous Post: [转] Quake-III 代码里神奇的浮点开方函数">&laquo; [转] Quake-III 代码里神奇的浮点开方函数</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -247,7 +311,10 @@
       var disqus_shortname = 'lixxu';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql/';
+        var disqus_url = 'http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

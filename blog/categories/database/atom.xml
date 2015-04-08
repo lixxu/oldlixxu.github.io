@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Database | 杂七杂八记一下]]></title>
   <link href="http://lixxu.me/blog/categories/database/atom.xml" rel="self"/>
   <link href="http://lixxu.me/"/>
-  <updated>2015-04-07T20:05:43+08:00</updated>
+  <updated>2015-04-08T11:44:32+08:00</updated>
   <id>http://lixxu.me/</id>
   <author>
     <name><![CDATA[Lix Xu]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PostgreSQL 中删除重复记录]]></title>
+    <link href="http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql/"/>
+    <updated>2015-04-08T11:20:20+08:00</updated>
+    <id>http://lixxu.me/blog/2015/04/08/remove-duplicate-rows-from-postgresql</id>
+    <content type="html"><![CDATA[<p>来源: <a href="http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries">http://stackoverflow.com/questions/1746213/how-to-delete-duplicate-entries</a></p>
+
+<p>有的时候我们对一个表不会加唯一性限制, 而是在插入数据时进行检查. 但有的时候程序里的 bug 导致还是有重复的记录被插入到数据库中了, 这时候如何快速地删除重复行呢?</p>
+
+<p>显然, 用程序来删除会比较耗时, 尤其是记录比较多的时候.
+以下的方法只适用于 <code>PostgreSQL</code>, 因为不是标准的 SQL 语法.</p>
+
+<pre><code>DELETE FROM table USING table alias 
+  WHERE table.field1 = alias.field1 AND table.field2 = alias.field2 AND
+    table.max_field &lt; alias.max_field
+</code></pre>
+
+<p>比如, 有一个用户表, email 字段本该是唯一的, 需要删除重复的 email 记录.
+<code>
+DELETE FROM user_accounts USING user_accounts ua2
+WHERE user_accounts.email = ua2.email AND user_accounts.id &lt; ua2.id;
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MongoDB是否适合在传统公司使用]]></title>
